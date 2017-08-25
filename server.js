@@ -12,11 +12,11 @@ dotenv.load();
 const app = express();
 const swaggerDefinition = {
   info: {
-    title: 'Node Swagger API',
+    title: 'API Documentation',
     version: '1.0.0',
     description: 'Documentation for Hello-Books API',
   },
-  host: 'localhost:3000',
+  host: 'hbks.herokuapp.com', // hbks.herokuapp.com',
   basePath: '/',
 };
 
