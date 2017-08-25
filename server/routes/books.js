@@ -35,8 +35,6 @@ app.route('/') // Get all books
  *     responses:
  *       200:
  *         description: An array of books
- *     schema:
- *       $ref: '#/definitions/books'
  */
   .get(Check.isLoggedIn, BooksController.list);
 app.route('/')

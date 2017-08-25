@@ -10,11 +10,12 @@ import BookRouter from './server/routes/books';
 
 dotenv.load();
 const app = express();
+const apiDescription = process.env.description;
 const swaggerDefinition = {
   info: {
-    title: 'API Documentation',
+    title: 'Hello-Books API Documentation',
     version: '1.0.0',
-    description: 'Documentation for Hello-Books API',
+    description: apiDescription,
   },
   host: 'hbks.herokuapp.com', // hbks.herokuapp.com',
   basePath: '/',
