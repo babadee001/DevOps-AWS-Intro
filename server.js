@@ -3,57 +3,32 @@ import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import validator from 'express-validator';
+import webpack from 'webpack';
 import path from 'path';
-import swaggerJSDoc from 'swagger-jsdoc';
+import webpackMiddleware from 'webpack-dev-middleware';
 import UserRouter from './server/routes/users';
 import BookRouter from './server/routes/books';
+import webpackConfig from './webpack.config';
 
 dotenv.load();
 const app = express();
-const apiDescription = process.env.description;
-const swaggerDefinition = {
-  info: {
-    title: 'Hello-Books API Documentation',
-    version: '1.0.0',
-    description: apiDescription,
-  },
-  host: 'hbks.herokuapp.com', // hbks.herokuapp.com',
-  basePath: '/',
-};
-
-// options for the swagger docs
-const options = {
-  // import swaggerDefinitions
-  swaggerDefinition: swaggerDefinition,
-  // path to the API docs
-  apis: ['./server/routes/*.js'],
-};
-
-// initialize swagger-jsdoc
-const swaggerSpec = swaggerJSDoc(options);
 
 app.use(logger('dev'));
+app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/books', BookRouter);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/index.html'));
+});
 app.get('/api', (req, res) => {
   res.header(200);
   res.send('Welcome to Hello-Books API');
 });
-app.get('/', (req, res) => {
-  res.header(200);
-  res.end('Welcome!!!!');
-});
-app.get('/docs', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
-});
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 // app.set('port', port);
 
 app.listen(port, () => {
