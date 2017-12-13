@@ -1,23 +1,35 @@
-module.exports = (sequelize, DataTypes) => {
-  // Books model
+export default (sequelize, DataTypes) => {
   const Books = sequelize.define('Books', {
     title: {
       type: DataTypes.STRING,
       allowNull: DataTypes.FALSE,
-      unique: false,
     },
+    isbn: {
+      type: DataTypes.TEXT,
+      required: true,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      required: true
+    },
+    catId: DataTypes.INTEGER,
+    cover: DataTypes.STRING,
     author: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    category: DataTypes.STRING,
-    quantity: DataTypes.INTEGER,
+    description: DataTypes.TEXT
   }, {
     classMethods: {
       associate: (models) => {
-        /** Books.hasMany(models.Borrowed, {
-          foreignKey: 'bookId',
-        });**/
-      },
-    },
+        // associations can be defined here
+        // Books.hasMany(models.Borrowed, {
+        //   onDelete: 'CASCADE',
+        //   foreignKey: 'bookId'
+        // });
+        Books.hasOne(models.Category, {
+          foreignKey: 'catId',
+          onDelete: 'CASCADE'
+        });
+      }
+    }
   });
   return Books;
 };

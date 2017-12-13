@@ -38,6 +38,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+heroku
+server2
 
 # Typescript v1 declaration files
 typings/
@@ -58,6 +60,12 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+*.env
+# swagger doc files
+swagger
+test/api
+node-swagger-api
 
-
+#dist
+client/dist
 # End of https://www.gitignore.io/api/node
