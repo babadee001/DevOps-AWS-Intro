@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import { bindActionCreators } from 'redux';
-import { deleteBook, editBook } from '../../actions/booksActions';
+import { editBook, deleteBookAction } from '../../actions/booksActions';
 
 class AllBooks extends Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class AllBooks extends Component {
       description: this.props.description,
       isbn: this.props.isbn,
       author: this.props.author,
-      prodYear: this.props.prodYear,
       quantity: this.props.quantity,
       currentBook: {},
       edit: false,
@@ -53,10 +52,7 @@ class AllBooks extends Component {
       dangerMode: true })
       .then((Delete) => {
         if (Delete) {
-          this
-            .props
-            .actions
-            .deleteBook(this.props.id)
+          deleteBookAction(this.props.id)
             .then((res) => {
               swal(res, { icon: 'success' });
             });
@@ -157,7 +153,6 @@ class AllBooks extends Component {
                 </div>
               </div>
               <button
-                style={ style.edit }
                 type="submit"
                 name="submit"
               >Edit Book
@@ -175,7 +170,7 @@ class AllBooks extends Component {
 
         {this.state.displayBook && <div className="card" id="book_card">
           <div className="card-image">
-            <img height="250px" src={ this.props.cover } alt="loading pix..." />
+            <img id="cover" src={ this.props.cover } alt="loading pix..." />
             <span className="card-title">{this.props.title}</span>
           </div>
           <div className="card-content">
@@ -194,7 +189,6 @@ class AllBooks extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      deleteBook,
       editBook
     }, dispatch)
   };

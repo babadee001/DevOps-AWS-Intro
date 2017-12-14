@@ -2,11 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AllBooks from './allBooks';
-// import AddBook from './addBook';
 import { getBooks, deleteBook } from '../../actions/booksActions';
 import { logout } from '../../actions/authActions';
 import AdminSideBar from './adminSideBar';
-import { Navbar } from '../navbar';
 
 class AdminHome extends Component {
   constructor(props) {
@@ -35,17 +33,6 @@ class AdminHome extends Component {
     window.location.href = '/';
   }
 
-  handleClick(bookId) {
-    swal({ title: 'Are you sure?', text: 'Once deleted, you will not be able to recover it back!', icon: 'warning', buttons: true, dangerMode: true }).then((willDelete) => {
-      if (willDelete) {
-        deleteBook(bookId).then((res) => {
-          swal(res, { icon: 'success' });
-        });
-      } else {
-        swal('Book not deleted!');
-      }
-    });
-  }
 
   renderBooks() {
     const { username } = this.props.user;
@@ -69,9 +56,10 @@ class AdminHome extends Component {
 
         <div className="col s12 l9" id="list_boy">
           {allbooks.map(book => (<AllBooks
+            deleteBook={ deleteBook }
             key={ book.id }
             prodYear={ book.prodYear }
-            total={ book.total }
+            total={ book.quantity }
             isbn={ book.isbn }
             author={ book.author }
             description={ book.description }

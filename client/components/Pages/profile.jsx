@@ -21,9 +21,9 @@ class Profile extends Component {
 
   renderBooks() {
     const allBorrowed = this.props.book;
-    if (!allBorrowed) {
+    if (allBorrowed.length < 1) {
       return (<div className="empty-notifier">
-        <h2>Wawu!!!...You have no borrowing history.</h2>
+        <h2 id="returned">Wawu!!!...All books returned.</h2>
       </div>);
     }
     return (

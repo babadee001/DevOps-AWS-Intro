@@ -19,6 +19,8 @@ module.exports = {
         category: req.body.category,
         description: req.body.description,
         quantity: req.body.quantity,
+        isbn: req.body.isbn,
+        cover: req.body.cover
       })
       .then(() => res.status(201).send({
         message: 'Book added successfully',
@@ -70,6 +72,7 @@ module.exports = {
                 bookId: req.params.bookId,
                 userId: req.params.userId,
                 description: books.description,
+                cover: books.cover,
                 title: books.title,
                 expires: due,
                 returned: false,

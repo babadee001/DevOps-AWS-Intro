@@ -50,7 +50,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Navbar link2="Logout" link1="Profile" />
+        <Navbar link3="Logout" link1="Profile" />
         {this.renderBooks()}
       </div>
     );

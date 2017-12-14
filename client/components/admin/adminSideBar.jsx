@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { a } from 'react-router-dom';
-import { bindActionCreahrefrs } from 'redux';
-import { connect } from 'react-redux';
-import { addCategory } from '../../actions/booksActions';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class AdminSideBar extends Component {
   constructor(props) {
@@ -12,9 +9,6 @@ class AdminSideBar extends Component {
       name: '',
       description: ''
     };
-    this.handleFormSubmit = this
-      .handleFormSubmit
-      .bind(this);
 
     this.onChange = this
       .onChange
@@ -45,15 +39,6 @@ class AdminSideBar extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
-
-  handleFormSubmit(event) {
-    event.preventDefault();
-    this.props.actions.addCategory(this.state)
-      .then((message) => {
-        Materialize.hrefast(message, 2000, 'blue');
-        $('.modal').modal('close');
-      }).catch(err => err);
   }
 
   render() {
@@ -109,24 +94,18 @@ class AdminSideBar extends Component {
                 <li className="divider" />
                 <p />
                 <img
-                  style={ style.img }
                   width="100px"
                   height="100px"
-                  src="https://images.vexels.com/media/users/3/130527/isolated/preview/845f79841ea58765d623a68bf434d5ed-girl-carhrefon-head-character-by-vexels.png"
-                  alt="HelloBooks"
+                  src=""
+                  alt=""
                 /><br />
-                <i className="material-icons">account_circle</i>
                 <b>{this.props.fullname}</b>
               </div><br />
             </div>
             <li className="divider" />
             <li id="menu-list">
-              <a href="/add-book">Add a book
+              <a href="/add">Add a book
                 <i className="material-icons">chevron_right</i>
-              </a>
-            </li>
-            <li id="menu-list">
-              <a data-target="add_cat" className="modal-trigger" href="#add_cat">Add Category<i className="material-icons">chevron_right</i>
               </a>
             </li>
             <li id="menu-list">
@@ -149,7 +128,7 @@ class AdminSideBar extends Component {
               }}
               >Add Category</h4>
               <div className="row">
-                <form name="edit_book" className="col s12" onSubmit={ this.handleFormSubmit }>
+                <form name="edit_book" className="col s12">
                   <div className="add-book">
                     <div className="row">
                       <div className="input-field col s12">
@@ -161,7 +140,7 @@ class AdminSideBar extends Component {
                           className="validate"
                           required
                         />
-                        <label htmlFor="isbn">Name</label>
+                        <label htmlFor="username">Name</label>
                       </div>
                     </div>
                     <div className="row">
@@ -196,7 +175,6 @@ class AdminSideBar extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    addCategory,
   }, dispatch)
 });
 

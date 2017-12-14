@@ -26,7 +26,10 @@
   }
   form button {
     margin: 15px;
-    width: 30px;
+  }
+  #addbook{
+    float: right;
+    background-color: teal;
   }
 
 .authenticationWrapper {
@@ -82,4 +85,12 @@
   .navitems {
     margin-bottom: 5px;
   }
-  
+  #cover {
+    height: 250px;
+  }
+  #returned {
+    color: teal; 
+  }
+  .profile-usermenu {
+    color: teal;
+  }

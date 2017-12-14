@@ -1,10 +1,11 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { addNewBook, GET_BOOKS, DELETE_BOOK, EDIT_BOOK, ADD_BOOK, ADD_CATEGORY, BORROW_BOOK, GET_BORROWED_BOOKS } from './types';
+import swal from 'sweetalert';
+import { GET_BOOKS, DELETE_BOOK, EDIT_BOOK, ADD_BOOK, ADD_CATEGORY, GET_BORROWED_BOOKS, RETURN_BOOK } from './types';
 
 dotenv.load();
 export function addBook(book) {
-  return { type: addNewBook, book };
+  return { type: ADD_BOOK, book };
 }
 export function getBooks() {
   return dispatch => axios.get('api/v1/books', {
@@ -24,9 +25,7 @@ export function deleteBook(book) {
   return { type: DELETE_BOOK, book };
 }
 export function getBorrowed(userId) {
-  return dispatch => axios.get(`api/v1/users/${userId}/books/?returned=false`, {
-    headers: { xaccesstoken: localStorage.getItem('token') }
-  })
+  return dispatch => axios.get(`api/v1/users/${userId}/books/?returned=false`)
     .then((res) => {
       dispatch({
         type: GET_BORROWED_BOOKS,
@@ -38,9 +37,7 @@ export function getBorrowed(userId) {
 }
 
 export function getHistory(userId) {
-  return dispatch => axios.get(`api/v1/users/${userId}`, {
-    headers: { xaccesstoken: localStorage.getItem('token') }
-  })
+  return dispatch => axios.get(`api/v1/users/${userId}`)
     .then((res) => {
       dispatch({
         type: GET_BORROWED_BOOKS,
@@ -55,17 +52,12 @@ export function editBook(book) {
 }
 
 export function borrowBook(userId, bookId) {
-  return axios.post(`api/v1/users/${userId}/books/${bookId.bookId}`, {
-    headers: { xaccesstoken: localStorage.getItem('token') }
-  })
+  return axios.post(`api/v1/users/${userId}/books/${bookId.bookId}`)
     .then(res => res.data.message)
     .catch(error => error.data.message);
 }
-
 export function returnBook(userId, bookId) {
-  return axios.put(`api/v1/users/${userId}/books/${bookId.bookId}`, {
-    headers: { xaccesstoken: localStorage.getItem('token') }
-  })
+  return axios.put(`api/v1/users/${userId}/books/${bookId.bookId}`)
     .then(res => res.data.message)
     .catch(error => error.data.message);
 }
@@ -93,13 +85,7 @@ export function addCategory(data) {
     .catch(error => error);
 }
 export function deleteBookAction(bookId) {
-  return dispatch => axios.delete(`api/v1/books/delete/${bookId}`)
-    .then((res) => {
-      dispatch({
-        type: DELETE_BOOK,
-        data: Number(res.data.id)
-      });
-      return res.data.message;
-    })
-    .catch(error => error);
+  return axios.delete(`api/v1/books/${bookId}`)
+    .then(res => res.data.message)
+    .catch(error => error.data.message);
 }

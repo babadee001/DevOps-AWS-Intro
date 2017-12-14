@@ -12,10 +12,6 @@ export default function (ComposedComponent) {
       if (token) {
         jwt.verify(token, key, (error) => {
           if (error) {
-            this
-              .props
-              .actions
-              .logout();
             window.location.href = '/';
           }
         });

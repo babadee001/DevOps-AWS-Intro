@@ -33,12 +33,11 @@ export default class BorrowedBooks extends Component {
     });
   }
   render() {
-    console.log(this.props.cover);
     return (
       <div className="book col s12 m3 l3">
         <div className="card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src={ this.props.cover } alt="" />
+            <img className="activator" src={ this.props.cover } alt="cover" id="cover" />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">{this.props.title}</span>

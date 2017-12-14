@@ -166,17 +166,17 @@ export default {
   // Check if user is an admin. Requires jwt token for admin.
   isAdmin(req, res, next) {
     const token = req.headers.xaccesstoken;
+    console.log(token);
     if (token) {
-      jwt.verify(token, adminSecret, (error) => {
-        if (error) {
-          res.status(401)
-            .send({
-              message: 'Operation failed. Invalid token provided.'
-            });
-        } else {
-          next();
-        }
-      });
+      const decoded = jwt.decode(token);
+      if (decoded.currentUser.isAdmin === 1) {
+        next();
+      } else {
+        res.status(401)
+          .send({
+            message: req.decoded
+          });
+      }
     } else {
       return res.status(401)
         .send({
