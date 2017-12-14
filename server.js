@@ -20,7 +20,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Documentation of Hello Books API',
   },
-  host: 'localhost:8000',
+  host: 'https://hbks.herokuapp.com',
   basePath: '/',
 };
 
