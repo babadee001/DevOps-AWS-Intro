@@ -54,7 +54,7 @@ app.use(validator());
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/books', BookRouter);
 
-app.get('/docs', (req, res) => {
+app.get('/api-docs', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
