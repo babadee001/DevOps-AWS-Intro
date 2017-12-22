@@ -48,7 +48,7 @@ describe('Test', () => {
         membership: 'professional',
       })
       .end((err, res) => {
-        res.body.message.should.equal('Signed up successfully');
+        res.body.message.should.equal('Signed up successfully');//feedback json
         res.should.have.status(201);
         done();
       });
@@ -314,7 +314,7 @@ describe('Test', () => {
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.be.a('array');
+        res.body.should.be.a('array');//fb
         done();
       });
   });

@@ -31,7 +31,7 @@ export default function (ComposedComponent) {
       }
 
       if (this.props.user.isAdmin !== 1) {
-        window.location.href = '/dashboard';
+        window.location.href = '/dashboard'; //feedback
       }
     }
 

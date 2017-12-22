@@ -18,7 +18,6 @@ export default class SigninForm extends Component {
   onSubmit(event) {
     event.preventDefault();
     this.props.userSigninRequest(this.state);
-    console.log(this.state);
   }
   render() {
     return (
