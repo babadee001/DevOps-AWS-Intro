@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { logout } from '../actions/AuthActions'; 
+import { logout } from '../actions/authActions'; 
 
 class Nav extends Component {
   logout(event) {

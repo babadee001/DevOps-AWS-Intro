@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBorrowed } from '../../actions/BooksActions';
-import AllBorrowed from '../includes/Unreturned';
-import Sidebar from '../includes/Sidebar';
-import Navbar from '../Navbar';
+import { getBorrowed } from '../../actions/booksActions';
+import AllBorrowed from '../includes/unreturned';
+import Sidebar from '../includes/sidebar';
+import Navbar from '../navbar';
 
 class Profile extends Component {
   constructor(props) {

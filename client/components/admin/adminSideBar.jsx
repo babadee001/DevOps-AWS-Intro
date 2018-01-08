@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Nav from '../Navbar';
+import Nav from '../navbar';
 
 class AdminSideBar extends Component {
   constructor(props) {

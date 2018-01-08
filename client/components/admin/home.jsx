@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import AllBooks from './AllBooks';
-import { getBooks, deleteBook } from '../../actions/BooksActions';
-import { logout } from '../../actions/AuthActions';
-import AdminSideBar from './AdminSideBar';
-import Navbar from '../Navbar';
+import AllBooks from './allBooks';
+import { getBooks, deleteBook } from '../../actions/booksActions';
+import { logout } from '../../actions/authActions';
+import AdminSideBar from './adminSideBar';
+import Navbar from '../navbar';
 
 class AdminHome extends Component {
   constructor(props) {

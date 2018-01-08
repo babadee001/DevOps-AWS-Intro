@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import AddBook from '../includes/AddBook';
-import AdminSideBar from './AdminSideBar';
-import { addBookAction } from '../../actions/BooksActions';
+import AddBook from '../includes/addBook';
+import AdminSideBar from './adminSideBar';
+import { addBookAction } from '../../actions/booksActions';
 
 
 export class AddANewBook extends Component {
