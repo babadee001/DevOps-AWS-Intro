@@ -6,7 +6,7 @@ import {
 	getHistory } from '../../actions/booksActions';
 import { bindActionCreators } from 'redux';
 import Sidebar from '../includes/sidebar';
-import AllBooks from '../includes/borrowedBooks';
+import AllBooks from '../includes/BorrowedBooks';
 import Navbar from '../navbar';
 
 /**
