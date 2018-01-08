@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Nav from '../navbar';
 
 class AdminSideBar extends Component {
   constructor(props) {
@@ -81,6 +82,7 @@ class AdminSideBar extends Component {
     };
     return (
       <div>
+        <Nav />
         <div className="col s2 m3 l3">
           <ul id="slide-out" className="side-nav fixed show-on-large-only">
             <div style={ style.side }>

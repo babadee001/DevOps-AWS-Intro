@@ -21,4 +21,4 @@ Signin.propTypes = {
   userSigninRequest: React.PropTypes.func.isRequired,
 };
 
-export default connect((state) => ({}), { userSigninRequest })(Signin);
+export default connect(state => ({}), { userSigninRequest })(Signin);

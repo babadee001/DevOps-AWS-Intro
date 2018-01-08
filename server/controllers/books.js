@@ -122,7 +122,7 @@ module.exports = {
           })
           .then(() => res.status(200).send({
             message: 'Book updated successfully',
-          })) // Send back the updated book.
+          }))
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import userSignupRequest from '../../actions/authActions';
 
 export default class SignupForm extends Component {
@@ -24,10 +25,8 @@ export default class SignupForm extends Component {
     //     this.context.router.push('/');
     //   },
     // );
-    console.log(this.state);
   }
   render() {
-    // const options = {'Gold', 'Silver', 'Bronze'};
     return (
       <div className="background">
         <div className="container-fluid game-screen">
@@ -84,7 +83,7 @@ export default class SignupForm extends Component {
                   </div>
                   <div className="form-group text-center">
                   Have an account?
-                    <a href="signin">Sign in</a>
+                    <Link to="signin">Sign in</Link>
                   </div>
                 </form>
               </div>

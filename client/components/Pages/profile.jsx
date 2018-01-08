@@ -50,36 +50,38 @@ class Profile extends Component {
   render() {
     const { username, id, email, membership } = this.props.user;
     return (
-      <div className="row">
+      <div>
         <Navbar link2="All books" link3="Logout" />
-        <div className="profile-usermenu col-md-3">
-          <ul className="nav">
-            <li className="active">
-              <a href="/dashboard">
-                <i className="glyphicon glyphicon-home" />
+        <div className="row">
+          <div className="profile-usermenu col-md-3">
+            <ul className="nav">
+              <li className="active">
+                <a href="/dashboard">
+                  <i className="glyphicon glyphicon-home" />
 							View All Books </a>
-            </li>
-            <li>
-              <a href="/history">
-                <i className="glyphicon glyphicon-user" />
+              </li>
+              <li>
+                <a href="/history">
+                  <i className="glyphicon glyphicon-user" />
 							Borrowing history </a>
-            </li>
-            <li>
-              <a href="" target="_blank">
-                <i className="glyphicon glyphicon-ok" />
+              </li>
+              <li>
+                <a href="" target="_blank">
+                  <i className="glyphicon glyphicon-ok" />
 							Edit profile </a>
-            </li>
-            <li>
-              <a href="">
-                <i className="glyphicon glyphicon-flag" />
+              </li>
+              <li>
+                <a href="">
+                  <i className="glyphicon glyphicon-flag" />
 							Contact Admin </a>
-            </li>
-          </ul>
-        </div>
-        {/* <!-- END MENU --> */}
-        <div className="col-md-9">
-          <div className="profile-content">
-            {this.renderBooks()}
+              </li>
+            </ul>
+          </div>
+          {/* <!-- END MENU --> */}
+          <div className="col-md-9">
+            <div className="profile-content">
+              {this.renderBooks()}
+            </div>
           </div>
         </div>
       </div>

@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { logout } from '../actions/authActions';
 // import { render } from 'react-dom';
 
 class Nav extends Component {
   logout(event) {
     event.preventDefault();
-    console.log('logout');
     this.props.logout();
   }
   render() {
     const isAuthenticated = this.props.auth.authenticated;
     const guestLinks = (
       <div className="navitems">
-        <li><a href="/">Home</a></li>
-        <li><a href="/signin">Signin</a></li>
-        <li><a href="/signup">Signup</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/signin">Signin</Link></li>
+        <li><Link to="/signup">Signup</Link></li>
       </div>
     );
     const userLinks = (
       <div className="navitems">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/profile">{this.props.link1}</a></li>
-        <li><a href="/dashboard">{this.props.link2}</a></li>
-        <li><a onClick={ this.logout.bind(this) }>{this.props.link3}</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/profile">{this.props.link1}</Link></li>
+        <li><Link to="/dashboard">{this.props.link2}</Link></li>
+        <li><Link onClick={ this.logout.bind(this) }>{this.props.link3}</Link></li>
       </div>
     );
     return (
-      <div className="navbar">
+      <div className="navbar navbar navbar-default navbar-fixed-top">
         <nav className="teal">
           <div className="nav-wrapper">
             <a href="" className="">Hello-books</a>

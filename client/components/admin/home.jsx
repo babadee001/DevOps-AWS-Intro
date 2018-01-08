@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
 import AllBooks from './allBooks';
 import { getBooks, deleteBook } from '../../actions/booksActions';
 import { logout } from '../../actions/authActions';
@@ -30,7 +31,7 @@ class AdminHome extends Component {
       .props
       .actions
       .logout();
-    window.location.href = '/';
+    browserHistory.push('/');
   }
 
 

@@ -27,7 +27,6 @@ module.exports = {
       'FIREBASE_STORAGEBUCKET'
     ]),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin(), //fb
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: false

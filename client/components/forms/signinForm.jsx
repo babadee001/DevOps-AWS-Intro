@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
+import { Link } from 'react-router';
 import { userSigninRequest } from '../../actions/authActions';
 
 export default class SigninForm extends Component {
@@ -25,7 +26,7 @@ export default class SigninForm extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-4 col-md-offset-4 authenticationWrapper">
-              <div className="authenticationBox">
+              <div className="authenticationBox inputStyle">
                 <h4 className="text-center">SIGN IN</h4>
                 <form className="glyphicon" onSubmit={ this.onSubmit }>
                   <div className="form-group input-group">
@@ -55,9 +56,9 @@ export default class SigninForm extends Component {
                   <GoogleLogin
                     clientId={ '332619675586-3k9hmrmeben0c8929757f2khnic9s7ul.apps.googleusercontent.com' }
                   />
-                  <div className="form-group text-center">
+                  <div className="text-center">
                   Dont have an account?
-                    <a href="signup">Sign up</a>
+                    <Link to="signup">Sign up</Link>
                   </div>
                 </form>
               </div>

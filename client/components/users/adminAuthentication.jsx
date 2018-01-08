@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import dotenv from 'dotenv';
 import { bindActionCreators } from 'redux';
-import jwt from 'jsonwebtoken';
+import { browserHistory } from 'react-router';
 import { logout } from '../../actions/authActions';
 
 
@@ -27,11 +27,11 @@ export default function (ComposedComponent) {
   */
     componentWillMount() {
       if (!this.props.authenticated) {
-        window.location.href = '/';
+        browserHistory.push('/');
       }
 
       if (this.props.user.isAdmin !== 1) {
-        window.location.href = '/dashboard'; //feedback
+        browserHistory.push('/dashboard');
       }
     }
 
@@ -44,7 +44,7 @@ export default function (ComposedComponent) {
    */
     componentWillUpdate(nextProps) {
       if (nextProps.currentUser.isAdmin !== 1) {
-        window.location.href = '/';
+        browserHistory.push('/');
       }
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
+import Materialize from 'materialize-css';
 import { bindActionCreators } from 'redux';
 import { editBook, deleteBookAction } from '../../actions/booksActions';
 
@@ -66,8 +67,9 @@ class AllBooks extends Component {
     this.setState({ displayBook: true, edit: false });
   }
   handleFormSubmit(event) {
+    console.log('propsssssss', this.props);
     event.preventDefault();
-    this.props.actions.editBook(this.state, this.props.id).then((res) => {
+    editBook(this.state, this.props.id).then((res) => {
       Materialize.toast(res, 1000, 'blue', () => {
         this.setState({ displayBook: true, edit: false });
       });
@@ -77,12 +79,12 @@ class AllBooks extends Component {
   render() {
     return (
       <div className="col s12 m3 l3">
-        {this.state.edit && <div className="modal-content">
+        {this.state.edit && <div className="">
           <h4>
            Edit Book</h4>
           <div className="row">
             <form name="edit_book" className="col s12" onSubmit={ this.handleFormSubmit }>
-              <div className="add-book">
+              <div className="">
                 <div className="row">
                   <div className="col s12">
                     <b>Title</b>
@@ -170,7 +172,7 @@ class AllBooks extends Component {
 
         {this.state.displayBook && <div className="card" id="book_card">
           <div className="card-image">
-            <img id="cover" src={ this.props.cover } alt="loading pix..." />
+            <img id="cover" src={ this.props.cover } alt="loading cover..." />
             <span className="card-title">{this.props.title}</span>
           </div>
           <div className="card-content">
@@ -185,6 +187,16 @@ class AllBooks extends Component {
     );
   }
 }
+
+AllBooks.propTypes = {
+  author: React.PropTypes.string,
+  cover: React.PropTypes.string,
+  description: React.PropTypes.string,
+  id: React.PropTypes.number,
+  isbn: React.PropTypes.string,
+  quantity: React.PropTypes.string,
+  title: React.PropTypes.string
+};
 
 function mapDispatchToProps(dispatch) {
   return {

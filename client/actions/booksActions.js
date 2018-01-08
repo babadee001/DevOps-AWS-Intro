@@ -1,7 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import swal from 'sweetalert';
-import { GET_BOOKS, DELETE_BOOK, EDIT_BOOK, ADD_BOOK, ADD_CATEGORY, GET_BORROWED_BOOKS, RETURN_BOOK } from './types';
+import { GET_ALL_BOOKS, DELETE_BOOK, EDIT_BOOK, ADD_BOOK, ADD_CATEGORY, GET_BORROWED_BOOKS, RETURN_BOOK } from './types';
 
 dotenv.load();
 export function addBook(book) {
@@ -13,7 +12,7 @@ export function getBooks() {
   })
     .then((res) => {
       dispatch({
-        type: GET_BOOKS,
+        type: GET_ALL_BOOKS,
         data: res.data
       });
       return res.data;
@@ -25,7 +24,7 @@ export function deleteBook(book) {
   return { type: DELETE_BOOK, book };
 }
 export function getBorrowed(userId) {
-  return dispatch => axios.get(`api/v1/users/${userId}/books/?returned=false`)
+  return dispatch => axios.get(`api/v1/users/${userId}/books?returned=false`)
     .then((res) => {
       dispatch({
         type: GET_BORROWED_BOOKS,
@@ -47,8 +46,10 @@ export function getHistory(userId) {
     })
     .catch(error => error);
 }
-export function editBook(book) {
-  return { type: EDIT_BOOK, book };
+export function editBook(details, bookId) {
+  return axios.put(`api/v1/books/${bookId}`, details)
+    .then(res => res.data.message)
+    .catch(error => error.data.message);
 }
 
 export function borrowBook(userId, bookId) {

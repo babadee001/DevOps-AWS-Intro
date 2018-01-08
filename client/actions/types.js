@@ -1,6 +1,6 @@
 export const ADD_FLASH_MESSAGE = 'ADD_FLASH_MESSAGE';
 export const ADD_BOOK = 'ADD_BOOK';
-export const GET_BOOKS = 'GET_BOOKS';
+export const GET_ALL_BOOKS = 'GET_BOOKS';
 export const DELETE_BOOK = 'DELETE_BOOK';
 export const EDIT_BOOK = 'GET_BOOK';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
