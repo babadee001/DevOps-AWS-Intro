@@ -10,7 +10,7 @@ import Dashboard from './components/Pages/dashboard';
 import Authentication from './components/users/authentication';
 import AdminAuthentication from './components/users/adminAuthentication';
 import Admin from './components/admin/home';
-import BorrowedBooks from './components/Pages/history';
+import BorrowedBooks from './components/Pages/History';
 
 export default (
   <Route path="/" component={ App }>
