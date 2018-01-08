@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBooks } from '../../actions/booksActions';
-import AllBooks from '../includes/books';
-import Navbar from '../navbar';
+import { getBooks } from '../../actions/BooksActions';
+import AllBooks from '../includes/Books';
+import Sidebar from '../includes/Sidebar';
+import Navbar from '../Navbar';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -21,20 +22,22 @@ class Dashboard extends Component {
 
   renderBooks() {
     const allbooks = this.props.books;
-    if (!allbooks) {
+    if (allbooks.length === 0) {
       return (<div className="empty-notifier">
         <h2>Wawu!!!...No book available at this time.</h2>
       </div>);
     }
     return (
       <div className="container-fluid">
-        <div className="row">
-          <div className="card-panel">
+        <div className="card-panel headcard">
             <center>Recently Added</center>
           </div>
+        <div className="row">
+          <div className="col s12 l9 m6">
           {allbooks.map(book => (<AllBooks
             key={ book.id }
             author={ book.author }
+            borrowed={false}
             description={ book.description }
             id={ book.id }
             userId={ this.props.user.userId }
@@ -42,6 +45,8 @@ class Dashboard extends Component {
             cover={ book.cover }
           />))
           }
+          </div>
+          <Sidebar />
         </div>
       </div>
     );
@@ -50,7 +55,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Navbar link3="Logout" link1="Profile" />
+        {/* <Navbar link3="Logout" link1="Profile" /> */}
         {this.renderBooks()}
       </div>
     );
@@ -64,7 +69,8 @@ Dashboard.PropTypes = {
 };
 
 function mapStateToProps(state) {
-  return { user: state.auth.user.currentUser,
+  return { 
+    user: state.auth.user.currentUser,
     books: state.books.data };
 }
 

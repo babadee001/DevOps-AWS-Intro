@@ -23,7 +23,6 @@ module.exports = {
       'FIREBASE_APIKEY',
       'FIREBASE_URL',
       'FIREBASE_PROJECTID',
-      'FIREBASE_STORAGEBUCKET',
       'FIREBASE_STORAGEBUCKET'
     ]),
     new webpack.NoEmitOnErrorsPlugin(),

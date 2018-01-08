@@ -1,15 +1,13 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { GET_ALL_BOOKS, DELETE_BOOK, EDIT_BOOK, ADD_BOOK, ADD_CATEGORY, GET_BORROWED_BOOKS, RETURN_BOOK } from './types';
+import { GET_ALL_BOOKS, DELETE_BOOK, EDIT_BOOK, ADD_BOOK, ADD_CATEGORY, GET_UNRETURNED_BOOKS, RETURN_BOOK, GET_BORROWED_HISTORY } from './types';
 
 dotenv.load();
 export function addBook(book) {
   return { type: ADD_BOOK, book };
 }
 export function getBooks() {
-  return dispatch => axios.get('api/v1/books', {
-    headers: { xaccesstoken: localStorage.getItem('token') }
-  })
+  return dispatch => axios.get('api/v1/books')
     .then((res) => {
       dispatch({
         type: GET_ALL_BOOKS,
@@ -27,7 +25,7 @@ export function getBorrowed(userId) {
   return dispatch => axios.get(`api/v1/users/${userId}/books?returned=false`)
     .then((res) => {
       dispatch({
-        type: GET_BORROWED_BOOKS,
+        type: GET_UNRETURNED_BOOKS,
         data: res.data
       });
       return res.data;
@@ -39,7 +37,7 @@ export function getHistory(userId) {
   return dispatch => axios.get(`api/v1/users/${userId}`)
     .then((res) => {
       dispatch({
-        type: GET_BORROWED_BOOKS,
+        type: GET_BORROWED_HISTORY,
         data: res.data
       });
       return res.data;
@@ -58,11 +56,21 @@ export function borrowBook(userId, bookId) {
     .catch(error => error.data.message);
 }
 export function returnBook(userId, bookId) {
-  return axios.put(`api/v1/users/${userId}/books/${bookId.bookId}`)
-    .then(res => res.data.message)
-    .catch(error => error.data.message);
+  return dispatch => axios.put(`api/v1/users/${userId}/books/${bookId.bookId}`)
+    .then((response) => {
+      const message = response.data.message;
+      if (response) {
+        swal(message, { icon: 'success' });
+      } else {
+        swal(message, { icon: 'warning' });
+      }
+      dispatch({
+        type: RETURN_BOOK,
+        data: response.data.book
+      });
+    })
+    .catch(error => swal(error));
 }
-
 export function addBookAction(bookDetails) {
   return dispatch => axios.post('api/v1/books', bookDetails)
     .then((res) => {

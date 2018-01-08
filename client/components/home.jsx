@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Nav from './navbar';
+import Nav from './Navbar';
 import '../style/style.scss';
-// import { Slider, Slide } from 'react-materialize';
 
 export default class Home extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav route1="/profile" link1="Profile" route2="/dashboard" link2="All books" />
         <div className="background container-fluid">
           <div className="row row-centered">
             <div className="col-md-6 col-centered">

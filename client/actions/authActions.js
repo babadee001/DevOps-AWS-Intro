@@ -15,7 +15,7 @@ export default function userSignupRequest(userData) {
         user: jwt.decode(res.data.Token),
         authenticated: true
       });
-      Materialize.toast('Sign Up Successfully', 2000, 'blue darken-4',
+      Materialize.toast('Sign Up Successfully', 2000, 'teal',
         () => {
           window.location.href = '/dashboard';
         });
@@ -25,7 +25,6 @@ export default function userSignupRequest(userData) {
 
 export function userSigninRequest(userData) {
   return dispatch => axios.post('api/v1/users/signin', userData).then((res) => {
-    console.log('************', res);
     localStorage.setItem('token', res.data.Token);
     const decoded = jwt.decode(res.data.Token);
     dispatch({
@@ -34,7 +33,7 @@ export function userSigninRequest(userData) {
       authenticated: true
     });
     Materialize.toast('Logged In Successfully', 1000,
-      'blue darken-4',
+      'teal',
       () => {
         window.location.href = '/admin';
       }

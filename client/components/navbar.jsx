@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { logout } from '../actions/authActions';
-// import { render } from 'react-dom';
+import { logout } from '../actions/AuthActions'; 
 
 class Nav extends Component {
   logout(event) {
@@ -14,24 +13,24 @@ class Nav extends Component {
     const guestLinks = (
       <div className="navitems">
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/signin">Signin</Link></li>
-        <li><Link to="/signup">Signup</Link></li>
+        <li><Link to="/">About</Link></li>
+        <li><Link to="/">Contact Us</Link></li>
       </div>
     );
     const userLinks = (
       <div className="navitems">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
-        <li><Link to="/profile">{this.props.link1}</Link></li>
-        <li><Link to="/dashboard">{this.props.link2}</Link></li>
-        <li><Link onClick={ this.logout.bind(this) }>{this.props.link3}</Link></li>
+        <li><Link to={this.props.route1}>{this.props.link1}</Link></li>
+        <li><Link to={this.props.route2}>{this.props.link2}</Link></li>
+        <li><Link onClick={ this.logout.bind(this) }>Logout</Link></li>
       </div>
     );
     return (
-      <div className="navbar navbar navbar-default navbar-fixed-top">
+      <div className="navbar navbar-default navbar-fixed-top">
         <nav className="teal">
           <div className="nav-wrapper">
-            <a href="" className="">Hello-books</a>
+            <Link to="/" className="">Hello-books</Link>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               { isAuthenticated ? userLinks : guestLinks }
             </ul>

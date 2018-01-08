@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class SideBar extends Component {
   componentDidMount() {
@@ -25,29 +26,16 @@ class SideBar extends Component {
     return (
       <div className="col s2 m3 l3">
         <ul id="slide-out" className="side-nav fixed show-on-large-only">
-          <div
-            style={{
-              textAlign: 'center',
-              color: '#000',
-              backgroundColor: '#136d55',
-              marginTop: -16
-            }}
-          >
+          <div className="sidenav">
             <div className="row">
               <span className="card-title">
                 <h4>
-                  <a className="white-text" to="dashboard">Dashboard</a>
+                  <Link className="white-text" to="/dashboard">Dashboard</Link>
                 </h4>
               </span>
               <li className="divider" />
               <p />
-              <img
-                style={{
-                  borderRadius: 50,
-                  border: '2px solid black'
-                }}
-                width="100px"
-                height="100px"
+              <img className="avatar"
                 src="http://res.cloudinary.com/babadee30/image/upload/v1507304526/prof_qqq3su.jpg"
                 alt="Avatar"
               /><br />
@@ -57,29 +45,24 @@ class SideBar extends Component {
           </div>
           <li className="divider" />
           <li id="menu-list">
-            <a href="borrowed">Borrow History
+            <Link to="/history">Borrow History
               <i className="material-icons">chevron_right</i>
-            </a>
+            </Link>
           </li>
-          {/* <li id="menu-list">
-            <a to="/dashboard">Rent a Book
-              <i className="material-icons">chevron_right</i>
-            </a>
-          </li> */}
-          {/* <li id="menu-list">
-            <a href="borrowed">Rented Books
-              <i className="material-icons">chevron_right</i>
-            </a>
-          </li> */}
           <li id="menu-list">
-            <a href="profile">My Profile
+            <Link to="/dashboard">All books
               <i className="material-icons">chevron_right</i>
-            </a>
+            </Link>
+          </li>
+          <li id="menu-list">
+            <Link to="/profile">My Profile
+              <i className="material-icons">chevron_right</i>
+            </Link>
           </li>
           {this.props.isAdmin && <li id="menu-list">
-            <a href="/admin">Admin Section
+            <Link to="/admin">Admin Section
               <i className="material-icons">chevron_right</i>
-            </a>
+            </Link>
           </li>}
         </ul>
       </div>

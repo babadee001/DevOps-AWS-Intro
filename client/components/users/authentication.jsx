@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import jwt from 'jsonwebtoken';
 import { bindActionCreators } from 'redux';
-import { logout } from '../../actions/authActions';
+import { logout } from '../../actions/AuthActions';
 
 export default function (ComposedComponent) {
   class Authentication extends Component {

@@ -69,6 +69,7 @@ input {
   }
   .book {
     width: 100px;
+    box-shadow: white 4px 3px 4px 5px;
   }
   .row-centered {
     text-align: center;
@@ -102,6 +103,41 @@ input {
     background-color: transparent;
     border-color: transparent;
    }
+  .headcard {
+    margin-top: 50px;
+    color: teal;
+  }
+  .card-action {
+    padding: 23px 24px !important;
+    height: 80px !important;
+  }
+  @media screen and (max-width: 1366px) and (min-width: 1024px) {
+    .side-nav {
+      width: 250px !important;
+    }
+  }
   
+  @media screen and (min-width: 1366px) {
+    .side-nav {
+      width: 360px !important;
+    }
+  }
   
-  
+  @media screen and (max-width: 1024px) {
+    .side-nav {
+      width: 260px !important;
+    }
+  }
+  .avatar {
+    border-radius: 50px;
+    border: 2px solid black;
+    width: 100px;
+    height: 100px;
+  }
+  .sidenav {
+    text-align: center;
+    color: #000;
+    background-color: #009688;
+    margin-top: -16;
+    border-color: transparent;
+  }

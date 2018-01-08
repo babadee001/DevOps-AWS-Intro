@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import Materialize from 'materialize-css';
 import { bindActionCreators } from 'redux';
-import { editBook, deleteBookAction } from '../../actions/booksActions';
+import { editBook, deleteBookAction } from '../../actions/BooksActions';
 
 class AllBooks extends Component {
   constructor(props) {
@@ -67,7 +67,6 @@ class AllBooks extends Component {
     this.setState({ displayBook: true, edit: false });
   }
   handleFormSubmit(event) {
-    console.log('propsssssss', this.props);
     event.preventDefault();
     editBook(this.state, this.props.id).then((res) => {
       Materialize.toast(res, 1000, 'blue', () => {

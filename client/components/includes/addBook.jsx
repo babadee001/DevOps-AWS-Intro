@@ -138,9 +138,8 @@ class AddBook extends Component {
 
   handleUploadError(error) {
     this.setState({ isUploading: false });
-    console.error(error);
-  }
-
+    console.error(error);}
+  
   handleUploadSuccess(filename) {
     firebase
       .storage()
