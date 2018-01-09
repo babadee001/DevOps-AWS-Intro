@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import Materialize from 'materialize-css';
 import { bindActionCreators } from 'redux';
-import { editBook, deleteBookAction } from '../../actions/BooksActions';
+import { editBook, deleteBookAction } from '../../actions/booksActions';
 
 class AllBooks extends Component {
   constructor(props) {

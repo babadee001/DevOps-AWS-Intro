@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from '../Navbar';
 
 import SignupForm from '../forms/SignupForm';
-import userSignupRequest from '../../actions/AuthActions';
+import userSignupRequest from '../../actions/authActions';
 
 class Signup extends Component {
   render() {

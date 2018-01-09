@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
-import Navbar from '../Navbar';
+import Navbar from '../navbar';
 import { returnBook } from '../../actions/BooksActions';
 
 export default class AllBooks extends Component {

@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import AddBook from '../includes/AddBook';
 import AdminSideBar from '../includes/Sidebar';
-import { addBookAction } from '../../actions/BooksActions';
+import { addBookAction } from '../../actions/booksActions';
 import Navbar from '../Navbar';
 
 

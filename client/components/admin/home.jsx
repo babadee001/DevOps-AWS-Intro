@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import AllBooks from './AllBooks';
-import { getBooks, deleteBook } from '../../actions/BooksActions';
+import { getBooks, deleteBook } from '../../actions/booksActions';
 import { logout } from '../../actions/AuthActions';
 import AdminSideBar from '../includes/Sidebar';
 import Navbar from '../Navbar';
