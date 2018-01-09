@@ -29,12 +29,6 @@ class AddBook extends Component {
     this.onChange = this
       .onChange
       .bind(this);
-    this.onhandleBlur = this
-      .onhandleBlur
-      .bind(this);
-    this.onhandleFocus = this
-      .onhandleFocus
-      .bind(this);
     this.handleUploadSuccess = this
       .handleUploadSuccess
       .bind(this);
@@ -54,63 +48,7 @@ class AddBook extends Component {
       [event.target.name]: event.target.value
     });
   }
-
-  onhandleFocus(event) {
-    const value = event.target.value,
-      name = event.target.name;
-
-    switch (name) {
-      case 'title':
-        this.setState({ titleError: '' });
-        break;
-      case 'author':
-        this.setState({ authorError: '' });
-        break;
-      case 'description':
-        this.setState({ descError: '' });
-        break;
-      case 'isbn':
-        this.setState({ isbnError: '' });
-        break;
-      default:
-        this.setState(this.state);
-    }
-  }
-
-  onhandleBlur(event) {
-    const value = event.target.value,
-      name = event.target.name;
-    switch (name) {
-      case 'title':
-        if (value.length < 2 || !value) {
-          this.setState({ titleError: 'Book title must be greater than 2 characters' });
-        }
-        break;
-      case 'author':
-        if (value.length < 2 || !value) {
-          this.setState({ authorError: 'Book author name must be greater than 2 characters' });
-        }
-        break;
-      case 'prodYear':
-        if (value.length < 4 || !value) {
-          this.setState({ prodYearError: 'Production year is not valid' });
-          return false;
-        }
-        break;
-      case 'description':
-        if (value.length < 5 || !value) {
-          this.setState({ descError: 'Book description is required' });
-        }
-        break;
-      case 'isbn':
-        if (value.length < 5 || !value) {
-          this.setState({ isbnError: 'Book ISBN must be a minimum of 5 characters' });
-        }
-        break;
-      default:
-        this.setState(this.state);
-    }
-  }
+ 
   handleProgress(progress) {
     this.setState({ progress });
   }
@@ -153,15 +91,7 @@ class AddBook extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          marginTop: 20,
-          backgroundColor: '#fff',
-          width: '70%',
-          float: 'right',
-          marginRight: 100
-        }}
-      >
+      <div className="addbook">
         <div className="row">
           <form name="add_book" className="col s12" onSubmit={ this.handleSubmit }>
             <div className="add-book">
@@ -173,8 +103,6 @@ class AddBook extends Component {
                     name="title"
                     className="validate"
                     onChange={ this.onChange }
-                    onhandleFocus={ this.onhandleFocus }
-                    onhandleBlur={ this.onhandleBlur }
                     required
                   />
                   <label htmlFor="title">Title</label>
@@ -187,8 +115,6 @@ class AddBook extends Component {
                     name="author"
                     className="validate"
                     onChange={ this.onChange }
-                    onhandleFocus={ this.onhandleFocus }
-                    onhandleBlur={ this.onhandleBlur }
                     required
                   />
                   <label htmlFor="author">Author</label>
@@ -205,7 +131,6 @@ class AddBook extends Component {
                     className="validate"
                     defaultValue="1"
                     onChange={ this.onChange }
-                    onhandleFocus={ this.onhandleFocus }
                     required
                   />
                   <label htmlFor="quantity">Quantity</label>
@@ -233,8 +158,6 @@ class AddBook extends Component {
                     type="text"
                     className="validate"
                     onChange={ this.onChange }
-                    onhandleBlur={ this.onhandleBlur }
-                    onhandleFocus={ this.onhandleFocus }
                     required
                   />
                   <label htmlFor="isbn">ISBN</label>
@@ -247,9 +170,7 @@ class AddBook extends Component {
                     id="description"
                     className="materialize-textarea"
                     name="description"
-                    onhandleBlur={ this.onhandleBlur }
                     onChange={ this.onChange }
-                    onhandleFocus={ this.onhandleFocus }
                   />
                   <label htmlFor="description">Description</label>
                   <div className="red-text">{ this.state.descError }</div>

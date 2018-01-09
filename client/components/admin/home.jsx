@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import AllBooks from './allBooks';
-import { getBooks, deleteBook } from '../../actions/booksActions';
-import { logout } from '../../actions/authActions';
-import AdminSideBar from './adminSideBar';
-import Navbar from '../navbar';
+import AllBooks from './AllBooks';
+import { getBooks, deleteBook } from '../../actions/BooksActions';
+import { logout } from '../../actions/AuthActions';
+import AdminSideBar from '../includes/Sidebar';
+import Navbar from '../Navbar';
 
 class AdminHome extends Component {
   constructor(props) {
@@ -58,7 +58,15 @@ class AdminHome extends Component {
             <center>Available Books</center>
           </div>
         <div className="row">
-          <AdminSideBar fullname={ this.props.user.username } />
+          <AdminSideBar 
+          fullname={ this.props.user.username }
+          link1={'Add New Book'} 
+          route1={'/add'}
+          link2={'User dashboard'} 
+          route2={'/dashboard'}
+          link3={'Logs'} 
+          route3={''}
+          />
           <div className="col s12 l9" id="list_boy">
             {allbooks.map(book => (<AllBooks
               deleteBook={ deleteBook }
@@ -83,7 +91,7 @@ class AdminHome extends Component {
     const { username, id } = this.props.user;
     return (
       <div>
-        <Navbar route1="/dashboard" link1="Users dashboard" route2="" link2="Contact Us" />
+        <Navbar route1="/admin" link1="Admin dashboard" route2="" link2="Contact Us" />
         {this.renderBooks()}
       </div>
     );

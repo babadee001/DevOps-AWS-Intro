@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import AddBook from '../includes/addBook';
-import AdminSideBar from './adminSideBar';
-import { addBookAction } from '../../actions/booksActions';
+import AddBook from '../includes/AddBook';
+import AdminSideBar from '../includes/Sidebar';
+import { addBookAction } from '../../actions/BooksActions';
+import Navbar from '../Navbar';
 
 
 export class AddANewBook extends Component {
@@ -11,10 +12,7 @@ export class AddANewBook extends Component {
     const { addNewBookAction } = this.props;
     return (
       <div>
-        {/* <AdminSideBar
-          fullname={ this.props.user.fullname }
-          isAdmin={ this.props.user.isAdmin }
-        /> */}
+        <Navbar route1="/admin" link1="Admin dashboard" route2="" link2="Contact Us" />
         <AddBook
           firebaseStorage={ firebase.storage().ref('images') }
           add={ this.props.addBookAction }

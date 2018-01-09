@@ -104,7 +104,6 @@ input {
     border-color: transparent;
    }
   .headcard {
-    margin-top: 50px;
     color: teal;
   }
   .card-action {
@@ -137,7 +136,46 @@ input {
   .sidenav {
     text-align: center;
     color: #000;
-    background-color: #009688;
+    background-color: #008080;
     margin-top: -16;
     border-color: transparent;
   }
+  .Navwrapper {
+    background-color: teal;
+  }
+  .nav-wrapper {
+    background-color: teal;
+  }
+  .nav-wrapper .brand-logo{
+    margin-left: 120;
+  }
+  .side-nav-fixed{
+    margin-top: 4.6em !important;
+  }
+  .addbook {
+    margin-top: 40;
+    width: 70%;
+    background-color: #fff;
+    margin-right: 100;
+    margin-left: 100;
+  }
+  .card.horizontal {
+    margin-top: -20px;
+  }
+  .card .card-image .card-title {
+    background-color: rgba(28, 31, 30, 0.66) !important;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+  }
+  
+  .card .card-image {
+    height: 250px !important;
+  }
+  .card .card-content .card-title {
+    width: max-content;
+  }
+  .error-template {padding: 40px 15px;text-align: center;}
+  .error-actions {margin-top:15px;margin-bottom:15px;}
+  .error-actions .btn { margin-right:10px; }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import dotenv from 'dotenv';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { logout } from '../../actions/authActions';
+import { logout } from '../../actions/AuthActions';
 
 
 dotenv.load();
@@ -43,7 +43,8 @@ export default function (ComposedComponent) {
    * @memberOf AdminAuthentication
    */
     componentWillUpdate(nextProps) {
-      if (nextProps.currentUser.isAdmin !== 1) {
+      console.log('next', nextProps);
+      if (nextProps.authenticated === false) {
         browserHistory.push('/');
       }
     }

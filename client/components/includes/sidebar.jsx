@@ -1,37 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { SideNav, SideNavItem, Button } from 'react-materialize';
 
 class SideBar extends Component {
-  componentDidMount() {
-    $('.button-collapse').sideNav({
-      menuWidth: 300,
-      edge: 'left',
-      closeOnClick: false,
-      draggable: true //
-    });
-    $('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrainWidth: false,
-      hover: true,
-      gutter: 0,
-      belowOrigin: false,
-      alignment: 'left',
-      stopPropagation: false
-    }
-    );
-    $('.modal').modal();
-  }
+  // componentDidMount() {
+  //   $('.button-collapse').sideNav({
+  //     menuWidth: 300,
+  //     edge: 'left',
+  //     closeOnClick: false,
+  //     draggable: true //
+  //   });
+  //   $('.dropdown-button').dropdown({
+  //     inDuration: 300,
+  //     outDuration: 225,
+  //     constrainWidth: false,
+  //     hover: true,
+  //     gutter: 0,
+  //     belowOrigin: false,
+  //     alignment: 'left',
+  //     stopPropagation: false
+  //   }
+  //   );
+  //   $('.modal').modal();
+  // }
   render() {
     return (
       <div className="col s2 m3 l3">
-        <ul id="slide-out" className="side-nav fixed show-on-large-only">
+        <ul id="slide-out" className="side-nav fixed side-nav-fixed show-on-large-only">
           <div className="sidenav">
             <div className="row">
               <span className="card-title">
-                <h4>
-                  <Link className="white-text" to="/dashboard">Dashboard</Link>
-                </h4>
               </span>
               <li className="divider" />
               <p />
@@ -45,25 +43,20 @@ class SideBar extends Component {
           </div>
           <li className="divider" />
           <li id="menu-list">
-            <Link to="/history">Borrow History
+            <Link to={this.props.route1}>{this.props.link1}
               <i className="material-icons">chevron_right</i>
             </Link>
           </li>
           <li id="menu-list">
-            <Link to="/dashboard">All books
+            <Link to={this.props.route2}>{this.props.link2}
               <i className="material-icons">chevron_right</i>
             </Link>
           </li>
           <li id="menu-list">
-            <Link to="/profile">My Profile
+            <Link to={this.props.route3}>{this.props.link3}
               <i className="material-icons">chevron_right</i>
             </Link>
           </li>
-          {this.props.isAdmin && <li id="menu-list">
-            <Link to="/admin">Admin Section
-              <i className="material-icons">chevron_right</i>
-            </Link>
-          </li>}
         </ul>
       </div>
     );

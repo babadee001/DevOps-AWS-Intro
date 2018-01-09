@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBorrowed } from '../../actions/booksActions';
+import { getBorrowed } from '../../actions/BooksActions';
 import AllBorrowed from '../includes/Unreturned';
-import Sidebar from '../includes/sidebar';
-import Navbar from '../navbar';
+import Sidebar from '../includes/Sidebar';
+import Navbar from '../Navbar';
 
 class Profile extends Component {
   constructor(props) {
@@ -54,7 +54,15 @@ class Profile extends Component {
       <div>
         <Navbar route1="/dashboard" link1="All books" route2="" link2="Contact Us" />
         <div className="row">
-          <Sidebar />
+          <Sidebar 
+          fullname={ this.props.user.username }
+          link1={'Borrow History'} 
+          route1={'/history'}
+          link2={'All books'} 
+          route2={'/dashboard'}
+          link3={'Profile'} 
+          route3={'/profile'}
+          />
           <div className="col-md-9">
             <div className="profile-content">
               {this.renderBooks()}

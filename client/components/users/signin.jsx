@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
 
-import SigninForm from '../forms/signinForm';
-import { userSigninRequest } from '../../actions/authActions';
+import SigninForm from '../forms/SigninForm';
+import { userSigninRequest } from '../../actions/AuthActions';
 
 class Signin extends Component {
   render() {

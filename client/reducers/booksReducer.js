@@ -1,4 +1,4 @@
-import { GET_ALL_BOOKS, GET_UNRETURNED_BOOKS, RETURN_BOOK, GET_BORROWED_HISTORY } from '../actions/types';
+import { GET_ALL_BOOKS, GET_UNRETURNED_BOOKS, RETURN_BOOK, GET_BORROWED_HISTORY, DELETE_BOOK } from '../actions/types';
 
 const INITIAL_STATE = { category: [], message: '', user: '', allBorrowedBooks: [], allUnreturnedBooks: [], data: [], returned: '' };
 export default function bookReducer(state = INITIAL_STATE, action) {
@@ -20,6 +20,10 @@ export default function bookReducer(state = INITIAL_STATE, action) {
     }
     case GET_BORROWED_HISTORY:
     return { ...state, allBorrowedBooks: action.data };
+    case DELETE_BOOK: {
+      const newState = state.data.filter(book => book.id !== action.data);
+      return { ...state, count: state.count - 1, data: newState };
+    }
     default:
       return state;
   }
