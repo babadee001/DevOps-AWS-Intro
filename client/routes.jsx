@@ -4,7 +4,7 @@ import App from './components/app';
 import Home from './components/home';
 import Signup from './components/users/signup';
 import Signin from './components/users/signin';
-import Profile from './components/Pages/Profile';
+import Profile from './components/Pages/profile';
 import AddBook from './components/admin/addBook';
 import Dashboard from './components/Pages/dashboard';
 import Authentication from './components/users/authentication';
