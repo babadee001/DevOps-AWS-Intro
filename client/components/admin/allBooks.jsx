@@ -51,9 +51,9 @@ class AllBooks extends Component {
       icon: 'warning',
       buttons: true,
       dangerMode: true })
-      .then((Delete) => {
-        if (Delete) {
-          deleteBookAction(this.props.id)
+      .then((del) => {
+        if (del) {
+          this.props.actions.deleteBookAction(this.props.id)
             .then((res) => {
               swal(res, { icon: 'success' });
             });
@@ -68,8 +68,9 @@ class AllBooks extends Component {
   }
   handleFormSubmit(event) {
     event.preventDefault();
-    editBook(this.state, this.props.id).then((res) => {
-      Materialize.toast(res, 1000, 'blue', () => {
+    this.props.actions.editBook(this.state, this.props.id)
+      .then((res) => {
+        Materialize.toast(res, 1000, 'blue', () => {
         this.setState({ displayBook: true, edit: false });
       });
     });
@@ -200,7 +201,8 @@ AllBooks.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      editBook
+      editBook,
+      deleteBookAction
     }, dispatch)
   };
 }

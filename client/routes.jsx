@@ -11,6 +11,7 @@ import Authentication from './components/users/authentication';
 import AdminAuthentication from './components/users/adminAuthentication';
 import Admin from './components/admin/home';
 import BorrowedBooks from './components/Pages/History';
+import Logs from './components/admin/Logs'
 import NotFound from './components/Pages/NotFound';
 
 export default (
@@ -23,6 +24,7 @@ export default (
     <Route path="/admin" component={ AdminAuthentication(Admin) } />
     <Route path="/dashboard" component={ Authentication(Dashboard) } />
     <Route path="/history" component={ Authentication(BorrowedBooks) } />
+    <Route path="/logs" component={ AdminAuthentication(Logs) } />
     <Route path="*" component={NotFound} />
   </Route>
 );

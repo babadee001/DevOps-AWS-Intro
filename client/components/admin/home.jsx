@@ -65,7 +65,7 @@ class AdminHome extends Component {
           link2={'User dashboard'} 
           route2={'/dashboard'}
           link3={'Logs'} 
-          route3={''}
+          route3={'/logs'}
           />
           <div className="col s12 l9" id="list_boy">
             {allbooks.map(book => (<AllBooks
