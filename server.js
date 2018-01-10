@@ -56,7 +56,7 @@ app.use(validator());
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/books', BookRouter);
 
-app.get('/bundle.js', (req, res) => res.sendFile(
+app.get('bundle.js', (req, res) => res.sendFile(
   path.join(path.dirname(__dirname), 'dist/bundle.js')
 ));
 app.get('/docs', (req, res) => {
