@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   cache: true,
@@ -25,6 +26,9 @@ module.exports = {
       'FIREBASE_PROJECTID',
       'FIREBASE_STORAGEBUCKET'
     ]),
+    new UglifyJSPlugin({
+      sourceMap: true
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
@@ -51,7 +55,7 @@ module.exports = {
     contentBase: './client/dist'
   },
   target: 'web',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
