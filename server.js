@@ -47,10 +47,8 @@ const options = {
 const swaggerSpec = swagger(options);
 
 app.use(logger('dev'));
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production'){
   app.use(webpackMiddleware(webpack(webpackConfig)));
-}else{
-  app.use(webpackMiddleware(webpack(webpackProd)));
 }
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
