@@ -8,7 +8,7 @@ module.exports = {
     path.join(__dirname, '/client/index.jsx')
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '/client/dist'),
     // path: path.join(__dirname, '/client/dist/'),
     publicPath: '/',
     filename: 'bundle.js'
@@ -17,6 +17,10 @@ module.exports = {
     Materialize: 'Materialize'
   },
   plugins: [
+    new htmlWebpackPlugin({
+        title: 'Hellobooks',
+        template: './client/index.html'
+      }),
     new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'FIREABSE_DOMAIN',
