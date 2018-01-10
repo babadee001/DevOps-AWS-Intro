@@ -6,9 +6,12 @@ dotenv.config();
 module.exports = {
   entry: [path.join(__dirname, '/client/index.jsx')],
   output: {
-    path: path.join(__dirname, '/client/dist'),
+    path: path.join(__dirname, './client/dist'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: './client',
+  },
+  externals: {
+    Materialize: 'Materialize'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
