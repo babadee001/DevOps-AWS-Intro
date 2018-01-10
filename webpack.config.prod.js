@@ -8,7 +8,7 @@ module.exports = {
     '/client/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, '/client/public/'),
+    path: path.join(__dirname, './client/dist'),
     publicPath: './client',
     filename: 'bundle.js'
   },
@@ -16,7 +16,7 @@ module.exports = {
     Materialize: 'Materialize'
   },
   plugins: [
-    new CleanWebpackPlugin(['client/public']),
+    new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'FIREABSE_DOMAIN',
       'FIREBASE_MESSENGERID',
