@@ -5,10 +5,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   cache: true,
   entry: [
-    '/client/index.jsx'
+    './client/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, './client/dist'),
+    path: path.join(__dirname, './client/dist/'),
     publicPath: './client',
     filename: 'bundle.js'
   },
