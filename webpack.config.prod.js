@@ -16,7 +16,7 @@ module.exports = {
     Materialize: 'Materialize'
   },
   plugins: [
-    new CleanWebpackPlugin(['client/dist']),
+    // new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'FIREABSE_DOMAIN',
       'FIREBASE_MESSENGERID',

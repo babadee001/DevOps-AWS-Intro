@@ -56,6 +56,9 @@ app.use(validator());
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/books', BookRouter);
 
+app.get('/bundle.js', (req, res) => res.sendFile(
+  path.join(path.dirname(__dirname), 'dist/bundle.js')
+));
 app.get('/docs', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
@@ -66,9 +69,12 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, './client/index.html'));
+// });
+app.get('/*', (req, res) => res.sendFile(
+  path.join(path.dirname(__dirname), 'dist/index.html'))
+);
 
 const port = process.env.PORT || 8000;
 // app.set('port', port);
