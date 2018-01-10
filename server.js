@@ -9,8 +9,8 @@ import path from 'path';
 import webpackMiddleware from 'webpack-dev-middleware';
 import UserRouter from './server/routes/users';
 import BookRouter from './server/routes/books';
-import webpackConfig from './webpack.config';
-import webpackProd from './webpack.config.prod';
+import webpackConfig from './webpack.dev';
+import webpackConfigProd from './webpack.prod';
 
 dotenv.load();
 const app = express();
@@ -47,8 +47,15 @@ const options = {
 const swaggerSpec = swagger(options);
 
 app.use(logger('dev'));
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(webpackMiddleware(webpack(webpackConfig), {
+//     hot: true,
+//     noInfo: true,
+//   }))}
 if (process.env.NODE_ENV !== 'production'){
   app.use(webpackMiddleware(webpack(webpackConfig)));
+}else{
+  app.use(webpackMiddleware(webpack(webpackConfigProd)));
 }
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
