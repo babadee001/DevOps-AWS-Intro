@@ -67,6 +67,10 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
+app.get('/bundle.js', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/dist/bundle.js'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
