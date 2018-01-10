@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   cache: true,
@@ -32,9 +31,8 @@ module.exports = {
       debug: false
     }),
     new webpack.DefinePlugin({
-      PRODUCTION: JSON.stringify(true),
       'process.env': {
-        NODE_ENV: process.env.NODE_ENV
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.ProvidePlugin({
@@ -43,13 +41,17 @@ module.exports = {
       'window.jQuery': 'jquery',
       Hammer: 'hammerjs/hammer'
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false
+      }
+    })
   ],
   devServer: {
     contentBase: './client/dist'
   },
   target: 'web',
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
