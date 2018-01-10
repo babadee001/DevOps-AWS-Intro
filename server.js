@@ -52,7 +52,7 @@ if (process.env.NODE_ENV !== 'production'){
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bundle.js', express.static(path.join(__dirname, 'dist')));
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use(validator());
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/books', BookRouter);
@@ -70,9 +70,9 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, './client/index.html'));
+// });
 // app.get('/*', (req, res) => res.sendFile(
 //   path.join(path.dirname(__dirname), 'dist/index.html'))
 // );
