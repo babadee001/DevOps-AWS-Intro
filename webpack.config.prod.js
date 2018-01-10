@@ -9,8 +9,8 @@ module.exports = {
     path.join(__dirname, '/client/index.jsx')
   ],
   output: {
-    path: path.resolve(__dirname, '/client/dist'),
-    // path: path.join(__dirname, '/client/dist/'),
+    // path: path.resolve(__dirname, '/client/dist'),
+    path: path.join(__dirname, '/client/dist/'),
     publicPath: '/',
     filename: 'bundle.js'
   },

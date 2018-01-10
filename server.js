@@ -9,7 +9,7 @@ import path from 'path';
 import webpackMiddleware from 'webpack-dev-middleware';
 import UserRouter from './server/routes/users';
 import BookRouter from './server/routes/books';
-import webpackConfig from './webpack.config';
+import webpackConfig from './webpack.dev';
 import webpackProd from './webpack.config.prod';
 
 dotenv.load();
@@ -49,6 +49,8 @@ const swaggerSpec = swagger(options);
 app.use(logger('dev'));
 if (process.env.NODE_ENV !== 'production'){
   app.use(webpackMiddleware(webpack(webpackConfig)));
+}else {
+  app.use(webpackMiddleware(webpack(webpackProd)));
 }
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,7 +70,7 @@ app.get('/api', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/index.html'));
+  res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 
 const port = process.env.PORT || 8000;
