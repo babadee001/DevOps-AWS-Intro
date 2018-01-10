@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   cache: true,
   entry: [
-    './client/index.jsx'
+    path.join(__dirname, '/client/index.jsx')
   ],
   output: {
     path: path.join(__dirname, '/client/dist/'),
@@ -16,7 +16,7 @@ module.exports = {
     Materialize: 'Materialize'
   },
   plugins: [
-    // new CleanWebpackPlugin(['client/dist']),
+    new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'FIREABSE_DOMAIN',
       'FIREBASE_MESSENGERID',
