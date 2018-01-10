@@ -8,9 +8,9 @@ module.exports = {
     './client/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, './client/dist/'),
-    publicPath: './client',
-    filename: 'bundle.js'
+    path: path.join(__dirname, '/client/public'),
+    filename: 'output.js',
+    publicPath: '/',
   },
   externals: {
     Materialize: 'Materialize'
@@ -48,7 +48,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: './client/dist'
+    contentBase: './client/public'
   },
   target: 'web',
   devtool: 'inline-source-map',
