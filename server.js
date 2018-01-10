@@ -69,12 +69,12 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, './client/index.html'));
-// });
-app.get('/*', (req, res) => res.sendFile(
-  path.join(path.dirname(__dirname), 'dist/index.html'))
-);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/index.html'));
+});
+// app.get('/*', (req, res) => res.sendFile(
+//   path.join(path.dirname(__dirname), 'dist/index.html'))
+// );
 
 const port = process.env.PORT || 8000;
 // app.set('port', port);
