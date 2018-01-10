@@ -10,7 +10,7 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new CleanWebpackPlugin(['client/']),
+    new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'FIREABSE_DOMAIN',
       'FIREBASE_MESSENGERID',

@@ -6,7 +6,7 @@ dotenv.config();
 module.exports = {
   entry: [path.join(__dirname, '/client/index.jsx')],
   output: {
-    path: path.join(__dirname, '/client'),
+    path: path.join(__dirname, '/client/dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
