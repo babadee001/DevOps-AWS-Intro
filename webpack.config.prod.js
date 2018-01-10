@@ -26,15 +26,13 @@ module.exports = {
       'FIREBASE_PROJECTID',
       'FIREBASE_STORAGEBUCKET'
     ]),
-    new UglifyJSPlugin({
-      sourceMap: true
-    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: false
     }),
     new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
@@ -45,11 +43,7 @@ module.exports = {
       'window.jQuery': 'jquery',
       Hammer: 'hammerjs/hammer'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      }
-    })
+    new webpack.optimize.UglifyJsPlugin()
   ],
   devServer: {
     contentBase: './client/dist'
