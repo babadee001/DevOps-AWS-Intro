@@ -8,8 +8,8 @@ module.exports = {
     './client/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, './client/dist/'),
-    publicPath: './client',
+    path: path.join(__dirname, '/client/dist/'),
+    publicPath: '/',
     filename: 'bundle.js'
   },
   externals: {
