@@ -5,27 +5,31 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   cache: true,
   entry: [
-    path.join(__dirname, '/client/index.jsx')
+    './client/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, '/client/public'),
-    filename: 'output.js',
+    path: path.join(__dirname, './client/dist/'),
     publicPath: './client',
+    filename: 'bundle.js'
   },
   externals: {
     Materialize: 'Materialize'
   },
   plugins: [
-    new CleanWebpackPlugin(['client/public']),
+    new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'FIREABSE_DOMAIN',
       'FIREBASE_MESSENGERID',
       'FIREBASE_APIKEY',
       'FIREBASE_URL',
       'FIREBASE_PROJECTID',
-      'FIREBASE_STORAGEBUCKET'
+      'FIREBASE_STORAGEBUCKET',
+      'GOOGLE_ID',
+      'FIREBASE_STORAGEBUCKET',
+      'secretKey'
     ]),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: false
@@ -48,7 +52,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: './client/public'
+    contentBase: './client/dist'
   },
   target: 'web',
   devtool: 'inline-source-map',
