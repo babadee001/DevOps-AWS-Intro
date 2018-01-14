@@ -1,48 +1,97 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import Materialize from 'materialize-css';
+import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../utils/setAuthorization';
-import { SET_CURRENT_USER, UNAUTH_USER, GET_ALL_USERS } from './types';
+import { SET_CURRENT_USER, UNAUTH_USER, GET_ALL_USERS, SET_API_STATUS } from './types';
 
-export default function userSignupRequest(userData) {
-  return dispatch => axios.post('api/v1/users/signup', userData)
-    .then((res) => {
-      const token = res.data.Token;
-      localStorage.setItem('token', token);
-      setAuthorizationToken(token);
-      dispatch({
-        type: SET_CURRENT_USER,
-        user: jwt.decode(res.data.Token),
-        authenticated: true
-      });
-      Materialize.toast('Sign Up Successfully', 2000, 'teal',
-        () => {
-          window.location.href = '/dashboard';
-        });
+export function isFetching(status) {
+  return {
+    type: SET_API_STATUS,
+    isFetching: status
+  };
+}
+
+export function setCurrentUser(currentUser) {
+  return {
+    type: SET_CURRENT_USER,
+    user: currentUser,
+    authenticated: true
+  };
+}
+
+export const userSignupRequest = userData => (dispatch) => {
+  dispatch(isFetching(true));
+  return axios.post('api/v1/users/signup', userData)
+    .then((response) => {
+      dispatch(isFetching(false));
+      localStorage.setItem('token', response.data.Token);
+      setAuthorizationToken(response.data.Token);
+      const decoded = jwt.decode(response.data.Token);
+      dispatch(setCurrentUser(decoded.currentUser));
     })
-    .catch(error => Materialize.toast(error.data.message, 2000, 'red'));
-}
-
-export function userSigninRequest(userData) {
-  return dispatch => axios.post('api/v1/users/signin', userData).then((res) => {
-    localStorage.setItem('token', res.data.Token);
-    const decoded = jwt.decode(res.data.Token);
-    dispatch({
-      type: SET_CURRENT_USER,
-      user: decoded.currentUser,
-      authenticated: true
+    .catch((error) => {
+      dispatch(isFetching(false));
+      Materialize.toast(error.data.message,
+        4000,
+        'red');
     });
-    Materialize.toast('Logged In Successfully', 1000,
-      'teal',
-      () => {
-        window.location.href = '/admin';
-      }
-    );
-  })
-    .catch(error => Materialize.toast(error.data.message,
-      4000,
-      'red'));
+  // return dispatch => axios.post('api/v1/users/signup', userData)
+  //   .then((res) => {
+  //     const token = res.data.Token;
+  //     localStorage.setItem('token', token);
+  //     setAuthorizationToken(token);
+  //     dispatch({
+  //       type: SET_CURRENT_USER,
+  //       user: jwt.decode(res.data.Token),
+  //       authenticated: true
+  //     });
+  //     Materialize.toast('Sign Up Successfully', 2000, 'teal',
+  //       () => {
+  //         this.context.router.push('/admin');
+  //         window.location.href = '/admin';
+  //       });
+  //   })
+  //   .catch(error => Materialize.toast(error.data.message, 2000, 'red'));
 }
+export const userSigninRequest = userData => (dispatch) => {
+  dispatch(isFetching(true));
+  return axios.post('api/v1/users/signin', userData)
+    .then((response) => {
+      dispatch(isFetching(false));
+      localStorage.setItem('token', response.data.Token);
+      setAuthorizationToken(response.data.Token);
+      const decoded = jwt.decode(response.data.Token);
+      console.log(decoded)
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch((error) => {
+      dispatch(isFetching(false));
+      Materialize.toast(error.data.message,
+        4000,
+        'red');
+    });
+};
+// export function userSigninRequest(userData) {
+//   return dispatch => axios.post('api/v1/users/signin', userData).then((res) => {
+//     localStorage.setItem('token', res.data.Token);
+//     const decoded = jwt.decode(res.data.Token);
+//     dispatch({
+//       type: SET_CURRENT_USER,
+//       user: decoded.currentUser,
+//       authenticated: true
+//     });
+//     Materialize.toast('Logged In Successfully', 1000,
+//       'teal',
+//       () => {
+//         window.location.href = '/admin';
+//       }
+//     );
+//   })
+//     .catch(error => Materialize.toast(error.data.message,
+//       4000,
+//       'red'));
+// }
 
 export function logout() {
   return (dispatch) => {
@@ -53,7 +102,7 @@ export function logout() {
       user: {},
       authenticated: false
     });
-    // window.location.href = '/';
+    browserHistory.push('/');
   };
 }
 /** Edit profile action

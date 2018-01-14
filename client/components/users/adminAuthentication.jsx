@@ -27,7 +27,7 @@ export default function (ComposedComponent) {
   */
     componentWillMount() {
       if (!this.props.authenticated) {
-        browserHistory.push('/');
+        this.props.actions.logout();
       }
 
       if (this.props.user.isAdmin !== 1) {
@@ -45,7 +45,7 @@ export default function (ComposedComponent) {
     componentWillUpdate(nextProps) {
       console.log('next', nextProps);
       if (nextProps.authenticated === false) {
-        browserHistory.push('/');
+        this.props.actions.logout();
       }
     }
 
@@ -92,7 +92,7 @@ export default function (ComposedComponent) {
   function mapStateToProps(state) {
     return {
       authenticated: state.auth.authenticated,
-      user: state.auth.user.currentUser };
+      user: state.auth.user };
   }
 
   return connect(mapStateToProps, mapDispatchToProps)(AdminAuthentication);

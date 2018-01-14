@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import userSignupRequest from '../../actions/authActions';
+import jwt from 'jsonwebtoken';
+import { browserHistory } from 'react-router';
 
 export default class SignupForm extends Component {
   constructor(props) {
@@ -14,17 +15,26 @@ export default class SignupForm extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
-  onSubmit(e) {
-    e.preventDefault();
-    this.props.userSignupRequest(this.state);
-    // .then(
-    //   () => {
-    //     this.context.router.push('/');
-    //   },
-    // );
+  onSubmit(event) {
+    event.preventDefault();
+    this.props.userSignupRequest(this.state)
+    .then(
+      () => {
+        const token = localStorage.getItem('token');
+      if (token) {
+				const currentUser = jwt.decode(token).currentUser;
+          Materialize.toast('Signed up Successfully', 1000,
+            'teal',
+            () => {
+              browserHistory.push('/dashboard');
+            }
+          );
+			}
+      },
+    );
   }
   render() {
     return (
@@ -93,7 +103,7 @@ export default class SignupForm extends Component {
       </div>
     );
   }
-}
+ }
 SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
 };
