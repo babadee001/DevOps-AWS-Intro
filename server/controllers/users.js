@@ -66,6 +66,7 @@ export default {
       })
       .then((user) => {
         const currentUser = {
+          userId: user.id,
           username: user.username,
           password: user.password,
           email: user.email,

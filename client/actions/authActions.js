@@ -28,7 +28,7 @@ export const userSignupRequest = userData => (dispatch) => {
       localStorage.setItem('token', response.data.Token);
       setAuthorizationToken(response.data.Token);
       const decoded = jwt.decode(response.data.Token);
-      dispatch(setCurrentUser(decoded.currentUser));
+      dispatch(setCurrentUser(decoded));
     })
     .catch((error) => {
       dispatch(isFetching(false));
@@ -36,24 +36,7 @@ export const userSignupRequest = userData => (dispatch) => {
         4000,
         'red');
     });
-  // return dispatch => axios.post('api/v1/users/signup', userData)
-  //   .then((res) => {
-  //     const token = res.data.Token;
-  //     localStorage.setItem('token', token);
-  //     setAuthorizationToken(token);
-  //     dispatch({
-  //       type: SET_CURRENT_USER,
-  //       user: jwt.decode(res.data.Token),
-  //       authenticated: true
-  //     });
-  //     Materialize.toast('Sign Up Successfully', 2000, 'teal',
-  //       () => {
-  //         this.context.router.push('/admin');
-  //         window.location.href = '/admin';
-  //       });
-  //   })
-  //   .catch(error => Materialize.toast(error.data.message, 2000, 'red'));
-}
+  }
 export const userSigninRequest = userData => (dispatch) => {
   dispatch(isFetching(true));
   return axios.post('api/v1/users/signin', userData)
@@ -62,7 +45,6 @@ export const userSigninRequest = userData => (dispatch) => {
       localStorage.setItem('token', response.data.Token);
       setAuthorizationToken(response.data.Token);
       const decoded = jwt.decode(response.data.Token);
-      console.log(decoded)
       dispatch(setCurrentUser(decoded));
     })
     .catch((error) => {
