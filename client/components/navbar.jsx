@@ -16,7 +16,7 @@ class Nav extends Component {
       <div className="Navwrapper">
         {isAuthenticated?
         (
-          <Navbar brand='Hello-Books' right>
+          <Navbar brand='Hello-Books' fixed right>
             <NavItem><Link to='/dashboard'>Home</Link></NavItem>
             <NavItem><Link to={this.props.route}>{this.props.link}</Link></NavItem>
             <NavItem><Link to={this.props.route1}>{this.props.link1}</Link></NavItem>

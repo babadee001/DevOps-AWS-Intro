@@ -101,7 +101,7 @@ Dashboard.PropTypes = {
 
 function mapStateToProps(state) {
   return { 
-    user: state.auth.user,
+    user: state.auth.user.currentUser,
     books: state.books.data,
     isFetching: state.books.isFetching
   };
