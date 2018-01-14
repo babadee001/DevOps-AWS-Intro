@@ -20,21 +20,28 @@ export default class SignupForm extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
-    this.props.userSignupRequest(this.state)
-    .then(
-      () => {
-        const token = localStorage.getItem('token');
+    this.props.userSignupRequest(this.state).then(() => {
+      const token = localStorage.getItem('token');
       if (token) {
-				const currentUser = jwt.decode(token).currentUser;
+        const currentUser = jwt.decode(token).currentUser;
+				if (currentUser.isAdmin === 1) {
+          Materialize.toast('Logged In Successfully', 1000,
+            'teal',
+            () => {
+              browserHistory.push('/admin');
+            }
+          );
+				} else {
           Materialize.toast('Signed up Successfully', 1000,
             'teal',
             () => {
               browserHistory.push('/dashboard');
             }
           );
+				}
 			}
-      },
-    );
+    }
+    )
   }
   render() {
     return (
