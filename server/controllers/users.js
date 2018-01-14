@@ -94,6 +94,7 @@ export default {
         const currentUser = {
           userId: user.id,
           username: user.username,
+          email: user.email,
           password: user.password,
           isAdmin: user.isAdmin,
           membership: user.membership };

@@ -11,8 +11,17 @@ class Profile extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const userId = this.props.user.userId
+    this
+      .props
+      .actions
+      .getBorrowed(userId);
+  }
+
   render() {
-    const { username, userId, email, membership } = this.props.user;
+    const { username, email, membership } = this.props.user;
+    console.log(this.props.book.length);
     return (
       <div>
         <Navbar route1="/dashboard" link1="All books" route2="" link2="Contact Us" />
@@ -26,6 +35,24 @@ class Profile extends Component {
           link3={'Profile'} 
           route3={'/profile'}
           />
+          <div className="container">
+        <div className="row card-wrapper about">
+          <div className="card-deck col-md-offset-3">
+            <div className="card text-white bg-info mb-3">
+              <div className="card-body">
+                <div className="card-text">
+                <div className="records">
+                  <p><span>Username ====></span> {this.props.user.username}</p>
+                  <p><span>Email ====></span> {this.props.user.email}</p>
+                  <p><span>Membership ====></span> {this.props.user.membership}</p>
+                  <p><span>Number of Unreturned Books ====> {this.props.book.length} </span> {}</p>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
       </div>
     );
@@ -39,7 +66,7 @@ Profile.PropTypes = {
 };
 
 function mapStateToProps(state) {
-  return { user: state.auth.user,
+  return { user: state.auth.user.currentUser,
     book: state.books.allUnreturnedBooks };
 }
 

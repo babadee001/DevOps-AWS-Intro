@@ -7,6 +7,7 @@ import { getBooks, deleteBook } from '../../actions/booksActions';
 import { logout } from '../../actions/authActions';
 import AdminSideBar from '../includes/sidebar';
 import Navbar from '../navbar';
+import { getUsers } from '../../actions/authActions';
 
 class AdminHome extends Component {
   constructor(props) {
@@ -23,6 +24,10 @@ class AdminHome extends Component {
       .props
       .actions
       .getBooks();
+      this
+      .props
+      .actions
+      .getUsers();
   }
 
   logout(event) {
@@ -91,7 +96,7 @@ class AdminHome extends Component {
     const { username, id } = this.props.user;
     return (
       <div>
-        <Navbar route1="/admin" link1="Admin dashboard" route2="/logs" link2="View Logs" />
+        <Navbar route="/admin" link="Admin dashboard" route1="/logs" link1="View Logs" />
         {this.renderBooks()}
       </div>
     );
