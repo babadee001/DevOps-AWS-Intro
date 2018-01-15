@@ -3,7 +3,10 @@ import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { checkExisting } from '../../utils/validations';
+
+dotenv.load();
 
 export default class SigninForm extends Component {
   constructor(props) {
