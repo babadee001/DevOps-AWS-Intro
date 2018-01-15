@@ -38,7 +38,7 @@ class Dashboard extends Component {
         {this.props.isFetching ? <div className="preloader"></div> :
         <div className="container">
         <div className="row card-wrapper">
-          <div className="card-deck">
+          <div className="card-deck col-md-offset-3">
             <div className="card text-white bg-info mb-3">
               <div className="card-body">
                 <p className="card-text">No books available in the store now, please check later</p>
@@ -72,7 +72,7 @@ class Dashboard extends Component {
             borrowed={false}
             description={ book.description }
             id={ book.id }
-            userId={ this.props.user.userId }
+            userId={ this.props.user.userId || this.props.user.id }
             title={ book.title }
             cover={ book.cover }
           />))

@@ -12,7 +12,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const userId = this.props.user.userId
+    const userId = this.props.user.userId || this.props.user.id
     this
       .props
       .actions
@@ -21,7 +21,6 @@ class Profile extends Component {
 
   render() {
     const { username, email, membership } = this.props.user;
-    console.log(this.props.book.length);
     return (
       <div>
         <Navbar route1="/dashboard" link1="All books" route2="" link2="Contact Us" />
@@ -45,7 +44,7 @@ class Profile extends Component {
                   <p><span>Username ====></span> {this.props.user.username}</p>
                   <p><span>Email ====></span> {this.props.user.email}</p>
                   <p><span>Membership ====></span> {this.props.user.membership}</p>
-                  <p><span>Number of Unreturned Books ====> {this.props.book.length} </span> {}</p>
+                  <p><span>Number of Unreturned Books ====> { this.props.book } </span> {}</p>
                 </div>
                 </div>
               </div>
@@ -67,7 +66,8 @@ Profile.PropTypes = {
 
 function mapStateToProps(state) {
   return { user: state.auth.user.currentUser,
-    book: state.books.allUnreturnedBooks };
+    book: state.books.unreturnedCount
+   };
 }
 
 function mapDispatchToProps(dispatch) {

@@ -30,7 +30,7 @@ class  BorrowedBooks extends Component {
 	 * @memberOf  BorrowedBooks
 	 */
   componentDidMount() {
-    const userId = this.props.user.userId
+    const userId = this.props.user.userId || this.props.user.id
     this
       .props
       .actions
@@ -45,6 +45,7 @@ class  BorrowedBooks extends Component {
 	 * @memberOf  BorrowedBooks
 	 */
 	handleClick(id) {
+		const userId = this.props.user.userId || this.props.user.id
 		swal({
 			title: 'Are you sure?',
 			text: 'Do you really want to return the book?',
@@ -53,7 +54,7 @@ class  BorrowedBooks extends Component {
 			dangerMode: true
 		}).then((willReturn) => {
 			if (willReturn) {
-				this.props.actions.returnBook(this.props.user.userId, { bookId: id })
+				this.props.actions.returnBook(userId, { bookId: id })
 			}
 		});
 	}
@@ -67,13 +68,22 @@ class  BorrowedBooks extends Component {
 	 */
 	renderBorrowedBooks() {
     let borrowedBooks = this.props.borrowedBooks;
-		if (!borrowedBooks || borrowedBooks.length < 1) {
+		if (!borrowedBooks || borrowedBooks.message == "You have never borrowed a book") {
 			return (
         <div>
+					<Sidebar
+					fullname={ this.props.user.username }
+					link1={'Borrow History'} 
+					route1={'/history'}
+					link2={'All books'} 
+					route2={'/dashboard'}
+					link3={'Profile'} 
+					route3={'/profile'}
+        /> 
 					{this.props.isFetching ? <div className="preloader"></div> : 
           <div className="container">
             <div className="row card-wrapper">
-              <div className="card-deck">
+              <div className="card-deck col-md-offset-3">
                 <div className="card text-white bg-info mb-3">
                   <div className="card-body">
                     <p className="card-text">You have not borrowed any book</p>
@@ -133,7 +143,7 @@ class  BorrowedBooks extends Component {
 	render() {
 		return (
 			<div>
-        <Navbar route1="/dashboard" link1="All books" route2="" link2="Contact Us" />
+        <Navbar route="/dashboard" link="All books" route1="/history" link1="History" />
 		      	{this.renderBorrowedBooks()}
           </div>
 		);

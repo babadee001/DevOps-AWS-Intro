@@ -8,12 +8,14 @@ module.exports = {
     dialect: 'postgres'
   },
   test: {
-    username: process.env.dialect,
-    password: process.env.testpassword,
-    database: process.env.testdatabase,
-    host: process.env.testhost,
-    port: process.env.testport,
-    dialect: process.env.dialect
+    test: {
+      username: "root",
+      password: "password",
+      database: "hellobooks_test",
+      host: "127.0.0.1",
+      port: 5432,
+      dialect: "postgres"
+      },
   },
   production: {
     use_env_variable: 'DATABASE_URL',

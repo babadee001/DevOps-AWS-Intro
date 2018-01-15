@@ -54,26 +54,6 @@ export const userSigninRequest = userData => (dispatch) => {
         'red');
     });
 };
-// export function userSigninRequest(userData) {
-//   return dispatch => axios.post('api/v1/users/signin', userData).then((res) => {
-//     localStorage.setItem('token', res.data.Token);
-//     const decoded = jwt.decode(res.data.Token);
-//     dispatch({
-//       type: SET_CURRENT_USER,
-//       user: decoded.currentUser,
-//       authenticated: true
-//     });
-//     Materialize.toast('Logged In Successfully', 1000,
-//       'teal',
-//       () => {
-//         window.location.href = '/admin';
-//       }
-//     );
-//   })
-//     .catch(error => Materialize.toast(error.data.message,
-//       4000,
-//       'red'));
-// }
 
 export function logout() {
   return (dispatch) => {
@@ -119,4 +99,11 @@ export function getUsers() {
       return res.data;
     })
     .catch(error => error);
+}
+
+export const googleSigninRequest = token  => (dispatch) => {
+  localStorage.setItem('token', token);
+  setAuthorizationToken(token);
+  const decoded = jwt.decode(token);
+  dispatch(setCurrentUser(decoded));
 }

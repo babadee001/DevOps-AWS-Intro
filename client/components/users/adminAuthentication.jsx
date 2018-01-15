@@ -43,7 +43,6 @@ export default function (ComposedComponent) {
    * @memberOf AdminAuthentication
    */
     componentWillUpdate(nextProps) {
-      console.log('next', nextProps);
       if (nextProps.authenticated === false) {
         this.props.actions.logout();
       }
@@ -92,7 +91,7 @@ export default function (ComposedComponent) {
   function mapStateToProps(state) {
     return {
       authenticated: state.auth.authenticated,
-      user: state.auth.user };
+      user: state.auth.user.currentUser };
   }
 
   return connect(mapStateToProps, mapDispatchToProps)(AdminAuthentication);

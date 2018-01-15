@@ -15,16 +15,14 @@ export default {
       {
         username: {
           notEmpty: true,
-          isAlphanumeric: false,
           isLength: {
             options: [{ min: 3 }],
-            errorMessage: 'username should be at least three characters',
+            errorMessage: 'Username is required',
           },
           errorMessage: 'username is required and should contain no spaces or special characters',
         },
         password: {
           notEmpty: true,
-          isAlphanumeric: false,
           isLength: {
             options: [{ min: 4 }],
             errorMessage: 'password should be at least four characters',
@@ -166,15 +164,14 @@ export default {
   // Check if user is an admin. Requires jwt token for admin.
   isAdmin(req, res, next) {
     const token = req.headers.xaccesstoken;
-    console.log(token);
     if (token) {
       const decoded = jwt.decode(token);
       if (decoded.currentUser.isAdmin === 1) {
         next();
       } else {
         res.status(401)
-          .send({
-            message: req.decoded
+          .json({
+            message: 'Operation failed. Admin privileges needed.'
           });
       }
     } else {

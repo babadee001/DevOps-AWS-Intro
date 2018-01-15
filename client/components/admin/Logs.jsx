@@ -23,7 +23,6 @@ class Logs extends Component {
   renderProps(){
     const books = this.props.books;
     const auth = this.props.auth;
-    console.log(this.props)
     return (
       <div>
       </div>

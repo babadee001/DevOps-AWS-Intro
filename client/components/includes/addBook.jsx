@@ -9,10 +9,6 @@ class AddBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      titleError: '',
-      authorError: '',
-      isbnError: '',
-      descError: '',
       title: '',
       isbn: '',
       description: '',
@@ -20,7 +16,7 @@ class AddBook extends Component {
       author: '',
       catId: '',
       quantity: 5,
-      isLoading: '',
+      isLoading: false,
       isUploading: '',
       progress: 0
     };

@@ -21,7 +21,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Documentation of Hello Books API',
   },
-  host: 'localhost:8000',
+  host: 'hbks.herokuapp.com',
   basePath: '/',
 };
 
@@ -67,12 +67,10 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
-app.get('/bundle.js', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/dist/bundle.js'));
-});
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/dist/index.html'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/index.html'));
 });
 
 const port = process.env.PORT || 8000;
