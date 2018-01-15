@@ -39,6 +39,7 @@ export default class SigninForm extends Component {
 		return mainUserObject;
 	}
   responseGoogle(response) {
+    console.log(process.env);
     const secretKey = process.env.secretKey;
     console.log(secretKey);
     if (response.Zi.id_token) {
