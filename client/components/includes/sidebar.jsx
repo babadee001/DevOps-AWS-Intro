@@ -14,7 +14,7 @@ class SideBar extends Component {
               <li className="divider" />
               <p />
               <img className="avatar"
-                src="http://res.cloudinary.com/babadee30/image/upload/v1507304526/prof_qqq3su.jpg"
+                src="https://res.cloudinary.com/babadee30/image/upload/v1507304526/prof_qqq3su.jpg"
                 alt="Avatar"
               /><br />
               <b>{this.props.fullname}</b>

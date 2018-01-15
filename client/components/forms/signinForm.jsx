@@ -39,9 +39,7 @@ export default class SigninForm extends Component {
 		return mainUserObject;
 	}
   responseGoogle(response) {
-    console.log(process.env);
     const secretKey = process.env.secretKey;
-    console.log(secretKey);
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
       const newUserObject = this.getDetails(decoded);
@@ -79,6 +77,7 @@ export default class SigninForm extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
+    console.log(process.env);
     this.props.userSigninRequest(this.state).then(() => {
       const token = localStorage.getItem('token');
       if (token) {
