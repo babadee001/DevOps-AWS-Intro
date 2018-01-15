@@ -40,6 +40,7 @@ export default class SigninForm extends Component {
 	}
   responseGoogle(response) {
     const secret = process.env.secretKey;
+    console.log(secret);
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
       const newUserObject = this.getDetails(decoded);
