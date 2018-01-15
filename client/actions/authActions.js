@@ -101,9 +101,19 @@ export function getUsers() {
     .catch(error => error);
 }
 
-export const googleSigninRequest = token  => (dispatch) => {
+export const googleSigninRequest = currentUser  => (dispatch) => {
+  console.log(process.env)
+  const token = jwt.sign(
+    { currentUser,
+    }, process.env.secretKey
+  );
   localStorage.setItem('token', token);
   setAuthorizationToken(token);
   const decoded = jwt.decode(token);
   dispatch(setCurrentUser(decoded));
+  Materialize.toast('Signed in Successfully',
+  1000, 'teal', () => {
+    browserHistory.push('/dashboard');
+  });
 }
+

@@ -56,18 +56,7 @@ export default class SigninForm extends Component {
           );
           });
         } else {
-          let currentUser = res;
-          const token = jwt.sign(
-            { currentUser,
-            }, secretKey
-          );
-          this.props.googleSigninRequest(token)
-            Materialize.toast('Logged In Successfully', 1000,
-            'teal',
-            () => {
-              browserHistory.push('/dashboard');
-            }
-          );
+          this.props.googleSigninRequest(res);
         }
       });
     }
