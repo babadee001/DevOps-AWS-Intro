@@ -53,12 +53,9 @@ module.exports = {
       comments: false,
       compress: {
         warnings: false,
-        drop_console: true,
-      output: {
-        comments: false
-      }
+        drop_console: true
     }
-    })
+    }),
     ],
   devServer: {
     contentBase: './client/dist'
