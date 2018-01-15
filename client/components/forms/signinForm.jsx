@@ -42,6 +42,7 @@ export default class SigninForm extends Component {
 		return mainUserObject;
 	}
   responseGoogle(response) {
+    console.log("herokuijdncji))(**********8", process.env)
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
       const newUserObject = this.getDetails(decoded);
