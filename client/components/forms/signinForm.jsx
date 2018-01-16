@@ -42,6 +42,7 @@ export default class SigninForm extends Component {
 		return mainUserObject;
 	}
   responseGoogle(response) {
+    const key = 'babadee'
     console.log("herokuijdncji))(**********8", process.env)
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
@@ -62,7 +63,7 @@ export default class SigninForm extends Component {
           let currentUser = res;
           const token = jwt.sign(
             { currentUser,
-            }, process.env.secretKey
+            }, key
           );
           this.props.googleSigninRequest(token)
             Materialize.toast('Logged In Successfully', 1000,
