@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import AllBooks from './allBooks';
 import { getBooks, deleteBook } from '../../actions/BooksActions';
-import { logout, getUsers } from '../../actions/AuthActions';
-import AdminSideBar from '../includes/SideBar';
+import { logout, getUsers } from '../../actions/authActions';
+import AdminSideBar from '../includes/sideBar';
 import Navbar from '../NavigationBar';
 
 /**

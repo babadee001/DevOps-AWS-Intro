@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import AddBook from '../includes/AddBook';
-import { addBookAction } from '../../actions/BooksActions';
+import AddBook from '../includes/addBook';
+import { addBookAction } from '../../actions/booksActions';
 import Navbar from '../NavigationBar';
 
 /**

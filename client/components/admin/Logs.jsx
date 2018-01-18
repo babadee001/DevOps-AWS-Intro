@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUsers } from '../../actions/AuthActions';
-import { getAllBorrowed } from '../../actions/BooksActions';
+import { getUsers } from '../../actions/authActions';
+import { getAllBorrowed } from '../../actions/booksActions';
 import Navbar from '../NavigationBar';
 
 /**

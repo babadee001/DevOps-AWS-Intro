@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Navbar, NavItem } from 'react-materialize';
-import { logout } from '../actions/AuthActions'; 
+import { logout } from '../actions/authActions'; 
 
 /**
  * @description - NavigationBar component
