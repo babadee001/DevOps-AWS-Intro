@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import Navbar from '../NavigationBar';
-import { borrowBook } from '../../actions/BooksActions';
+import { borrowBook } from '../../actions/booksActions';
 
 /**
  * @description - Books component
