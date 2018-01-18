@@ -118,7 +118,7 @@ class AllBooks extends Component {
     this.setState({ cover: this.props.cover });
     this.props.actions.editBook(this.state, this.props.id)
       .then((res) => {
-        Materialize.toast(res, 1000, 'blue', () => {
+        Materialize.toast(res, 1000, 'teal', () => {
         this.setState({ displayBook: true, edit: false });
       });
     });
