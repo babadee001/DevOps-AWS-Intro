@@ -10,7 +10,7 @@ import {
   GET_BORROWED_HISTORY, 
   GET_ALL_TIME_BORROWED 
 } from './types';
-import { isFetching } from './AuthActions';
+import { isFetching } from './authActions';
 
 dotenv.load();
 

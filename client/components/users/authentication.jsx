@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { logout } from '../../actions/AuthActions';
+import { logout } from '../../actions/authActions';
 
 dotenv.load();
 

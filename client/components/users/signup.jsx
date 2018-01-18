@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from '../NavigationBar';
 
 import SignupForm from '../forms/SignupForm';
-import { userSignupRequest } from '../../actions/AuthActions';
+import { userSignupRequest } from '../../actions/authActions';
 
 /**
  * @description - Signup component
