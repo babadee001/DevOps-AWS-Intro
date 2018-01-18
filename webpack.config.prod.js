@@ -9,7 +9,6 @@ module.exports = {
     path.join(__dirname, '/client/index.jsx')
   ],
   output: {
-    // path: path.resolve(__dirname, '/client/dist'),
     path: path.join(__dirname, '/client/dist/'),
     publicPath: '/',
     filename: 'bundle.js'
@@ -48,15 +47,11 @@ module.exports = {
       Hammer: 'hammerjs/hammer'
     }),
     new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      sourceMap: true,
-      comments: false,
-      compress: {
-        warnings: false,
-        drop_console: true
-    }
-    }),
-    ],
+      output: {
+        comments: false
+      }
+    })
+  ],
   devServer: {
     contentBase: './client/dist'
   },

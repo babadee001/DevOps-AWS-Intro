@@ -1,19 +1,42 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBooks } from '../../actions/booksActions';
-import AllBooks from '../includes/books';
-import SideBar from '../includes/sidebar';
-import Navbar from '../navbar';
-import sidebar from '../includes/sidebar';
+import { getBooks } from '../../actions/BooksActions';
+import AllBooks from '../includes/Books';
+import SideBar from '../includes/SideBar';
+import Navbar from '../NavigationBar';
 
+/**
+ * @description - Dashboard component
+ * 
+ * @export
+ * 
+ * @class Dashboard
+ * 
+ * @extends {Component}
+ */
 class Dashboard extends Component {
+
+  /**
+	 * @description - Creates an instance of Dashboard.
+	 * 
+	 * @param {Object} props - Componnet props data
+	 * 
+	 * @memberOf Dashboard
+	 */
   constructor(props) {
     super(props);
     this.renderBooks = this
       .renderBooks
       .bind(this);
   }
+
+  /**
+	 * 
+	 * @description - Executes after component is mounted
+	 * 
+	 * @memberOf Dashboard
+	 */
   componentDidMount() {
     this
       .props
@@ -21,6 +44,14 @@ class Dashboard extends Component {
       .getBooks();
   }
 
+  /**
+	 * 
+	 * @description - Displays the list of books in library
+	 * 
+	 * @returns {Array} - Array of books
+	 * 
+	 * @memberOf Dashboard
+	 */
   renderBooks() {
     const allbooks = this.props.books;
     if (!allbooks || allbooks.length === 0) {
@@ -65,7 +96,7 @@ class Dashboard extends Component {
           link3={'Profile'} 
           route3={'/profile'}
           /> 
-          <div className="col s12 l9">
+          <div className="col s12 l9" id="bookList">
           {allbooks.map(book => (<AllBooks
             key={ book.id }
             author={ book.author }
@@ -83,10 +114,18 @@ class Dashboard extends Component {
     )}
   }
 
+  /**
+	 * 
+	 * @description - Renders the component
+	 * 
+	 * @returns {Object} - Object
+	 * 
+	 * @memberOf Dashboard
+	 */
   render() {
     return (
       <div>
-        <Navbar route='/about' link='About' route1="/profile" link1="Profile" route2="" link2="Contact Us" />
+        <Navbar route='/history' link='History' route1="/profile" link1="Profile" route2="" link2="Contact Us" />
           {this.renderBooks()}
       </div>
     );
@@ -99,6 +138,13 @@ Dashboard.PropTypes = {
   books: PropTypes.object.isRequired
 };
 
+/**
+ * @description - Maps the redux state to the component props
+ * 
+ * @param {Object} state - Application state
+ *  
+ * @returns {Object} - Selected state
+ */
 function mapStateToProps(state) {
   return { 
     user: state.auth.user.currentUser,
@@ -107,6 +153,14 @@ function mapStateToProps(state) {
   };
 }
 
+/**
+ * 
+ * @description - Maps the dispatch to component props
+ * 
+ * @param {Function} dispatch 
+ *
+ * @returns {Object} - Object containing functions
+ */
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({

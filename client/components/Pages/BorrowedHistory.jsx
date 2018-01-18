@@ -3,31 +3,31 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	returnBook, 
-	getHistory } from '../../actions/booksActions';
+	getHistory } from '../../actions/BooksActions';
 import { bindActionCreators } from 'redux';
-import Sidebar from '../includes/sidebar';
+import Sidebar from '../includes/SideBar';
 import AllBooks from '../includes/BorrowedBooks';
-import Navbar from '../navbar';
+import Navbar from '../NavigationBar';
 
 /**
- * borrowedBooks component
+ * @description BorrowedHistory component
  * 
  * @export {Object}
- * @class  BorrowedBooks
+ * @class  BorrowedHistory
  * @extends {Component}
  */
-class  BorrowedBooks extends Component {
+class  BorrowedHistory extends Component {
 	constructor(props) {
 		super(props);
-		this.renderBorrowedBooks = this.renderBorrowedBooks.bind(this);
+		this.renderHistory = this.renderHistory.bind(this);
 		this.handleClick =  this.handleClick.bind(this);
 	}
 	/**
-	 * Fetches the list of rented books by a user
+	 * Fetches the list of borrowed books by a user
 	 * 
 	 * @param {any} props 
 	 * 
-	 * @memberOf  BorrowedBooks
+	 * @memberOf  BorrowedHistory
 	 */
   componentDidMount() {
     const userId = this.props.user.userId || this.props.user.id
@@ -42,7 +42,7 @@ class  BorrowedBooks extends Component {
 	 * 
 	 * @param {any} id 
 	 * 
-	 * @memberOf  BorrowedBooks
+	 * @memberOf  BorrowedHistory
 	 */
 	handleClick(id) {
 		const userId = this.props.user.userId || this.props.user.id
@@ -60,13 +60,13 @@ class  BorrowedBooks extends Component {
 	}
 
 	/**
-	 * Displays lists of rented books
+	 * Displays lists of borrowed books
 	 * 
 	 * @returns 
 	 * 
-	 * @memberOf  BorrowedBooks
+	 * @memberOf  BorrowedHistory
 	 */
-	renderBorrowedBooks() {
+	renderHistory() {
     let borrowedBooks = this.props.borrowedBooks;
 		if (!borrowedBooks || borrowedBooks.message == "You have never borrowed a book") {
 			return (
@@ -110,7 +110,7 @@ class  BorrowedBooks extends Component {
           link3={'Profile'} 
           route3={'/profile'}
           />
-              <div className="col s12 l9">
+              <div className="col s12 l9" id="bookList">
 							{borrowedBooks.map((book) => {
 								return (
 									<AllBooks
@@ -138,22 +138,22 @@ class  BorrowedBooks extends Component {
 	 * 
 	 * @returns 
 	 * 
-	 * @memberOf  BorrowedBooks
+	 * @memberOf  BorrowedHistory
 	 */
 	render() {
 		return (
 			<div>
-        <Navbar route="/dashboard" link="All books" route1="/history" link1="History" />
-		      	{this.renderBorrowedBooks()}
+        <Navbar route="/dashboard" link="All books" route1="/profile" link1="Profile" />
+		      	{this.renderHistory()}
           </div>
 		);
 	}
 }
 
-BorrowedBooks.PropTypes = {
+BorrowedHistory.PropTypes = {
 	user: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
-	borrowedBooks: PropTypes.object.isRequired
+	borrowedHistory: PropTypes.object.isRequired
 };
 
 /**
@@ -172,8 +172,8 @@ function mapStateToProps(state) {
 }
 
 /**
+ * Maps the actions to component Props
  * 
- * Maps the state to component Props
  * @param {Function} dispatch 
  *
  * @returns {Object} - Object containing functions
@@ -190,4 +190,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)( BorrowedBooks);
+export default connect(mapStateToProps, mapDispatchToProps)( BorrowedHistory);

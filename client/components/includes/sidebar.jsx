@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { SideNav, SideNavItem, Button } from 'react-materialize';
 
+/**
+ * @description - User side bar component
+ * 
+ * @class SideBar
+ * 
+ * @extends {Component}
+ */
 class SideBar extends Component {
+
+  /**
+	 * @description - Renders the component
+	 * 
+	 * @returns {Object}
+	 * 
+	 * @memberOf SideBar
+	 */
   render() {
     return (
       <div className="col s2 m3 l3">
@@ -14,7 +28,7 @@ class SideBar extends Component {
               <li className="divider" />
               <p />
               <img className="avatar"
-                src="https://res.cloudinary.com/babadee30/image/upload/v1507304526/prof_qqq3su.jpg"
+                src="http://res.cloudinary.com/babadee30/image/upload/v1507304526/prof_qqq3su.jpg"
                 alt="Avatar"
               /><br />
               <b>{this.props.fullname}</b>

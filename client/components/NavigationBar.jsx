@@ -2,13 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Navbar, NavItem } from 'react-materialize';
-import { logout } from '../actions/authActions'; 
+import { logout } from '../actions/AuthActions'; 
 
-class Nav extends Component {
+/**
+ * @description - NavigationBar component
+ * 
+ * @export {Object}
+ * 
+ * @class NavigationBar
+ * 
+ * @extends {Component}
+ */
+class NavigationBar extends Component {
+
+  /**
+	 * 
+	 * @description - Logout user out of the app
+	 * 
+	 * @memberOf NavigationBar
+	 */
   logout(event) {
     event.preventDefault();
     this.props.logout();
   }
+
+  /**
+	 * 
+	 * @description - Renders the component
+	 * 
+	 * @returns {Object} - Object
+	 * 
+	 * @memberOf Navigation
+	 */
   render() {
     const isAuthenticated = this.props.auth.authenticated;
     
@@ -17,7 +42,7 @@ class Nav extends Component {
         {isAuthenticated?
         (
           <Navbar brand='Hello-Books' fixed right>
-            <NavItem><Link to='/dashboard'>Home</Link></NavItem>
+            <NavItem><Link to='/admin'>Home</Link></NavItem>
             <NavItem><Link to={this.props.route}>{this.props.link}</Link></NavItem>
             <NavItem><Link to={this.props.route1}>{this.props.link1}</Link></NavItem>
             <NavItem><Link onClick={ this.logout.bind(this) }>Logout</Link></NavItem>
@@ -36,15 +61,22 @@ class Nav extends Component {
     );
   }
 }
-Nav.propTypes = {
+NavigationBar.propTypes = {
   auth: React.PropTypes.object.isRequired,
   logout: React.PropTypes.func.isRequired
 };
 
+/**
+ * @description - Maps the redux state to the component props
+ * 
+ * @param {Object} state - Application state
+ *  
+ * @returns {Object} - Selected state
+ */
 function mapStateToProps(state) {
   return {
     auth: state.auth
   };
 }
 
-export default connect(mapStateToProps, { logout })(Nav);
+export default connect(mapStateToProps, { logout })(NavigationBar);

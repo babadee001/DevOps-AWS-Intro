@@ -3,12 +3,25 @@ import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { checkExisting } from '../../utils/validations';
 
-dotenv.load();
-
+/**
+ * @description - Signin form component
+ * 
+ * @export {Object} SigninForm component
+ * 
+ * @class SigninForm
+ * 
+ * @extends {Component}
+ */
 export default class SigninForm extends Component {
+  /**
+	 * @description - Creates an instance of signinForm.
+	 * 
+	 * @param {Object} props - component properties
+	 * 
+	 * @memberOf signinForm
+	 */
   constructor(props) {
     super(props);
     this.state = {
@@ -21,13 +34,13 @@ export default class SigninForm extends Component {
     this.getDetails = this.getDetails.bind(this);
   }
   /**
-	 * @description - Re-map API response to retrieve necessary data
+	 * @description - Destructure API response from google to retrieve necessary data
 	 * 
 	 * @param {Object} obj - Object from Google API
 	 * 
 	 * @returns {Object} 
 	 * 
-	 * @memberOf GoogleLogIn
+	 * @memberOf signinForm
 	 */
 	getDetails(obj) {
 		let mainUserObject = {
@@ -40,10 +53,19 @@ export default class SigninForm extends Component {
 		mainUserObject.currentUser.password = username;
 		mainUserObject.currentUser.email = obj.email;
 		return mainUserObject;
-	}
+  }
+  
+  /**
+	 * @description - Handles response from google signin request
+	 * 
+	 * @param {Object} response - Object from Google API
+	 * 
+	 * @returns {Object} 
+	 * 
+	 * @memberOf signinForm
+	 */
   responseGoogle(response) {
-    const key = 'babadee'
-    console.log("herokuijdncji))(**********8", process.env)
+    const secret = process.env.secretKey;
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
       const newUserObject = this.getDetails(decoded);
@@ -63,7 +85,7 @@ export default class SigninForm extends Component {
           let currentUser = res;
           const token = jwt.sign(
             { currentUser,
-            }, key
+            }, secret
           );
           this.props.googleSigninRequest(token)
             Materialize.toast('Logged In Successfully', 1000,
@@ -76,12 +98,27 @@ export default class SigninForm extends Component {
       });
     }
   }
+
+  /**
+	 * @description - Handles the input value changes
+	 * 
+	 * @param {Object} event 
+	 * 
+	 * @memberOf signinForm
+	 */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
+  /**
+	 * @description - Submits the signin information
+	 * 
+	 * @param {Object} event 
+	 * 
+	 * @memberOf signinForm
+	 */
   onSubmit(event) {
     event.preventDefault();
-    console.log(process.env);
     this.props.userSigninRequest(this.state).then(() => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -105,6 +142,14 @@ export default class SigninForm extends Component {
     }
     )
   }
+
+  /**
+	 * @description - Renders the component
+	 * 
+	 * @returns { Object }
+	 * 
+	 * @memberOf signinForm
+	 */
   render() {
     return (
       <div className="background">

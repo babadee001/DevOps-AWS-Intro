@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUsers } from '../../actions/authActions';
-import { getAllBorrowed } from '../../actions/booksActions';
-import Navbar from '../navbar';
+import { getUsers } from '../../actions/AuthActions';
+import { getAllBorrowed } from '../../actions/BooksActions';
+import Navbar from '../NavigationBar';
 
-
+/**
+ * Logs component
+ * 
+ * @export { Object }
+ * 
+ * @class Logs
+ * 
+ * @extends {Component}
+ */
 class Logs extends Component {
   constructor(props) {
     super(props);
   }
+
+  /**
+	 * @description - Executes after component is mounted
+	 * 
+	 * @memberOf AdminHome
+	 */
   componentDidMount() {
     this
       .props
@@ -20,6 +34,12 @@ class Logs extends Component {
         .actions
         .getAllBorrowed();
   }
+  
+  /**
+	 * @description - Renders props of the component
+	 * 
+	 * @memberOf Logs
+	 */
   renderProps(){
     const books = this.props.books;
     const auth = this.props.auth;
@@ -28,11 +48,20 @@ class Logs extends Component {
       </div>
     )
   }
+
+  /**
+	 * 
+	 * @description - Renders the component
+	 * 
+	 * @returns {Object} - Object
+	 * 
+	 * @memberOf Logs
+	 */
   render() {
     return (
       <div>
         {this.renderProps()}
-        <Navbar route1="/admin" link1="Admin dashboard" route2="/logs" link2="View Logs" />
+        <Navbar route="/admin" link="Admin dashboard" route1="/add" link1="Add New" />
         <div className="container">
         <div className="row card-wrapper">
                 <div className="col-sm-4 col-md-4 col-lg-4">
@@ -66,11 +95,11 @@ class Logs extends Component {
   }
 }
 /**
- *
- *
- * @param {Object} state
- *
- * @returns {Object} Object containing the application state
+ * @description - Maps the redux state to the component props
+ * 
+ * @param {Object} state - Application state
+ *  
+ * @returns {Object} - Selected state
  */
 function mapStateToProps(state) {
   return {
@@ -79,6 +108,14 @@ function mapStateToProps(state) {
   };
 }
 
+/**
+ * 
+ * @description - Maps the dispatch to component props
+ * 
+ * @param {Function} dispatch 
+ *
+ * @returns {Object} - Object containing functions
+ */
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
