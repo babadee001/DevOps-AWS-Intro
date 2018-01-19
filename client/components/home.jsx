@@ -26,8 +26,7 @@ class Home extends Component {
             (
               <div>
               <h1>This is Hello-Books</h1>
-              <Link to="/dashboard" className="waves-effect waves-light btn">Dashboard</Link>
-              <Link to="/profile" className="waves-effect waves-light btn">My profile</Link>
+              <Link to="/admin" className="waves-effect waves-light btn">Dashboard</Link>
               </div>
             ):
             (

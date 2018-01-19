@@ -39,7 +39,6 @@ export default function (ComposedComponent) {
           if (error) {
             this.props.actions.logout()
           }
-          browserHistory.push('/dashboard')
         });
       }
       if (!this.props.authenticated) {
@@ -48,7 +47,7 @@ export default function (ComposedComponent) {
     }
 
 
-      /**
+  /**
    * Executes before component is updated
    *
    * @param { object } nextProps
