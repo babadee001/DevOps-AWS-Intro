@@ -18,7 +18,7 @@ import AdminProfile from './components/admin/AdminProfile';
 
 export default (
   <Route path="/" component={ App }>
-    <IndexRoute component={ Authentication(Home) } />
+    <IndexRoute component={ Home } />
     <Route path="/signup" component={ Signup } />
     <Route path="/signin" component= { Signin } />
     <Route path="/profile" component={ Authentication(Profile) } />

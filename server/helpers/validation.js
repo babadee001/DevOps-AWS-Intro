@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken';
 import db from '../models/';
 
 dotenv.load();
-const secret = process.env.secretKey;
-const adminSecret = process.env.adminSecret;
+const secret = process.env.SECRETKEY;
+const adminSecret = process.env.ADMINSECRET;
 const { Users } = db;
 
 export default {
