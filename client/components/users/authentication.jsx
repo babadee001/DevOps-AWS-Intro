@@ -32,13 +32,14 @@ export default function (ComposedComponent) {
 		 * @memberOf Authentication
 		 */
     componentWillMount() {
-      const key = 'babadee';
+      const key = process.env.secret;
       const token = localStorage.getItem('token');
       if (token) {
         jwt.verify(token, key, (error) => {
           if (error) {
             this.props.actions.logout()
           }
+          browserHistory.push('/dashboard')
         });
       }
       if (!this.props.authenticated) {

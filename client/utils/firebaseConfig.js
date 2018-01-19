@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: 'AIzaSyBfTTyuPtvVRcXExbY3u494FlOV-hQfNYc',
-  authDomain: 'hellobooks-5805e.firebaseapp.com',
-  databaseURL: 'https://hellobooks-5805e.firebaseio.com',
-  projectId: 'hellobooks-5805e',
-  storageBucket: 'hellobooks-5805e.appspot.com',
-  messagingSenderId: '650549260097'
+  apiKey: process.env.FIREBASE_APIKEY,
+  authDomain: process.env.FIREBASE_AUTHDOMAIN,
+  databaseURL: process.env.FIREBASE_URL,
+  projectId: process.env.FIREBASE_PROJECTID,
+  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSENGERID
 };
 
 export default firebaseConfig;
