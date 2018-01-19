@@ -150,7 +150,7 @@ export function addBookAction(bookDetails) {
         message: res.data.message
       });
     })
-    .catch(error => error.data.message);
+    .catch(error => error);
 }
 
 /**
