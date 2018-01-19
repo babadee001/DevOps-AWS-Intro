@@ -65,7 +65,7 @@ export default class SigninForm extends Component {
 	 * @memberOf signinForm
 	 */
   responseGoogle(response) {
-    const secret = process.env.secretKey;
+    const secret = process.env.SECRETKEY;
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
       const newUserObject = this.getDetails(decoded);
