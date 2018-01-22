@@ -47,6 +47,7 @@ app.route('/') // Get all users
  *     parameters:
  *       - name: xaccesstoken
  *         description: Authorization token for this request
+ *         type: string
  *         in: header
  *         required: true
  *     responses:
