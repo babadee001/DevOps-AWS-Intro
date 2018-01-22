@@ -49,7 +49,6 @@ app.route('/') // Get all users
  *         description: Authorization token for this request
  *         in: header
  *         required: true
- *         type: string
  *     responses:
  *       200:
  *         description: Returns all users
@@ -100,7 +99,6 @@ app.route('/signup')
  *         description: The registration details of the user
  *         in: body
  *         required: false
- *         type: string
  *         schema:
  *           $ref: '#/definitions/users'
  *     responses:
@@ -127,7 +125,6 @@ app.route('/signin')
  *         description: The login details of the user
  *         in: body
  *         required: true
- *         type: string
  *         schema:
  *           $ref: '#/definitions/signin'
  *     responses:
@@ -251,7 +248,6 @@ app.route('/:userId/books')
  *         description: The registration details of the user
  *         in: body
  *         required: false
- *         type: string
  *         schema:
  *           $ref: '#/definitions/users'
  *     responses:
