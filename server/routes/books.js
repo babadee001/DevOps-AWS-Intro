@@ -20,6 +20,10 @@ dotenv.load(); // Get all books
  *         type: string
  *       description:
  *         type: string
+ *       cover:
+ *         type: string
+ *       isbn: 
+ *         type: string
  *
  */
 
@@ -58,10 +62,10 @@ app.route('/')
  *       - application/json
  *     parameters:
  *       - name: details
- *         description: The details of the book
- *         in: body
- *         required: true
- *         type: string
+  *         description: The details of the book
+  *         in: body
+  *         required: true
+  *         type: string
  *         schema:
  *           $ref: '#/definitions/books'
  *     responses:
