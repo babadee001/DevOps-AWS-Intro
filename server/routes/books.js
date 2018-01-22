@@ -22,6 +22,7 @@ dotenv.load(); // Get all books
  *         type: string
  *
  */
+
 /**
  * @swagger
  * /api/v1/books:
@@ -37,8 +38,6 @@ dotenv.load(); // Get all books
  *         in: header
  *         required: true
  *         type: string
- *         schema:
- *           $ref: '#/definitions/books'
  *     responses:
  *       200:
  *         description: An array of books
@@ -153,8 +152,6 @@ app.route('/:bookId')
  *         in: header
  *         required: true
  *         type: string
- *         schema:
- *           $ref: '#/definitions/books'
  *     responses:
  *       200:
  *         description: An array of books

@@ -55,8 +55,6 @@ app.route('/') // Get all users
  *         description: Returns all users
  *       401:
  *         description: User not logged in, User not an admin
- *     schema:
- *       $ref: '#/definitions/users'
  */
   .get(Check.isAdmin, UsersController.list);
 app.route('/:userId')
