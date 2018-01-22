@@ -62,10 +62,9 @@ app.route('/')
  *       - application/json
  *     parameters:
  *       - name: details
-  *         description: The details of the book
-  *         in: body
-  *         required: true
-  *         type: string
+ *         description: The details of the book
+ *         in: body
+ *         required: true
  *         schema:
  *           $ref: '#/definitions/books'
  *     responses:
