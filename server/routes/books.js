@@ -90,8 +90,6 @@ app.route('/:bookId')
  *         in: path
  *         required: true
  *         type: integer
- *         schema:
- *           $ref: '#/definitions/books'
  *       - name: xaccesstoken
  *         description: Authorization token for this request
  *         in: header
