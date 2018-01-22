@@ -298,3 +298,13 @@ input {
     width: 65%;
   }
   
+  .navbar .navbar-collapse.in { 
+    max-height:300px!important; 
+    overflow-y:scroll!important; 
+    overflow-x:hidden!important; 
+  }
+  @media (max-width: 768px) {
+    .col-centered a {
+      width: 50%;
+    }
+  }
