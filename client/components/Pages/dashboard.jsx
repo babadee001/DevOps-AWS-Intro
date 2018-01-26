@@ -83,10 +83,11 @@ class Dashboard extends Component {
     }else{
     return (
       <div className="">
-        <div className="row">
+        <div className="container">
           <div className="card-panel headcard">
             <center>Recently Added</center>
           </div>
+          <div className="row">
           <SideBar 
           fullname={ this.props.user.username }
           link1={'Borrow History'} 
@@ -108,6 +109,7 @@ class Dashboard extends Component {
             cover={ book.cover }
           />))
           }
+      </div>
       </div>
       </div>
     </div>
@@ -139,7 +141,7 @@ Dashboard.PropTypes = {
 };
 
 /**
- * @description - Maps the redux state to the component props
+ *@description - Maps the redux state to the component props
  * 
  * @param {Object} state - Application state
  *  

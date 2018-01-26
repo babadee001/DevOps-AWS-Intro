@@ -71,16 +71,16 @@ export default class Books extends Component {
     return (
       <div>
         <div className="col s12 m3 l3">
-          <div className="card">
-            <div className="card-image waves-effect waves-block waves-light">
-              <img className="activator" src={ this.props.cover } id="cover" alt="cover" />
+          <div className="card" id="book_card">
+            <div className="card-image">
+              <img id="cover" src={ this.props.cover } id="cover" alt="cover" />
+              <span className="card-title">{this.props.title}</span>
             </div>
             <div className="card-content">
-              <span className="card-title">{this.props.title}</span>
               <span>{this.props.description}</span>
-              <p>
+            </div>
+            <div className="card-action">
                 <button onClick={ this.handleClick } className="btn">Borrow</button>
-              </p>
             </div>
           </div>
         </div>
