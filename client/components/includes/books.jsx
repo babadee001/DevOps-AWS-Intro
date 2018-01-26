@@ -73,7 +73,7 @@ export default class Books extends Component {
         <div className="col s12 m3 l3">
           <div className="card" id="book_card">
             <div className="card-image">
-              <img id="cover" src={ this.props.cover } id="cover" alt="cover" />
+              <img id="cover" src={ this.props.cover } alt="cover" />
               <span className="card-title">{this.props.title}</span>
             </div>
             <div className="card-content">
