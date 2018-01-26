@@ -78,12 +78,13 @@ export default {
    * @description This method handles validation of login input
    * 
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
    * 
    * @returns { object } response message
    */
   validateLogin(req, res, next) {
+    const user = req.body.username.toLowerCase();
+    req.body.username = user
     req.checkBody(
       {
         username: {
@@ -94,7 +95,7 @@ export default {
         password: {
           notEmpty: true,
           isAlphanumeric: false,
-          errorMessage: 'Enter valid password',
+          errorMessage: 'Enter a valid password',
         },
       });
     Users.findOne(
@@ -176,7 +177,6 @@ export default {
    * @description This method checks for logged in users
    * 
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
    * 
    * @returns { object } response message
@@ -186,9 +186,9 @@ export default {
     if (token) {
       jwt.verify(token, secret, (error) => {
         if (error) {
-          res.status(401)
+          res.status(403)
             .send({
-              message: 'Access Denied. You are not authorized.'
+              message: 'Access Denied. Admin privileges needed'
             });
         } else {
           next();
@@ -208,7 +208,6 @@ export default {
    * @description This method handles check for admin authentication of users
    * 
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
    * 
    * @returns { object } response message
@@ -220,7 +219,7 @@ export default {
       if (decoded.currentUser.isAdmin === 1) {
         next();
       } else {
-        res.status(401)
+        res.status(403)
           .json({
             message: 'Operation failed. Admin privileges needed.'
           });
@@ -232,4 +231,122 @@ export default {
         });
     }
   },
+
+  /**
+   * @method validateSearch
+   * 
+   * @description This method handles check for admin authentication of users
+   * 
+   * @param { object} req HTTP request
+   * 
+   * @param { object} res HTTP response
+   * 
+   * @returns { object } response message
+   */
+  validateSearch(req, res, next) {
+    req.checkBody(
+      { searchTerm: {
+        notEmpty: true,
+        errorMessage: 'Enter a valid search term',
+      },
+      });
+      const errors = req.validationErrors();
+    if (errors) {
+      const allErrors = [];
+      errors.forEach((error) => {
+        const errorMessage = error.msg;
+        allErrors.push(errorMessage);
+      });
+      return res.status(400)
+        .json({
+          message: allErrors[0],
+        });
+    }
+    next();
+  },
+   /**
+   * Validates user data when editing profile
+   *
+   * @param {Object} req - request object
+   *
+   * @param {Object} res - repsonse object
+   *
+   * @param {Function} next - Call back function
+   *
+   * @returns {Object} - Response object
+   */
+  validateUserEdit(req, res, next) {
+    req.checkBody(
+      { 
+        username: {
+          notEmpty: true,
+          errorMessage: 'Enter a valid username',
+          isLength: {
+            options: [{ min: 3 }],
+            errorMessage: 'New username should be at least 3 characters',
+        },
+        },
+      });
+      const errors = req.validationErrors();
+    if (errors) {
+      const allErrors = [];
+      errors.forEach((error) => {
+        const errorMessage = error.msg;
+        allErrors.push(errorMessage);
+      });
+      return res.status(400)
+        .json({
+          message: allErrors[0],
+        });
+    }
+    const usernameValidator = /[A-Za-z]/g;
+
+    if (!usernameValidator.test(req.body.username)) {
+      res.status(400).send({
+        message: 'Invalid data supplied pls check and try again'
+      });
+    }
+    next();
+  },
+
+   /**
+ * Checks if book id is a number
+ *
+ * @param {Object} req - request
+ *
+ * @param {Object} res - response
+ *
+ * @param {Function} next - Call back function
+ *
+ * @returns { Object } - containing error message
+ */
+  checkBookId(req, res, next) {
+    const querier = req.body.bookId || req.params.bookId;
+    if (!querier || /[\D]/.test(querier)) {
+      return res.status(400).send({
+        message: 'Invalid book id supplied!!!'
+      });
+    }
+    next();
+  },
+    /**
+ * Checks if user id is a number
+ *
+ * @param {Object} req - request
+ *
+ * @param {Object} res - response
+ *
+ * @param {Function} next - Call back function
+ *
+ * @returns { Object } - containing error message
+ */
+checkUserId(req, res, next) {
+  const querier = req.body.userId || req.params.userId;
+  if (!querier || /[\D]/.test(querier)) {
+    return res.status(400).send({
+      message: 'Invalid user id supplied!!!'
+    });
+  }
+  next();
+},
 };

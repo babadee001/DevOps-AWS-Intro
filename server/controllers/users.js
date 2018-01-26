@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import db from '../models/';
 
 dotenv.load();
-const secret = process.env.SECRET;
+const secret = process.env.SECRETKEY;
 const adminSecret = process.env.ADMINSECRET;
 
 const { Users } = db;
@@ -23,10 +23,11 @@ export default {
    * @returns { object } response message
    */
   create(req, res) {
+    const user = req.body.username.toLowerCase();
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     return Users
       .create({
-        username: req.body.username,
+        username: user,
         email: req.body.email,
         password: hashedPassword,
         membership: req.body.membership,
@@ -69,7 +70,7 @@ export default {
     return Users
       .all()
       .then(users => res.status(200).send(users))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(500).send(error));
   },
   
   /**
@@ -110,7 +111,7 @@ export default {
           Token: token,
         });
       })
-      .catch(() => res.status(400).send({
+      .catch(() => res.status(409).send({
         message: 'Username or email already exists',
       }));
   },
@@ -127,9 +128,10 @@ export default {
    * @returns { object } response message
    */
   signin(req, res) {
+    const user = req.body.username.toLowerCase();
     return Users
       .findOne({
-        where: { username: req.body.username },
+        where: { username: user },
       })
       .then((user) => {
         const currentUser = {
@@ -150,7 +152,34 @@ export default {
             message: 'Log in successful',
             Token: token,
           });
-      });
+      }).catch(error => res.status(500).send(error));
+  },
+  /**
+   * @method checkExistingUser
+   * 
+   * @description This method handles checking of existing username request
+   * 
+   * @param { object} req HTTP request
+   * @param { object} res HTTP response
+   * 
+   * @returns { object } response message
+   */
+  checkExistingUser(req, res) {
+    return Users
+      .findOne({
+        where: { 
+          username: req.body.searchTerm
+        },
+      })
+      .then((user) => {
+        res.status(200).json({
+          message: user
+        })
+      }).catch(error =>{
+        res.status(404).json({
+          message:error
+        })
+      })
   },
 
   /**
@@ -159,7 +188,6 @@ export default {
    * @description This method handles getting history of users request
    * 
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
    * 
    * @returns { object } response message
@@ -180,7 +208,7 @@ export default {
           res.status(200).send(books);
         }
       })
-      .catch(error => res.status(404).send(error));
+      .catch(error => res.status(500).send({ message: error }));
   },
 
   /**
@@ -189,7 +217,6 @@ export default {
    * @description This method handles checking of existing users request
    * 
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
    * 
    * @returns { object } response message
@@ -198,7 +225,7 @@ export default {
     return Users
       .findOne({
         where: { 
-          email: req.body.email
+          email: req.body.searchTerm
         },
       })
       .then((user) => {
@@ -211,4 +238,59 @@ export default {
         })
       })
   },
+
+   /**
+   *
+   * @description - Edit profile controller
+   *
+   * @param {Object} req - request
+   * @param {Object} res - response
+   *
+   * @returns {Object} - Object containing status code and success message
+   */
+  editProfile(req, res) {
+    return Users.findOne({
+      where: {
+        id: req.params.userId
+      }
+    }).then((user) => {
+      if(user){
+        if(req.body.oldPassword){
+          if(req.body.oldPassword &&
+            !bcrypt.compareSync(req.body.oldPassword, user.password)) {
+            res.status(400).send({
+              message: 'Old password is incorrect'
+            });
+          }else{
+          const password = bcrypt.hashSync(req.body.newPassword, 10);
+          return user.update({
+            username: req.body.username || user.username,
+            password: password
+          }).then((updated) => {
+            res.status(201).json({
+              message: 'profile updated succesfully',
+              updated
+            })
+          })
+        }
+      }else{
+        return user.update({
+          username: req.body.username || user.username,
+          password: user.password
+        }).then((updated) => {
+          res.status(201).json({
+            message: 'profile updated succesfully',
+            updated
+          })
+        }).catch(error =>{
+          res.status(409).json({
+            message: "Username exists. Try another one"
+          })
+        })
+      }
+      }else return res.status(404).json({
+        message: 'User not in database'
+      })
+    })
+  }
 };

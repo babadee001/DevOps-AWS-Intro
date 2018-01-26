@@ -65,11 +65,11 @@ export default class SigninForm extends Component {
 	 * @memberOf signinForm
 	 */
   responseGoogle(response) {
-    const secret = process.env.SECRETKEY;
+    const secret = process.env.secretKey;
     if (response.Zi.id_token) {
       const decoded = jwt.decode(response.Zi.id_token);
       const newUserObject = this.getDetails(decoded);
-      checkExisting({ email: newUserObject.currentUser.email })
+      checkExisting({ searchTerm: newUserObject.currentUser.email })
       .then((res) => {
         if (res == 'Not found') {
           this.props.userSignupRequest(newUserObject.currentUser)
