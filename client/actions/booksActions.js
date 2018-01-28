@@ -15,7 +15,7 @@ import {
   ADD_CATEGORY,
   GET_CATEGORY
 } from './types';
-import { isFetching } from './AuthActions';
+import { isFetching } from './authActions';
 
 dotenv.load();
 

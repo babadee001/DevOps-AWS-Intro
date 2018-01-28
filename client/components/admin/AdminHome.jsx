@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import AllBooks from './allBooks';
 import { getBooks, deleteBook } from '../../actions/booksActions';
 import { logout, getUsers } from '../../actions/authActions';
-import AdminSideBar from '../includes/sideBar';
+import AdminSideBar from '../includes/sidebar';
 import Navbar from '../NavigationBar';
 
 /**
