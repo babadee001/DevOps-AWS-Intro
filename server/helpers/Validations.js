@@ -185,7 +185,6 @@ const Validations = {
           message: allErrors[0],
         });
     }
-    next();
   },
 
   /**

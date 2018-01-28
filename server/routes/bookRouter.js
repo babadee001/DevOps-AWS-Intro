@@ -212,7 +212,7 @@ bookRouter.route('/')
  *               "message": "Internal Server Error"
  * }
  */
-  .post(validateBook, isAdmin, sendBookInput, create);
+  .post(isAdmin, sendBookInput, validateBook, create);
 bookRouter.route('/:bookId')
 /**
  * @swagger
