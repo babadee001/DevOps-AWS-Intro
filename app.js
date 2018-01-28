@@ -10,6 +10,7 @@ import webpackMiddleware from 'webpack-dev-middleware';
 import userRouter from './server/routes/userRouter';
 import bookRouter from './server/routes/bookRouter';
 import webpackConfig from './webpack.config';
+import webpackProd from './webpack.config.prod';
 
 dotenv.load();
 const app = express();
@@ -20,7 +21,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Documentation of Hello Books API',
   },
-  host: 'localhost:8000',
+  host: 'hbks.herokuapp.com',
   basePath: '/',
 };
 
@@ -37,6 +38,9 @@ const options = {
       in: 'header'
     }
   },
+  security: [
+    { jwt: [] }
+  ]
 };
 
 // initialize swagger-jsdoc
@@ -63,12 +67,16 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
+app.get('/bundle.js', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/dist/bundle.js'));
+});
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/index.html'));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 
 const port = process.env.PORT || 8000;
+// app.set('port', port);
 
 app.listen(port, () => {
   console.log(`The server is listening on port ${port}`);
