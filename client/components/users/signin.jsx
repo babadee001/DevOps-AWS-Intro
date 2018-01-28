@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Navbar from '../NavigationBar';
 
-import SigninForm from '../forms/signinForm';
-import { userSigninRequest, userSignupRequest, googleSigninRequest } from '../../actions/authActions';
+import SigninForm from '../forms/SigninForm';
+import { userSigninRequest, userSignupRequest, googleSigninRequest } from '../../actions/AuthActions';
 
 /**
  * @description - Signin component

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from '../NavigationBar';
-import Sidebar from '../includes/sidebar';
+import Sidebar from '../includes/SideBar';
 import { checkUser } from '../../utils/validations';
-import { editProfileAction } from '../../actions/authActions';
+import { editProfileAction } from '../../actions/AuthActions';
   
 /**
  * @description - Edit profile component
@@ -95,7 +95,7 @@ class EditProfile extends Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    const userId = this.props.user.userId;
+    const userId = this.props.user.userId || this.props.user.id;
     checkUser({searchTerm: this.state.username})
     .then((response) => {
         if (response !== 'Not found') {

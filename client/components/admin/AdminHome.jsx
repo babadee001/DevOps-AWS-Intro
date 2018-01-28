@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import AllBooks from './allBooks';
-import { getBooks, deleteBook } from '../../actions/booksActions';
-import { logout, getUsers } from '../../actions/authActions';
-import AdminSideBar from '../includes/sidebar';
+import { getBooks, deleteBook } from '../../actions/BooksActions';
+import { logout, getUsers } from '../../actions/AuthActions';
+import AdminSideBar from '../includes/SideBar';
 import Navbar from '../NavigationBar';
 
 /**
@@ -81,31 +81,31 @@ class AdminHome extends Component {
     const allbooks = this.props.books;
     if (!allbooks || allbooks.length === 0) {
       return (
-      <div>
-        <AdminSideBar 
-          fullname={ this.props.user.username }
-          link1={'Add New Book'} 
-          route1={'/add'}
-          link2={'View Logs'} 
-          route2={'/logs'}
-          link3={'Profile'} 
-          route3={'/adminprofile'}
-          />
-        {this.props.isFetching ? <div className="preloader"></div> :
-        <div className="container">
-        <div className="row card-wrapper">
-          <div className="card-deck col-md-offset-3">
-            <div className="card text-white bg-info mb-3">
-              <div className="card-body">
-                <p className="card-text">No books available in the store. Please add new</p>
+        <div>
+          <AdminSideBar 
+            fullname={ this.props.user.username }
+            link1={'Add New Book'} 
+            route1={'/add'}
+            link2={'View Logs'} 
+            route2={'/logs'}
+            link3={'Profile'} 
+            route3={'/adminprofile'}
+            />
+          {this.props.isFetching ? <div className="preloader"></div> :
+          <div className="container">
+          <div className="row card-wrapper">
+            <div className="card-deck col-md-offset-3">
+              <div className="card text-white bg-info mb-3">
+                <div className="card-body">
+                  <p className="card-text">No books available in the store. Please add new</p>
+                </div>
               </div>
             </div>
           </div>
+    </div>}
         </div>
-  </div>}
-      </div>
-      );
-    }else{
+        );
+    }
     return (
       <div className="container">
         <div className="card-panel headcard">
@@ -125,7 +125,6 @@ class AdminHome extends Component {
             {allbooks.map(book => (<AllBooks
               deleteBook={ deleteBook }
               key={ book.id }
-              prodYear={ book.prodYear }
               total={ book.quantity }
               isbn={ book.isbn }
               author={ book.author }
@@ -139,7 +138,7 @@ class AdminHome extends Component {
         </div>
       </div>
 
-    );}
+    );
   }
 
   /**
@@ -169,17 +168,13 @@ class AdminHome extends Component {
  * @returns {Object} - Selected state
  */
 function mapStateToProps(state) {
-  return { 
-    books: state.books.data,
-    user: state.auth.user,
-    isFetching: state.books.isFetching 
-  };
+  return { books: state.books.data,
+    user: state.auth.user };
 }
 
 AdminHome.PropTypes = {
   books: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
-  isFetching: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired
 };
 
 /**

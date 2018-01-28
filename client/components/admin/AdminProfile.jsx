@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Sidebar from '../includes/sidebar';
+import Sidebar from '../includes/SideBar';
 import Navbar from '../NavigationBar';
 
 /**
@@ -44,7 +44,7 @@ class AdminProfile extends Component {
               <h1>{this.props.user.username}</h1>
               <p className="title">{this.props.user.membership}</p>
               <p>{this.props.user.email}</p>
-                <p><button> Admin Info</button></p>
+                <p className="admininfo"><button> Admin Info</button></p>
             </div>
           </div>
         </div>

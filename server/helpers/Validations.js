@@ -5,19 +5,18 @@ import db from '../models/';
 
 dotenv.load();
 const secret = process.env.SECRETKEY;
-const adminSecret = process.env.ADMINSECRET;
-const { Users } = db;
+const { Users, Books } = db;
 
-export default {
+const Validations = {
   /**
    * @method validateInput
-   * 
+   *
    * @description This method handles validation of users input
-   * 
+   *
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
-   * 
+   * @param {Function} next - Call back function
+   *
    * @returns { object } response message
    */
   validateInput(req, res, next) {
@@ -29,7 +28,7 @@ export default {
             options: [{ min: 3 }],
             errorMessage: 'Username is required',
           },
-          errorMessage: 'username is required and should contain no spaces or special characters',
+          errorMessage: 'username is required with no special characters',
         },
         password: {
           notEmpty: true,
@@ -37,7 +36,7 @@ export default {
             options: [{ min: 4 }],
             errorMessage: 'password should be at least four characters',
           },
-          errorMessage: 'password field is required and should contain no spaces or special characters',
+          errorMessage: 'password field is required with no special characters',
         },
         email: {
           isEmail: true,
@@ -47,7 +46,7 @@ export default {
         membership: {
           isAlpha: false,
           notEmpty: true,
-          errorMessage: 'Membership is required, can not be empty and must be alphabet',
+          errorMessage: 'Membership is required, must be alphabet & not empty',
         },
       }
     );
@@ -74,17 +73,16 @@ export default {
 
   /**
    * @method validateLogin
-   * 
+   *
    * @description This method handles validation of login input
-   * 
+   *
    * @param { object} req HTTP request
    * @param { object} res HTTP response
-   * 
+   * @param {Function} next - Call back function
+   *
    * @returns { object } response message
    */
   validateLogin(req, res, next) {
-    const user = req.body.username.toLowerCase();
-    req.body.username = user
     req.checkBody(
       {
         username: {
@@ -98,10 +96,22 @@ export default {
           errorMessage: 'Enter a valid password',
         },
       });
+    const errors = req.validationErrors();
+    if (errors) {
+      const allErrors = [];
+      errors.forEach((error) => {
+        const errorMessage = error.msg;
+        allErrors.push(errorMessage);
+      });
+      return res.status(400)
+        .json({
+          message: allErrors[0],
+        });
+    }
     Users.findOne(
       {
         where: {
-          username: req.body.username,
+          username: req.body.username.toLowerCase(),
         },
       })
       .then((user) => {
@@ -115,24 +125,27 @@ export default {
         }
       });
   },
-  
+
   /**
    * @method validateBook
-   * 
+   *
    * @description This method handles validations of book input
-   * 
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
-   * 
+   * @param {Function} next - Call back function
+   *
    * @returns { object } response message
    */
   validateBook(req, res, next) {
     req.checkBody(
       {
-        cover: {
+        // cover: {
+        //   notEmpty: true,
+        //   errorMessage: 'Please upload a cover',
+        // },
+        catId: {
           notEmpty: true,
-          errorMessage: 'Please upload a cover',
+          errorMessage: 'Please select a category',
         },
         title: {
           notEmpty: true,
@@ -155,6 +168,10 @@ export default {
           notEmpty: true,
           errorMessage: 'Enter valid author name',
         },
+        isbn: {
+          notEmpty: true,
+          errorMessage: 'ISBN is required'
+        },
       });
     const errors = req.validationErrors();
     if (errors) {
@@ -173,12 +190,13 @@ export default {
 
   /**
    * @method isLoggedIn
-   * 
+   *
    * @description This method checks for logged in users
-   * 
+   *
    * @param { object} req HTTP request
    * @param { object} res HTTP response
-   * 
+   * @param {Function} next - Call back function
+   *
    * @returns { object } response message
    */
   isLoggedIn(req, res, next) {
@@ -197,19 +215,20 @@ export default {
     } else {
       return res.status(401)
         .send({
-          message: 'Access denied, you have to be logged in to perform this operation',
+          message: 'Access denied, you have to be logged for this operation',
         });
     }
   },
-  
+
   /**
    * @method isAdmin
-   * 
+   *
    * @description This method handles check for admin authentication of users
-   * 
+   *
    * @param { object} req HTTP request
    * @param { object} res HTTP response
-   * 
+   * @param {Function} next - Call back function
+   *
    * @returns { object } response message
    */
   isAdmin(req, res, next) {
@@ -227,20 +246,20 @@ export default {
     } else {
       return res.status(401)
         .send({
-          message: 'Access denied, you have to be logged in to perform this operation',
+          message: 'Access denied, you have to be logged for this operation',
         });
     }
   },
 
   /**
    * @method validateSearch
-   * 
+   *
    * @description This method handles check for admin authentication of users
-   * 
+   *
    * @param { object} req HTTP request
-   * 
    * @param { object} res HTTP response
-   * 
+   * @param {Function} next - Call back function
+   *
    * @returns { object } response message
    */
   validateSearch(req, res, next) {
@@ -250,7 +269,7 @@ export default {
         errorMessage: 'Enter a valid search term',
       },
       });
-      const errors = req.validationErrors();
+    const errors = req.validationErrors();
     if (errors) {
       const allErrors = [];
       errors.forEach((error) => {
@@ -264,30 +283,28 @@ export default {
     }
     next();
   },
-   /**
+  /**
    * Validates user data when editing profile
    *
    * @param {Object} req - request object
-   *
    * @param {Object} res - repsonse object
-   *
    * @param {Function} next - Call back function
    *
    * @returns {Object} - Response object
    */
   validateUserEdit(req, res, next) {
     req.checkBody(
-      { 
+      {
         username: {
           notEmpty: true,
           errorMessage: 'Enter a valid username',
           isLength: {
             options: [{ min: 3 }],
             errorMessage: 'New username should be at least 3 characters',
-        },
+          },
         },
       });
-      const errors = req.validationErrors();
+    const errors = req.validationErrors();
     if (errors) {
       const allErrors = [];
       errors.forEach((error) => {
@@ -309,7 +326,7 @@ export default {
     next();
   },
 
-   /**
+  /**
  * Checks if book id is a number
  *
  * @param {Object} req - request
@@ -329,7 +346,7 @@ export default {
     }
     next();
   },
-    /**
+  /**
  * Checks if user id is a number
  *
  * @param {Object} req - request
@@ -340,13 +357,85 @@ export default {
  *
  * @returns { Object } - containing error message
  */
-checkUserId(req, res, next) {
-  const querier = req.body.userId || req.params.userId;
-  if (!querier || /[\D]/.test(querier)) {
-    return res.status(400).send({
-      message: 'Invalid user id supplied!!!'
-    });
-  }
-  next();
-},
+  checkUserId(req, res, next) {
+    const querier = req.body.userId || req.params.userId;
+    if (!querier || /[\D]/.test(querier)) {
+      return res.status(400).send({
+        message: 'Invalid user id supplied!!!'
+      });
+    }
+    next();
+  },
+
+  /**
+   * @method validateCategory
+   *
+   * @description This method handles validations of category input
+   * @param { object} req HTTP request
+   * @param { object} res HTTP response
+   * @param {Function} next - Call back function
+   *
+   * @returns { object } response message
+   */
+  validateCategory(req, res, next) {
+    req.checkBody(
+      {
+        name: {
+          notEmpty: true,
+          errorMessage: 'Please select a category name',
+        },
+        // description: {
+        //   notEmpty: true,
+        //   errorMessage: 'Enter a valid category description',
+        // },
+      });
+    const errors = req.validationErrors();
+    if (errors) {
+      const allErrors = [];
+      errors.forEach((error) => {
+        const errorMessage = error.msg;
+        allErrors.push(errorMessage);
+      });
+      return res.status(400)
+        .json({
+          message: allErrors[0],
+        });
+    }
+    next();
+  },
+
+  /**
+   * Sends user input to the add book controller
+   *
+   * @param {Object} req - request
+   * @param {Object} res - response
+   * @param {Object} next - Callback function
+   *
+   * @returns {Object} - Object containing book inout
+   */
+  sendBookInput(req, res, next) {
+    Books.findOne({
+      where: {
+        isbn: req.body.isbn
+      }
+    })
+      .then((book) => {
+        if (book) {
+          return res.status(409).send({
+            message: 'Book with that ISBN already exist'
+          });
+        }
+      });
+    req.userInput = {
+      title: req.body.title,
+      isbn: req.body.isbn,
+      cover: req.body.cover,
+      author: req.body.author,
+      description: req.body.description,
+      catId: req.body.catId,
+      quantity: req.body.quantity
+    };
+    next();
+  },
 };
+export default Validations;

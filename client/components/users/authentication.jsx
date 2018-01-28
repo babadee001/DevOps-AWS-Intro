@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { logout } from '../../actions/authActions';
+import { logout } from '../../actions/AuthActions';
 
 dotenv.load();
 
@@ -47,7 +47,7 @@ export default function (ComposedComponent) {
     }
 
 
-  /**
+      /**
    * Executes before component is updated
    *
    * @param { object } nextProps

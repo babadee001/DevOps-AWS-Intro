@@ -7,10 +7,9 @@ import validator from 'express-validator';
 import webpack from 'webpack';
 import path from 'path';
 import webpackMiddleware from 'webpack-dev-middleware';
-import UserRouter from './server/routes/users';
-import BookRouter from './server/routes/books';
+import userRouter from './server/routes/userRouter';
+import bookRouter from './server/routes/bookRouter';
 import webpackConfig from './webpack.config';
-import webpackProd from './webpack.config.prod';
 
 dotenv.load();
 const app = express();
@@ -21,7 +20,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Documentation of Hello Books API',
   },
-  host: 'hbks.herokuapp.com',
+  host: 'localhost:8000',
   basePath: '/',
 };
 
@@ -38,24 +37,21 @@ const options = {
       in: 'header'
     }
   },
-  security: [
-    { jwt: [] }
-  ]
 };
 
 // initialize swagger-jsdoc
 const swaggerSpec = swagger(options);
 
 app.use(logger('dev'));
-if (process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   app.use(webpackMiddleware(webpack(webpackConfig)));
 }
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(validator());
-app.use('/api/v1/users', UserRouter);
-app.use('/api/v1/books', BookRouter);
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/books', bookRouter);
 
 app.get('/docs', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
@@ -67,16 +63,12 @@ app.get('/api', (req, res) => {
   res.send('Welcome to Hello-Books API');
 });
 
-app.get('/bundle.js', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/dist/bundle.js'));
-});
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/dist/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/index.html'));
 });
 
 const port = process.env.PORT || 8000;
-// app.set('port', port);
 
 app.listen(port, () => {
   console.log(`The server is listening on port ${port}`);

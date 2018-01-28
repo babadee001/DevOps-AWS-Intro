@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	returnBook, 
-	getHistory } from '../../actions/booksActions';
+	getHistory } from '../../actions/BooksActions';
 import { bindActionCreators } from 'redux';
-import Sidebar from '../includes/sidebar';
+import Sidebar from '../includes/SideBar';
 import AllBooks from '../includes/BorrowedBooks';
 import Navbar from '../NavigationBar';
 

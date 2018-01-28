@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBooks } from '../../actions/booksActions';
-import AllBooks from '../includes/books';
-import SideBar from '../includes/sidebar';
+import { getBooks } from '../../actions/BooksActions';
+import AllBooks from '../includes/Books';
+import SideBar from '../includes/SideBar';
 import Navbar from '../NavigationBar';
 
 /**
@@ -83,11 +83,10 @@ class Dashboard extends Component {
     }else{
     return (
       <div className="">
-        <div className="container">
+        <div className="row">
           <div className="card-panel headcard">
             <center>Recently Added</center>
           </div>
-          <div className="row">
           <SideBar 
           fullname={ this.props.user.username }
           link1={'Borrow History'} 
@@ -109,7 +108,6 @@ class Dashboard extends Component {
             cover={ book.cover }
           />))
           }
-      </div>
       </div>
       </div>
     </div>
@@ -141,7 +139,7 @@ Dashboard.PropTypes = {
 };
 
 /**
- *@description - Maps the redux state to the component props
+ * @description - Maps the redux state to the component props
  * 
  * @param {Object} state - Application state
  *  
