@@ -116,7 +116,7 @@ class AdminHome extends Component {
           fullname={ this.props.user.username }
           link1={'Add New Book'} 
           route1={'/add'}
-          link2={'View Logs'} 
+          link2={'Logs & Category'} 
           route2={'/logs'}
           link3={'Profile'} 
           route3={'/adminprofile'}
