@@ -545,7 +545,7 @@ userRouter.route('/checkuser')
 userRouter.route('/existing')
   /**
    * @swagger
-   * /users/Validationsuser:
+   * /users/existing:
    *   post:
    *     tags:
    *       - Users & Authentication
