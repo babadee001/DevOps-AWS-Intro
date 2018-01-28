@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBooks } from '../../actions/BooksActions';
+import { getBooks } from '../../actions/booksActions';
 import AllBooks from '../includes/Books';
-import SideBar from '../includes/SideBar';
+import SideBar from '../includes/sideBar';
 import Navbar from '../NavigationBar';
 
 /**

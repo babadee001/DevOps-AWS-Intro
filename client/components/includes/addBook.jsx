@@ -6,7 +6,7 @@ import ImageUploader from 'react-firebase-image-uploader';
 import swal from 'sweetalert';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getCategoryAction } from '../../actions/BooksActions';
+import { getCategoryAction } from '../../actions/booksActions';
 
 /**
  * @description - Add book component

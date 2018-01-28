@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUsers } from '../../actions/AuthActions';
-import { getAllBorrowed, addCategoryAction } from '../../actions/BooksActions';
+import { getAllBorrowed, addCategoryAction } from '../../actions/booksActions';
 import Navbar from '../NavigationBar';
 
 /**

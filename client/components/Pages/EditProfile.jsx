@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from '../NavigationBar';
-import Sidebar from '../includes/SideBar';
+import Sidebar from '../includes/sideBar';
 import { checkUser } from '../../utils/validations';
-import { editProfileAction } from '../../actions/AuthActions';
+import { editProfileAction } from '../../actions/authActions';
   
 /**
  * @description - Edit profile component

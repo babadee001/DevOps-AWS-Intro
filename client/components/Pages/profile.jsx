@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { getBorrowed } from '../../actions/BooksActions';
-import Sidebar from '../includes/SideBar';
+import { getBorrowed } from '../../actions/booksActions';
+import Sidebar from '../includes/sideBar';
 import Navbar from '../NavigationBar';
 
 /**
