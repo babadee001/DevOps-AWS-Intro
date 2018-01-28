@@ -52,6 +52,40 @@ dotenv.load(); // Get all books
  *     }
  */
 
+ /**
+ * @swagger
+ * definitions:
+ *   Category:
+ *     properties:
+ *       name:
+ *         type: string
+ *       description:
+ *         type: string
+ *     example: {
+ *      name: Art & Science,
+ *      description: This is sample description
+ *      }
+ */
+
+ /**
+ * @swagger
+ * definitions:
+ *   CategoryList:
+ *     properties:
+ *       name:
+ *         type: string
+ *       description:
+ *         type: string
+ *     example: [{
+ *      name: Art & Science,
+ *      description: This is sample description
+ *      },
+ *      {
+ *      name: Music,
+ *      description: This is sample description
+ *      }]
+ */
+
 /**
  * @swagger
  * definition:
