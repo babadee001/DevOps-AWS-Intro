@@ -105,7 +105,7 @@ class AdminHome extends Component {
     </div>}
         </div>
         );
-    }
+    }else{
     return (
       <div className="container">
         <div className="card-panel headcard">
@@ -138,7 +138,7 @@ class AdminHome extends Component {
         </div>
       </div>
 
-    );
+    );}
   }
 
   /**
