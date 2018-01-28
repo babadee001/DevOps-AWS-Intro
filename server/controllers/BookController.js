@@ -77,6 +77,12 @@ const BookController = {
                 message: 'Wrong book id. Not in database.',
               });
             }
+            if (books.quantity === 0) {
+              return res.status(200).send({
+                message: 'This book is not available for borrow',
+                status: false
+              });
+            }
             return Borrowed
               .create({
                 bookId: req.params.bookId,
