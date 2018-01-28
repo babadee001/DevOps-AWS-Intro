@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from '../NavigationBar';
-import Sidebar from '../includes/sideBar';
+import Sidebar from '../includes/sidebar';
 import { checkUser } from '../../utils/validations';
 import { editProfileAction } from '../../actions/authActions';
   
