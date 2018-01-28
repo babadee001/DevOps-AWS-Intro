@@ -168,8 +168,11 @@ class AdminHome extends Component {
  * @returns {Object} - Selected state
  */
 function mapStateToProps(state) {
-  return { books: state.books.data,
-    user: state.auth.user };
+  return { 
+    books: state.books.data,
+    user: state.auth.user ,
+    isFetching: state.books.isFetching
+  };
 }
 
 AdminHome.PropTypes = {
