@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import Materialize from 'materialize-css';
 import { bindActionCreators } from 'redux';
-import { editBook, deleteBookAction } from '../../actions/booksActions';
+import { editBook, deleteBookAction, getCategoryAction } from '../../actions/booksActions';
 
 /**
  * AllBooks component
@@ -34,8 +34,10 @@ class AllBooks extends Component {
       currentBook: {},
       edit: false,
       cover: this.props.cover,
-      displayBook: true
+      displayBook: true,
+      catId: this.props.catId
     };
+    this.renderCategory = this.renderCategory.bind(this);
     this.handleClick = this
       .handleClick
       .bind(this);
@@ -53,6 +55,16 @@ class AllBooks extends Component {
       .bind(this);
   }
 
+  /**
+	 * 
+	 * @description - Executes after component is mounted
+	 * 
+	 * @memberOf AddBook
+	 */
+	componentDidMount() {
+		this.props.actions.getCategoryAction();
+  }
+  
   /**
 	 * 
 	 * @description - Sets user input in component local sttae
@@ -196,6 +208,17 @@ class AllBooks extends Component {
                       required
                     />
                   </div>
+                  <div className="col s12">
+                  <select
+                    id="catId"
+                    name="catId"
+                    onChange={ this.onChange }
+                    className="browser-default"
+                  >
+                    <option value="">Select Category</option>
+										{this.renderCategory()}
+                  </select>
+                </div>
                 </div>
                 <div className="row">
                   <div className="col s12">
@@ -255,6 +278,19 @@ AllBooks.propTypes = {
 };
 
 /**
+ * @description - Maps the redux state to the component props
+ * 
+ * @param {Object} state - Application state
+ *  
+ * @returns {Object} - Selected state
+ */
+export function mapStateToProps(state) {
+	return { 
+		category: state.books.category
+	};
+}
+
+/**
  * 
  * @description - Maps the dispatch to component props
  * 
@@ -266,9 +302,10 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       editBook,
-      deleteBookAction
+      deleteBookAction,
+      getCategoryAction
     }, dispatch)
   };
 }
 
-export default connect(null, mapDispatchToProps)(AllBooks);
+export default connect(mapStateToProps, mapDispatchToProps)(AllBooks);
