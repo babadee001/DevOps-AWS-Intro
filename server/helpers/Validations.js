@@ -436,5 +436,62 @@ const Validations = {
     };
     next();
   },
+  /**
+   * @method validateEdit
+   *
+   * @description This method handles validations of book input
+   * @param { object} req HTTP request
+   * @param { object} res HTTP response
+   * @param {Function} next - Call back function
+   *
+   * @returns { object } response message
+   */
+  validateEdit(req, res, next) {
+    req.checkBody(
+      {
+        catId: {
+          notEmpty: true,
+          errorMessage: 'Please select a category',
+        },
+        title: {
+          notEmpty: true,
+          errorMessage: 'Enter a valid title',
+        },
+        description: {
+          notEmpty: true,
+          errorMessage: 'Enter a valid description',
+        },
+        quantity: {
+          notEmpty: true,
+          isNumeric: false,
+          isInt: {
+            options: [{ min: 1 }],
+            errorMessage: "quantity can't be less than 1",
+          },
+          errorMessage: 'Enter a valid quantity',
+        },
+        author: {
+          notEmpty: true,
+          errorMessage: 'Enter valid author name',
+        },
+        isbn: {
+          notEmpty: true,
+          errorMessage: 'ISBN is required'
+        },
+      });
+    const errors = req.validationErrors();
+    if (errors) {
+      const allErrors = [];
+      errors.forEach((error) => {
+        const errorMessage = error.msg;
+        allErrors.push(errorMessage);
+      });
+      return res.status(400)
+        .json({
+          message: allErrors[0],
+        });
+    }
+    next();
+  },
 };
 export default Validations;

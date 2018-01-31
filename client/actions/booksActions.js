@@ -90,13 +90,14 @@ export const getHistory = userId => (dispatch) => {
 export function editBook(details, bookId) {
   return dispatch => axios.put(`api/v1/books/${bookId}`, details)
     .then((res) => {
-      dispatch({
-        type: EDIT_BOOK,
-        data: res.data.book
-      });
-      return res.data.message;
+        dispatch({
+          type: EDIT_BOOK,
+          data: res.data.book
+        });
+        return res.data.message;
+        swal(res.data.message)
     })
-    .catch(error => error.data.message);
+    .catch(error => swal(error.data.message));
 }
 
 /**

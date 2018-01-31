@@ -73,6 +73,30 @@ class AllBooks extends Component {
 	 * 
 	 * @memberOf AllBooks
 	 */
+/**
+	 * 
+	 * @description - Displays the list of category
+	 * 
+	 * @returns {Array} - Array of category
+	 * 
+	 * @memberOf AllBooks
+	 */
+	renderCategory() {
+		let allCategory = [];
+		const category = this.props.category;
+		if (!category || category.length < 1) {
+			return 'None Available';
+		}
+		category.map((cat) => {
+			allCategory.push(
+				<option key={cat.id} value={cat.id}>
+					{cat.name}
+				</option>
+			);
+		});
+		return allCategory;
+	}
+
   onChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -130,9 +154,11 @@ class AllBooks extends Component {
     this.setState({ cover: this.props.cover });
     this.props.actions.editBook(this.state, this.props.id)
       .then((res) => {
-        Materialize.toast(res, 1000, 'teal', () => {
-        this.setState({ displayBook: true, edit: false });
-      });
+        if( res === 'Book updated successfully!'){
+          Materialize.toast(res, 1000, 'teal', () => {
+            this.setState({ displayBook: true, edit: false });
+          });
+        }
     });
   }
 
