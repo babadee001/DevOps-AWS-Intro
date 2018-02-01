@@ -26,7 +26,7 @@ dotenv.load(); // Get all books
 
 /**
  * @swagger
- * definitions:
+ * definition:
  *   CategoryList:
  *     properties:
  *       name:
@@ -44,7 +44,7 @@ dotenv.load(); // Get all books
  */
 /**
  * @swagger
- * definitions:
+ * definition:
  *   Category:
  *     properties:
  *       name:
@@ -474,6 +474,8 @@ bookRouter.route('/category')
  *     responses:
  *       200:
  *         description: Returns An array of Categories
+ *         schema:
+ *           $ref: '#/definitions/CategoryList'
  *       401:
  *         description: Invalid token supplied
  *       500:
