@@ -86,7 +86,7 @@ class EditProfile extends Component {
 		}
   }
   
-  	/**
+	/**
    * @description - Submits user input
    * 
    * @param {Object} event 
@@ -99,11 +99,10 @@ class EditProfile extends Component {
     checkUser({searchTerm: this.state.username})
     .then((response) => {
         if (response !== 'Not found') {
-          this.setState({ usernameError: 'username exists' });
+					this.setState({ usernameError: response });
           return false;
-        } else {
-          this.props.actions.editProfileAction(userId, this.state);
         }
+        this.props.actions.editProfileAction(userId, this.state);
     })
 	}
 
