@@ -603,6 +603,7 @@ userRouter.route('/existing')
    *         example: {
    *           "message":
    *           "Access denied, you have to be logged in to perform this operation"
+   * }
    *       500:
    *         description: server error
    *         example: {

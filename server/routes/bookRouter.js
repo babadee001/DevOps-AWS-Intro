@@ -34,7 +34,7 @@ dotenv.load(); // Get all books
  *       description:
  *         type: string
  *     example: [{
- *      id: 2
+ *      id: 2,
  *      name: Art & Science,
  *      description: This is sample description,
  *      updatedAt: "2018-01-28T12:56:31.421Z",
@@ -55,7 +55,7 @@ dotenv.load(); // Get all books
  *       description:
  *         type: string
  *     example: {
- *      id: 2
+ *      id: 2,
  *      name: Art & Science,
  *      description: This is sample description,
  *      createdAt: "2018-01-28T12:56:31.421Z",
@@ -192,7 +192,7 @@ dotenv.load(); // Get all books
 *         description: Internal server error
 *         example: {
 *           "message": "Internal Server Error"
-}
+*       }
  */
 bookRouter.route('/')
   .get(isLoggedIn, list);
@@ -328,11 +328,11 @@ bookRouter.route('/:bookId')
  *       401:
  *         description: Invalid token supplied
  *       403:
-*         description: Invalid token provided
-*         example: {
-*           "message":
-*           "Access Denied. Admin privileges needed"
-*          }
+ *         description: Invalid token provided
+ *         example: {
+ *           "message":
+ *           "Access Denied. Admin privileges needed"
+ *          }
  *       500:
  *         description: Internal server error
  */
@@ -477,7 +477,7 @@ bookRouter.route('/borrowed')
  *        "createdAt": "2018-01-05T16:50:49.384Z",
  *        "name": Science & Arts
  *   }
-* }
+ * }
  *       400:
  *         description: Bad input supplied
  *       401:
