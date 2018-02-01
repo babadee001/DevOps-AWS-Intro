@@ -585,7 +585,7 @@ userRouter.route('/existing')
 
 userRouter.route('/edit/:userId')
 /**
-    * @swagger
+* @swagger
     * /users/edit/{userId}:
     *   put:
     *     tags:
@@ -597,6 +597,16 @@ userRouter.route('/edit/:userId')
     *       - name: details
     *         description: The details to be modified
     *         in: body
+    *         required: true
+    *         type: string
+    *       - name: userId
+    *         description: The id of the user to check his/her profile
+    *         in: path
+    *         required: true
+    *         type: number
+    *       - name: xaccesstoken
+    *         description: Authorization token for this request
+    *         in: header
     *         required: true
     *         type: string
     *         schema:
