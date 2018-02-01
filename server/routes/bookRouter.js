@@ -35,9 +35,9 @@ dotenv.load(); // Get all books
  *         type: string
  *     example: [{
  *      id: 2
- *      name: Art & Science
- *      description: This is sample description
- *      updatedAt: "2018-01-28T12:56:31.421Z"
+ *      name: Art & Science,
+ *      description: This is sample description,
+ *      updatedAt: "2018-01-28T12:56:31.421Z",
  *      createdAt: "2018-01-28T12:56:31.421Z"
  *      },
  *      {
@@ -57,8 +57,8 @@ dotenv.load(); // Get all books
  *     example: {
  *      id: 2
  *      name: Art & Science,
- *      description: This is sample description
- *      createdAt: "2018-01-28T12:56:31.421Z"
+ *      description: This is sample description,
+ *      createdAt: "2018-01-28T12:56:31.421Z",
  *      updatedAt: "2018-01-28T12:56:31.421Z"
  *      }
  */
