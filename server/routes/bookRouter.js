@@ -34,8 +34,11 @@ dotenv.load(); // Get all books
  *       description:
  *         type: string
  *     example: [{
+ *      id: 2
  *      name: Art & Science,
  *      description: This is sample description
+ *      updatedAt: "2018-01-28T12:56:31.421Z"
+ *      createdAt: "2018-01-28T12:56:31.421Z"
  *      },
  *      {
  *      name: Music,
@@ -52,8 +55,11 @@ dotenv.load(); // Get all books
  *       description:
  *         type: string
  *     example: {
+ *      id: 2
  *      name: Art & Science,
  *      description: This is sample description
+ *      createdAt: "2018-01-28T12:56:31.421Z"
+ *      updatedAt: "2018-01-28T12:56:31.421Z"
  *      }
  */
 /**
@@ -67,8 +73,8 @@ dotenv.load(); // Get all books
  *         type: string
  *       author:
  *         type: string
- *       category:
- *         type: string
+ *       catId:
+ *         type: number
  *       description:
  *         type: string
  *       quantity:
@@ -246,6 +252,12 @@ bookRouter.route('/')
  *   }
  *       401:
  *         description: Invalid token supplied
+ *       403:
+*         description: Invalid token provided
+*         example: {
+*           "message":
+*           "Access Denied. Admin privileges needed"
+*          }
  *       500:
  *         description: Internal server error
  *         example: {
@@ -315,6 +327,12 @@ bookRouter.route('/:bookId')
  *         description: Book not found
  *       401:
  *         description: Invalid token supplied
+ *       403:
+*         description: Invalid token provided
+*         example: {
+*           "message":
+*           "Access Denied. Admin privileges needed"
+*          }
  *       500:
  *         description: Internal server error
  */
@@ -361,6 +379,12 @@ bookRouter.route('/:bookId')
  *         description: Book not found
  *       401:
  *         description: Invalid token supplied
+ *       403:
+*         description: Invalid token provided
+*         example: {
+*           "message":
+*           "Access Denied. Admin privileges needed"
+*          }
  *       500:
  *         description: Internal server error
  */
@@ -458,6 +482,12 @@ bookRouter.route('/borrowed')
  *         description: Bad input supplied
  *       401:
  *         description: Invalid token supplied
+ *       403:
+ *         description: Invalid token provided
+ *         example: {
+ *           "message":
+ *           "Access Denied. Admin privileges needed"
+ *          }
  *       500:
  *         description: Internal server error
  */

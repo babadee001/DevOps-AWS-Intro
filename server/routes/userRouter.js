@@ -55,10 +55,10 @@ const userRouter = express.Router();
  * definition:
  *   search:
  *     properties:
- *       email:
+ *       searchTerm:
  *         type: string
  *     example: {
- *       "email": babadee@gmail.com,
+ *       "searchTerm": babadee,
  *     }
  *
  */
@@ -466,7 +466,7 @@ userRouter.route('/:userId/books/:bookId')
  *       - name: xaccesstoken
  *         description: Authorization token for this request
  *         in: header
- *         required: false
+ *         required: true
  *         type: string
  *     responses:
  *       201:
@@ -571,6 +571,11 @@ userRouter.route('/existing')
    *     produces:
    *       - application/json
    *     parameters:
+   *       - name: xaccesstoken
+   *         description: Authorization token for this request
+   *         in: header
+   *         required: true
+   *         type: string
    *       - name: details
    *         description: The registration details of the user
    *         in: body
@@ -593,6 +598,11 @@ userRouter.route('/existing')
    *             "updatedAt": "2018-01-25T23:49:06.336Z"
    *           }
    *         }
+   *       401:
+   *         description: User not logged in
+   *         example: {
+   *           "message":
+   *           "Access denied, you have to be logged in to perform this operation"
    *       500:
    *         description: server error
    *         example: {
