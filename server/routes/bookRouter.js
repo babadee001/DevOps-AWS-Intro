@@ -263,6 +263,8 @@ bookRouter.route('/:bookId')
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *           "bookId": 4}
  *       - name: book
  *         description: Book object with updated information
  *         in: body
@@ -276,8 +278,8 @@ bookRouter.route('/:bookId')
  *             bookId:
  *               type: number
  *           example: {
- *              bookId: 4
- *           }
+ *             "bookId": 4
+ *            }
  *       - name: xaccesstoken
  *         in: header
  *         description: an authentication token for the request

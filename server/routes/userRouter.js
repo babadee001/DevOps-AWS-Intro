@@ -215,10 +215,13 @@ userRouter.route('/:userId')
  *     parameters:
  *       - name: userId
  *         description:
- *          The id of the user to Validations his/her borrowing history
+ *          The id of the user to check his/her borrowing history
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *             "userId": 4
+ *           }
  *       - name: xaccesstoken
  *         description: Authorization token for this request
  *         in: header
@@ -371,11 +374,17 @@ userRouter.route('/:userId/books/:bookId')
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *             "userId": 4
+ *         }
  *       - name: bookId
  *         description: The id of the book to be borrowed
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *             "bookId": 4
+ *           }
  *         schema:
  *           $ref: '#/definitions/BorrowBook'
  *       - name: xaccesstoken
@@ -441,11 +450,17 @@ userRouter.route('/:userId/books/:bookId')
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *             "userId": 4
+ *           }
  *       - name: bookId
  *         description: The id of the book to be returned
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *             "bookId": 4
+ *           }
  *         schema:
  *           $ref: '#/definitions/return'
  *       - name: xaccesstoken
@@ -500,6 +515,9 @@ userRouter.route('/:userId/books')
  *         in: path
  *         required: true
  *         type: number
+ *         example: {
+ *             "userId": 4
+ *           }
  *       - name: xaccesstoken
  *         description: Authorization token for this request
  *         in: header
@@ -549,7 +567,7 @@ userRouter.route('/existing')
    *   post:
    *     tags:
    *       - Users & Authentication
-   *     description: Validationss for existing email in the database
+   *     description: checks for existing email in the database
    *     produces:
    *       - application/json
    *     parameters:
@@ -604,6 +622,9 @@ userRouter.route('/edit/:userId')
     *         in: path
     *         required: true
     *         type: number
+    *         example: {
+    *             "userId": 4
+    *           }
     *       - name: xaccesstoken
     *         description: Authorization token for this request
     *         in: header
