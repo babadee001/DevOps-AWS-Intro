@@ -384,10 +384,10 @@ const Validations = {
           notEmpty: true,
           errorMessage: 'Please select a category name',
         },
-        // description: {
-        //   notEmpty: true,
-        //   errorMessage: 'Enter a valid category description',
-        // },
+        description: {
+          notEmpty: true,
+          errorMessage: 'Enter a valid category description',
+        },
       });
     const errors = req.validationErrors();
     if (errors) {

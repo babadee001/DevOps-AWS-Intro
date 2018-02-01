@@ -23,6 +23,39 @@ const {
   getCategory
 } = BookController;
 dotenv.load(); // Get all books
+
+/**
+ * @swagger
+ * definitions:
+ *   CategoryList:
+ *     properties:
+ *       name:
+ *         type: string
+ *       description:
+ *         type: string
+ *     example: [{
+ *      name: Art & Science,
+ *      description: This is sample description
+ *      },
+ *      {
+ *      name: Music,
+ *      description: This is sample description
+ *      }]
+ */
+/**
+ * @swagger
+ * definitions:
+ *   Category:
+ *     properties:
+ *       name:
+ *         type: string
+ *       description:
+ *         type: string
+ *     example: {
+ *      name: Art & Science,
+ *      description: This is sample description
+ *      }
+ */
 /**
  * @swagger
  * definition:
@@ -63,40 +96,6 @@ dotenv.load(); // Get all books
  *     example: {
  *      bookId: 13
  *      }
- */
-
- /**
- * @swagger
- * definitions:
- *   Category:
- *     properties:
- *       name:
- *         type: string
- *       description:
- *         type: string
- *     example: {
- *      name: Art & Science,
- *      description: This is sample description
- *      }
- */
-
- /**
- * @swagger
- * definitions:
- *   CategoryList:
- *     properties:
- *       name:
- *         type: string
- *       description:
- *         type: string
- *     example: [{
- *      name: Art & Science,
- *      description: This is sample description
- *      },
- *      {
- *      name: Music,
- *      description: This is sample description
- *      }]
  */
 
 /**
@@ -247,7 +246,7 @@ bookRouter.route('/')
  *               "message": "Internal Server Error"
  * }
  */
-  .post(isAdmin, sendBookInput, validateBook, create);
+  .post(validateBook, isAdmin, sendBookInput, create);
 bookRouter.route('/:bookId')
 /**
  * @swagger
