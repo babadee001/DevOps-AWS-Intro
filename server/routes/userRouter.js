@@ -100,7 +100,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * definitions:
+ * definition:
  *   BorrowBook:
  *     properties:
  *       bookId:
@@ -112,7 +112,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * definitions:
+ * definition:
  *   return:
  *     properties:
  *       bookId:
