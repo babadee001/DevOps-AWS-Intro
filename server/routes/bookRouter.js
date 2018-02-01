@@ -112,7 +112,7 @@ dotenv.load(); // Get all books
 
 /**
  * @swagger
- * api/v1/books:
+ * /api/v1/books:
  *   get:
  *     tags:
  *       - Book Operations
