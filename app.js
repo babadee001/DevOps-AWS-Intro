@@ -14,7 +14,9 @@ import webpackProd from './webpack.config.prod';
 
 dotenv.load();
 const app = express();
-
+if (process.env.NODE_ENV === 'production') {
+  console.log = function() {};
+}
 const swaggerDefinition = {
   info: {
     title: 'Hello-Books Swagger API',
