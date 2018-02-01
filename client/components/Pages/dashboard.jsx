@@ -82,11 +82,12 @@ class Dashboard extends Component {
       );
     }else{
     return (
-      <div className="">
-        <div className="row">
+      <div>
+        <div className="container">
           <div className="card-panel headcard">
             <center>Recently Added</center>
           </div>
+          <div className="row">
           <SideBar 
           fullname={ this.props.user.username }
           link1={'Borrow History'} 
@@ -110,6 +111,7 @@ class Dashboard extends Component {
           }
       </div>
       </div>
+    </div>
     </div>
     )}
   }
