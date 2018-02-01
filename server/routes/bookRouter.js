@@ -474,8 +474,6 @@ bookRouter.route('/category')
  *     responses:
  *       200:
  *         description: Returns An array of Categories
- *         schema:
- *           $ref: '#/definitions/CategoryList'
  *       401:
  *         description: Invalid token supplied
  *       500:
