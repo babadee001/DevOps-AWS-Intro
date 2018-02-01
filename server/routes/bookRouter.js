@@ -112,7 +112,7 @@ dotenv.load(); // Get all books
 
 /**
  * @swagger
- * /books:
+ * api/v1/books:
  *   get:
  *     tags:
  *       - Book Operations
@@ -279,7 +279,7 @@ bookRouter.route('/:bookId')
  *               type: number
  *           example: {
  *             "bookId": 4
- *            }
+ *           }
  *       - name: xaccesstoken
  *         in: header
  *         description: an authentication token for the request
