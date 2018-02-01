@@ -260,6 +260,7 @@ class AllBooks extends Component {
                 </div>
               </div>
               <button
+                id="editbutton"
                 type="submit"
                 name="submit"
               >Edit Book
@@ -267,7 +268,7 @@ class AllBooks extends Component {
               <div>
                 <button
                   onClick={ this.changeView }
-                  id="edit_button"
+                  id="cancelbutton"
                 >Cancel</button>
               </div>
             </form>
