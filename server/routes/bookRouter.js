@@ -176,6 +176,12 @@ dotenv.load(); // Get all books
 *           "message":
 *           "Access denied, you have to be logged in to perform this operation"
 *          }
+*       403:
+*         description: Invalid token provided
+*         example: {
+*           "message":
+*           "Access Denied. Admin privileges needed"
+*          }
 *       500:
 *         description: Internal server error
 *         example: {
@@ -187,7 +193,7 @@ bookRouter.route('/')
 bookRouter.route('/')
 /**
  * @swagger
- * /books:
+ * /api/v1/books:
  *   post:
  *     tags:
  *       - Book Operations
@@ -250,7 +256,7 @@ bookRouter.route('/')
 bookRouter.route('/:bookId')
 /**
  * @swagger
- * /books/{bookId}:
+ * /api/v1/books/{bookId}:
  *   put:
  *     tags:
  *       - Book Operations
@@ -316,7 +322,7 @@ bookRouter.route('/:bookId')
 bookRouter.route('/:bookId')
 /**
  * @swagger
- * /books/{bookId}:
+ * /api/v1/books/{bookId}:
  *   delete:
  *     tags:
  *       - Book Operations
@@ -361,7 +367,7 @@ bookRouter.route('/:bookId')
   .delete(isAdmin, checkBookId, erase);
 /**
  * @swagger
- * /books/borrowed:
+ * /api/v1/books/borrowed:
  *   get:
  *     tags:
  *       - Borrowing Operations
@@ -416,7 +422,7 @@ bookRouter.route('/borrowed')
   .get(isAdmin, listBorrowed);
 /**
  * @swagger
- * /books/category:
+ * /api/v1/books/category:
  *   post:
  *     tags:
  *       - Book Operations
@@ -460,7 +466,7 @@ bookRouter.route('/category')
 
 /**
  * @swagger
- * /books/category:
+ * /api/v1/books/category:
  *   get:
  *     tags:
  *       - Book Operations
