@@ -146,6 +146,8 @@ userRouter.route('/') // Get all users
  *   get:
  *     tags:
  *       - Users & Authentication
+ *     summary:
+ *       - Get all registered users on the app
  *     description: Returns an array of all users
  *     produces:
  *       - application/json
@@ -209,6 +211,8 @@ userRouter.route('/:userId')
  *   get:
  *     tags:
  *       - Users & Authentication
+ *     summary:
+ *       - Get borrowing history for a single user
  *     description: Get borrowing history for a single user
  *     produces:
  *       - application/json
@@ -282,6 +286,8 @@ userRouter.route('/signup')
  *   post:
  *     tags:
  *       - Users & Authentication
+ *     summary:
+ *       - Register/Sign up a new User to the library
  *     description: Creates a new user
  *     produces:
  *       - application/json
@@ -326,6 +332,8 @@ userRouter.route('/signin')
  *   post:
  *     tags:
  *       - Users & Authentication
+ *     summary:
+ *       - Login to the application
  *     description: Logs in a user
  *     produces:
  *       - application/json
@@ -365,6 +373,8 @@ userRouter.route('/:userId/books/:bookId')
  *   post:
  *     tags:
  *       - Borrowing Operations
+ *     summary:
+ *       - Borrow a book in the library
  *     description: Users can borrow a book
  *     produces:
  *       - application/json
@@ -441,6 +451,8 @@ userRouter.route('/:userId/books/:bookId')
  *   put:
  *     tags:
  *       - Borrowing Operations
+ *     summary:
+ *       - Return a book borrowed
  *     description: Users can return a borrowed book
  *     produces:
  *       - application/json
@@ -506,6 +518,8 @@ userRouter.route('/:userId/books')
  *   get:
  *     tags:
  *       - Borrowing Operations
+ *     summary:
+ *       - Get books borrowed but not returned
  *     description: Show books borrowed but not returned
  *     produces:
  *       - application/json
@@ -567,6 +581,8 @@ userRouter.route('/existing')
    *   post:
    *     tags:
    *       - Users & Authentication
+   *     summary:
+ *         - Check if an email exists in the database
    *     description: checks for existing email in the database
    *     produces:
    *       - application/json
@@ -619,6 +635,8 @@ userRouter.route('/edit/:userId')
     *   put:
     *     tags:
     *       - Users & Authentication
+    *     summary:
+    *          - Edit user details
     *     description: modify user details
     *     produces:
     *       - application/json

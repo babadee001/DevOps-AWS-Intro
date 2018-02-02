@@ -122,6 +122,8 @@ dotenv.load(); // Get all books
  *   get:
  *     tags:
  *       - Book Operations
+ *     summary:
+ *       - Get all available books in the library
  *     description: Returns all books
  *     produces:
  *       - bookslication/json
@@ -203,6 +205,8 @@ bookRouter.route('/')
  *   post:
  *     tags:
  *       - Book Operations
+ *     summary:
+ *       - Add a new book to the library
  *     description: Adds a new book to the database
  *     produces:
  *       - bookslication/json
@@ -272,6 +276,8 @@ bookRouter.route('/:bookId')
  *   put:
  *     tags:
  *       - Book Operations
+ *     summary:
+ *       - Edit a book details
  *     description: Modify an already a book information
  *     produces:
  *       - bookslication/json
@@ -344,6 +350,8 @@ bookRouter.route('/:bookId')
  *   delete:
  *     tags:
  *       - Book Operations
+ *     summary:
+ *       - Delete a single book
  *     description: Delete a specified Book
  *     produces:
  *       - bookslication/json
@@ -395,6 +403,8 @@ bookRouter.route('/:bookId')
  *   get:
  *     tags:
  *       - Borrowing Operations
+ *     summary:
+ *       - Get all books that has been borrowed in the app
  *     description: Returns all books in the borrowed table
  *     produces:
  *       - bookslication/json
@@ -450,6 +460,8 @@ bookRouter.route('/borrowed')
  *   post:
  *     tags:
  *       - Book Operations
+ *     summary:
+ *       - Add a new book category
  *     description: Adds a new category to the database
  *     produces:
  *       - application/json
@@ -501,6 +513,8 @@ bookRouter.route('/category')
  *     tags:
  *       - Book Operations
  *     description: Returns all Category in the database
+ *     summary:
+ *       - Get all available categories in the app
  *     produces:
  *       - application/json
  *     parameters:

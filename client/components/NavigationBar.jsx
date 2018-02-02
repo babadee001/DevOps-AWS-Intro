@@ -52,7 +52,7 @@ class NavigationBar extends Component {
           <Link to="/"><Navbar brand='Hello-Books' right fixed>
             <NavItem><Link to='/'>Home</Link></NavItem>
             <NavItem><Link to='/about'>About</Link></NavItem>
-            <NavItem href='https://github.com/babadee001/HelloBooks#readme' target="_blank">Check on Github</NavItem>
+            <NavItem><a href='https://github.com/babadee001/HelloBooks#readme'>Check on Github</a></NavItem>
           </Navbar></Link>
         )
         }
