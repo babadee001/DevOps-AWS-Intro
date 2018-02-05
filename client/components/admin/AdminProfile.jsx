@@ -44,7 +44,6 @@ class AdminProfile extends Component {
               <h1>{this.props.user.username}</h1>
               <p className="title">{this.props.user.membership}</p>
               <p>{this.props.user.email}</p>
-                <p className="admininfo"><button> Admin Info</button></p>
             </div>
           </div>
         </div>
