@@ -26,7 +26,7 @@ class EditProfile extends Component {
 		this.state = {
 			username: this.props.user.username,
 			edit: false,
-			emailExist: '',
+			passwordError: '',
 			profile: true,
 			usernameError: '',
 			oldPassword: '',
@@ -55,7 +55,7 @@ class EditProfile extends Component {
 		switch (name) {
 			case 'username':
 				const validator = /[A-Za-z]/g;
-				if (!validator.test(value)) {
+				if (!validator.test(value) || username.lenght > 0) {
 					this.setState({
 						usernameError: 'Invalid input, username cannot be letters only or empty'
 					});
@@ -79,10 +79,10 @@ class EditProfile extends Component {
 		switch (name) {
 			case 'username':
 				this.setState({ usernameError: '' });
-				break;
-			case 'email':
-				this.setState({ emailExist: '' });
-				break;
+			case 'newPassword':
+				this.setState({ passwordError: '' });
+			case 'oldPassword':
+				this.setState({ passwordError: '' });
 		}
   }
   
@@ -96,6 +96,14 @@ class EditProfile extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const userId = this.props.user.userId || this.props.user.id;
+    if ((this.props.user.username === this.state.username) 
+		&& ((this.state.oldPassword === '') ||
+		(this.state.newPassword === ''))) {
+			this.setState({
+				passwordError: 'No changes made. Please fill both old and new password fields'
+			});
+			return false
+		}
     checkUser({searchTerm: this.state.username})
     .then((response) => {
         if (response !== 'Not found') {
@@ -164,6 +172,7 @@ class EditProfile extends Component {
 												onFocus={this.onFocus}
 												onChange={this.onChange}
 											/>
+                      <div className="red-text">{this.state.passwordError}</div>
 										</div>
 
 										<div className="input-field col s6">
@@ -187,7 +196,8 @@ class EditProfile extends Component {
 									className="btn waves-effect"
 									type="submit"
 									name="submit"
-								disabled={this.state.usernameError.length > 1 }
+                disabled={this.state.usernameError.length > 1
+                  || this.state.passwordError.length > 1 }
                 >
 									Submit
 								</button>

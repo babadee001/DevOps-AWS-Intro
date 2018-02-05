@@ -254,7 +254,7 @@ const UserController = {
       }
     }).then((user) => {
       if (user) {
-        if (req.body.oldPassword) {
+        if (req.body.oldPassword || req.body.newPassword) {
           if (req.body.oldPassword &&
             !bcrypt.compareSync(req.body.oldPassword, user.password)) {
             res.status(400).send({
