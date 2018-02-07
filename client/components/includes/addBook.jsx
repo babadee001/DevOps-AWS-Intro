@@ -131,8 +131,9 @@ class AddBook extends Component {
 	 * @memberOf AddBook
 	 */
   handleUploadError(error) {
+    notifyNetworkError(error);
     this.setState({ isUploading: false });
-    swal(error);}
+  }
   
   /**
 	 * 
@@ -306,6 +307,7 @@ class AddBook extends Component {
                 onProgress={ this.handleProgress }
                 onUploadSuccess={ this.handleUploadSuccess }
                 onUploadStart={ this.handleUploadStart }
+                onUploadError={ this.handleUploadError }
               />
             </div>
             <button
@@ -313,7 +315,7 @@ class AddBook extends Component {
               className="btn"
               type="submit"
               name="submit"
-              disabled={ this.state.progress < 100 }
+              disabled={ this.state.progress < 100  || this.state.cover.length < 1}
             >Add Book
             </button>
           </form>

@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   // debug: true,
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-eval-source-map',
   // noInfo: false,
   entry: ['webpack-hot-middleware/client?reload=true', path.join(__dirname, '/client/index.jsx')],
   output: {

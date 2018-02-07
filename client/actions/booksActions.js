@@ -207,7 +207,6 @@ export function addBookAction(bookDetails) {
   return dispatch => axios.post('api/v1/books', bookDetails)
     .then((res) => {
       Materialize.toast('Book added Successfully', 2000, 'teal', () => {
-        this.setState({ isLoading: false });
       });
       dispatch({
         type: ADD_BOOK,
