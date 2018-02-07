@@ -5,6 +5,7 @@ import Navbar from '../NavigationBar';
 import Sidebar from '../includes/sidebar';
 import { checkUser } from '../../utils/validations';
 import { editProfileAction } from '../../actions/authActions';
+import notifyNetworkError from '../../utils/notifyNetworkError';
   
 /**
  * @description - Edit profile component
@@ -111,7 +112,15 @@ class EditProfile extends Component {
           return false;
         }
         this.props.actions.editProfileAction(userId, this.state);
-    })
+    }).catch((error) => {
+      if (error.data) {
+        Materialize.toast(error.data.message,
+          4000,
+          'red');
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 	}
 
 	/**
