@@ -96,11 +96,11 @@ class  BorrowedHistory extends Component {
 			);
 		}else{
 			return (
-        <div className="">
-          <div className="row">
+        <div className="container">
           <div className="card-panel headcard">
              <center>Borrowing History</center>
           </div>
+					<div className="row">
           <Sidebar 
           fullname={ this.props.user.username }
           link1={'Borrow History'} 

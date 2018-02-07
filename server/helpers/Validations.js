@@ -137,10 +137,10 @@ const Validations = {
   validateBook(req, res, next) {
     req.checkBody(
       {
-        // cover: {
-        //   notEmpty: true,
-        //   errorMessage: 'Please upload a cover',
-        // },
+        cover: {
+          notEmpty: true,
+          errorMessage: 'Please upload a cover',
+        },
         catId: {
           notEmpty: true,
           errorMessage: 'Please select a category',

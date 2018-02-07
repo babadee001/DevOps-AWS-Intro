@@ -301,10 +301,10 @@ class AddBook extends Component {
             </div>
             <button
               id="addbook"
-              className="btn waves-effect waves-light"
+              className="btn"
               type="submit"
               name="submit"
-              disabled={ this.state.isLoading }
+              disabled={ this.state.progress < 100 }
             >Add Book
             </button>
           </form>

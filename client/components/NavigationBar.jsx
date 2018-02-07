@@ -35,13 +35,22 @@ class NavigationBar extends Component {
 	 * @memberOf Navigation
 	 */
   render() {
+    let role;
     const isAuthenticated = this.props.auth.authenticated;
+    if (isAuthenticated) {
+      if (this.props.auth.user.currentUser.isAdmin === 1) {
+        role = '/admin';
+      }
+      else {
+        role = '/dashboard'
+      }
+    }
     
     return (
       <div className="Navwrapper">
         {isAuthenticated?
         (
-          <Link to="/admin"><Navbar brand="Hello-Books" fixed right>
+          <Link to={role}><Navbar brand="Hello-Books" fixed right>
             <NavItem><Link to='/admin'>Home</Link></NavItem>
             <NavItem><Link to={this.props.route}>{this.props.link}</Link></NavItem>
             <NavItem><Link to={this.props.route1}>{this.props.link1}</Link></NavItem>
