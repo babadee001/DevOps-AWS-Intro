@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import Materialize from 'materialize-css';
 import { bindActionCreators } from 'redux';
+import notifyNetworkError from '../../utils/notifyNetworkError';
 import { editBook, deleteBookAction, getCategoryAction } from '../../actions/booksActions';
 
 /**
@@ -124,11 +125,19 @@ class AllBooks extends Component {
           this.props.actions.deleteBookAction(this.props.id)
             .then((res) => {
               swal(res, { icon: 'success' });
-            })
+            }).catch((error) => {
+              if (error.data) {
+                Materialize.toast(error.data.message,
+                  4000,
+                  'red');
+              } else {
+                notifyNetworkError(error);
+              }
+            });
         } else {
           swal('Book was not deleted');
         }
-      });
+      })
   }
 
   /**
