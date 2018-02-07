@@ -242,9 +242,12 @@ export function deleteBookAction(bookId) {
     })
     .catch((error) => {
       if (error.data) {
-        swal(error.data.message);
+        Materialize.toast(error.data.message,
+          4000,
+          'red');
       } else {
         notifyNetworkError(error);
+        dispatch(isFetching(false));
       }
     });
 }

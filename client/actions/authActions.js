@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import Materialize from 'materialize-css';
 import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../utils/setAuthorization';
+import notifyNetworkError from '../utils/notifyNetworkError';
 import { SET_CURRENT_USER, UNAUTH_USER, GET_ALL_USERS, SET_API_STATUS, EDIT_PROFILE } from './types';
 
 /**
