@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getCategoryAction } from '../../actions/booksActions';
+import notifyNetworkError from '../../utils/notifyNetworkError';
 
 /**
  * @description - Add book component
@@ -149,6 +150,14 @@ class AddBook extends Component {
       .getDownloadURL()
       .then((url) => {
         this.setState({ cover: url, progress: 100 });
+      }).catch((error) => {
+        if (error.data) {
+          Materialize.toast(error.data.message,
+            4000,
+            'red');
+        } else {
+          notifyNetworkError(error);
+        }
       });
   }
 

@@ -3,6 +3,7 @@ import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import jwt from 'jsonwebtoken';
+import notifyNetworkError from '../../utils/notifyNetworkError';
 import { checkExisting, getDetails, responseGoogle } from '../../utils/validations';
 
 /**
@@ -58,6 +59,14 @@ export default class SigninForm extends Component {
             }, secret
           );
           this.props.googleSigninRequest(token)
+        }
+      }).catch((error) => {
+        if (error.data) {
+          Materialize.toast(error.data.message,
+            4000,
+            'red');
+        } else {
+          notifyNetworkError(error);
         }
       });
     }
