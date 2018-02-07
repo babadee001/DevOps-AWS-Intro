@@ -51,7 +51,7 @@ class NavigationBar extends Component {
         {isAuthenticated?
         (
           <Link to={role}><Navbar brand="Hello-Books" fixed right>
-            <NavItem><Link to='/admin'>Home</Link></NavItem>
+            <NavItem><Link to={role}>Home</Link></NavItem>
             <NavItem><Link to={this.props.route}>{this.props.link}</Link></NavItem>
             <NavItem><Link to={this.props.route1}>{this.props.link1}</Link></NavItem>
             <NavItem><Link onClick={ this.logout.bind(this) }>Logout</Link></NavItem>
