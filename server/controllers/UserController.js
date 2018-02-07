@@ -35,7 +35,6 @@ const UserController = {
         const currentUser = {
           userId: user.id,
           username: user.username,
-          password: user.password,
           isAdmin: user.isAdmin,
           email: user.email,
           membership: user.membership };
@@ -47,6 +46,7 @@ const UserController = {
           message: 'Signed up successfully',
           Token: token,
           success: true,
+          currentUser
         });
       })
       .catch(() => res.status(409).send({

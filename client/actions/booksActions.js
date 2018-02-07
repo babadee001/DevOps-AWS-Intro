@@ -2,6 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import swal from 'sweetalert';
 import { browserHistory } from 'react-router';
+import notifyNetworkError from '../utils/notifyNetworkError';
 
 import {
   GET_ALL_BOOKS,
@@ -35,7 +36,13 @@ export const getBooks = () => (dispatch) => {
       dispatch(isFetching(false));
       return res.data;
     })
-    .catch(error => error);
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 };
 
 /**
@@ -54,7 +61,13 @@ export function getBorrowed(userId) {
       });
       return res.data;
     })
-    .catch(error => error);
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -75,7 +88,13 @@ export const getHistory = userId => (dispatch) => {
       dispatch(isFetching(false));
       return res.data;
     })
-    .catch(error => error);
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 };
 
 /**
@@ -97,7 +116,13 @@ export function editBook(details, bookId) {
         return res.data.message;
         swal(res.data.message)
     })
-    .catch(error => swal(error.data.message));
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -130,7 +155,13 @@ export function borrowBook(userId, bookId) {
         }).catch(error => swal(error.data.message));
     }
   })
-    .catch(error => error);
+  .catch((error) => {
+    if (error.data) {
+      swal(error.data.message);
+    } else {
+      notifyNetworkError(error);
+    }
+  });
 }
 
 /**
@@ -156,7 +187,13 @@ export function returnBook(userId, bookId) {
         data: response.data.book
       });
     })
-    .catch(error => swal(error));
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -178,7 +215,13 @@ export function addBookAction(bookDetails) {
       });
       browserHistory.push('/admin');
     })
-    .catch(error => swal(error.data.message));
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -197,7 +240,13 @@ export function deleteBookAction(bookId) {
       });
       return res.data.message;
     })
-    .catch(error => Materialize.toast(error.response.data.message, 1000));
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -214,7 +263,13 @@ export function getAllBorrowed() {
       });
       return res.data;
     })
-    .catch(error => error);
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -233,7 +288,13 @@ export function addCategoryAction(data) {
       });
       Materialize.toast('Category added successfully', 2000, 'teal');
     })
-    .catch((error => swal(error.data.message)));
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }
 
 /**
@@ -249,5 +310,11 @@ export function getCategoryAction() {
         data: response.data
       });
     })
-    .catch(error => error);
+    .catch((error) => {
+      if (error.data) {
+        swal(error.data.message);
+      } else {
+        notifyNetworkError(error);
+      }
+    });
 }

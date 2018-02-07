@@ -59,12 +59,16 @@ export const userSignupRequest = userData => (dispatch) => {
           browserHistory.push('/admin');
         }
       );
-    })
-    .catch((error) => {
-      dispatch(isFetching(false));
-      Materialize.toast(error.data.message,
-        4000,
-        'red');
+    }).catch((error) => {
+      if (error.data) {
+        dispatch(isFetching(false));
+        Materialize.toast(error.data.message,
+          4000,
+          'red');
+      } else {
+        notifyNetworkError(error);
+        dispatch(isFetching(false));
+      }
     });
 };
 
@@ -93,10 +97,14 @@ export const userSigninRequest = userData => (dispatch) => {
       );
     })
     .catch((error) => {
-      dispatch(isFetching(false));
-      Materialize.toast(error.data.message,
-        4000,
-        'red');
+      if (error.data) {
+        Materialize.toast(error.data.message,
+          4000,
+          'red');
+      } else {
+        notifyNetworkError(error);
+        dispatch(isFetching(false));
+      }
     });
 };
 
@@ -134,7 +142,16 @@ export function getUsers() {
       });
       return res.data;
     })
-    .catch(error => error);
+    .catch((error) => {
+      if (error.data) {
+        Materialize.toast(error.data.message,
+          4000,
+          'red');
+      } else {
+        notifyNetworkError(error);
+        dispatch(isFetching(false));
+      }
+    });
 }
 
 /**
@@ -183,5 +200,14 @@ export function editProfileAction(userId, userData) {
       );
       return response.data.message;
     })
-    .catch(error => Materialize.toast(error.data.message, 2000, 'red'));
+    .catch((error) => {
+      if (error.data) {
+        Materialize.toast(error.data.message,
+          4000,
+          'red');
+      } else {
+        notifyNetworkError(error);
+        dispatch(isFetching(false));
+      }
+    });
 }

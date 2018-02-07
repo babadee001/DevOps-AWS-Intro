@@ -87,12 +87,10 @@ const Validations = {
       {
         username: {
           notEmpty: true,
-          isAlphanumeric: false,
           errorMessage: 'Enter a valid username',
         },
         password: {
           notEmpty: true,
-          isAlphanumeric: false,
           errorMessage: 'Enter a valid password',
         },
       });
