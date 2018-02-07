@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 import Materialize from 'materialize-css';
 import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../utils/setAuthorization';
@@ -90,12 +90,21 @@ export const userSigninRequest = userData => (dispatch) => {
       setAuthorizationToken(response.data.Token);
       const decoded = jwt.decode(response.data.Token);
       dispatch(setCurrentUser(decoded));
-      Materialize.toast('Logged In Successfully', 1000,
+      if (decoded.currentUser.isAdmin === 1) {
+        Materialize.toast('Logged In Successfully', 1000,
         'teal',
         () => {
           browserHistory.push('/admin');
         }
       );
+      }else {
+        Materialize.toast('Logged In Successfully', 1000,
+        'teal',
+        () => {
+          browserHistory.push('/dashboard');
+        }
+      );
+      }
     })
     .catch((error) => {
       if (error.data) {

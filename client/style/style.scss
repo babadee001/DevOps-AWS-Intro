@@ -2,7 +2,7 @@ body, h1, h2, h3, h4, h5, h6, p, div, button{
   font-family: Nunito;
 }
 body{
-  font-size: 14px;
+  font-size: 12px !important;
 }
 input {
   font-size: 14px !important; 
@@ -175,9 +175,11 @@ input {
     padding: 10px;
     width: 100%;
     text-align: center;
-    font-size: 17px;
+    font-size: 21px;
   }
-  
+  .card .card-title {
+    font-size: 21px !important;
+  }
   .card .card-image {
     height: 250px !important;
   }
@@ -227,7 +229,7 @@ input {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
   .card-text{
-    font-size: 500%;
+    font-size: 340%;
   }
   #sidenav-overlay {
     background-color: rgba(0,0,0,0.0);

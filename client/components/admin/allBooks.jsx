@@ -124,7 +124,7 @@ class AllBooks extends Component {
           this.props.actions.deleteBookAction(this.props.id)
             .then((res) => {
               swal(res, { icon: 'success' });
-            });
+            })
         } else {
           swal('Book was not deleted');
         }
