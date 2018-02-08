@@ -54,12 +54,21 @@ export const userSignupRequest = userData => (dispatch) => {
       setAuthorizationToken(response.data.Token);
       const decoded = jwt.decode(response.data.Token);
       dispatch(setCurrentUser(decoded));
-      Materialize.toast('Signed up Successfully', 1000,
+      if (decoded.currentUser.isAdmin === 1) {
+        Materialize.toast('Signed up Successfully', 1000,
         'teal',
         () => {
           browserHistory.push('/admin');
         }
       );
+      }else {
+        Materialize.toast('Signed up Successfully', 1000,
+        'teal',
+        () => {
+          browserHistory.push('/dashboard');
+        }
+      );
+      }
     }).catch((error) => {
       if (error.data) {
         dispatch(isFetching(false));

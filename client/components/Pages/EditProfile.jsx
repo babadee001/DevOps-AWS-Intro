@@ -136,6 +136,10 @@ class EditProfile extends Component {
 		this.setState({ [name]: value });
 	}
 	render() {
+		let google = false;
+		if (this.props.user.membership == 'googleSilver') {
+			google = true;
+		}
 		return (
       <div>
         <Navbar route="/dashboard" link="All books" route1="/history" link1="History" />
@@ -167,7 +171,7 @@ class EditProfile extends Component {
                       <div className="red-text">{this.state.usernameError}</div>
 										</div>
 									</div>
-							<div className="center red-text">
+							{google ? <div></div> : <div><div className="center red-text">
 							(Leave blank unless you want to change your password)</div>
 									<div className="row">
 										<div className="input-field col s6">
@@ -197,7 +201,7 @@ class EditProfile extends Component {
 											/>
 										</div>
 									</div>
-								</div>
+		</div>}</div>
                 <p id="message">
                 Please note. You will be logged out and be required to login again with the new details
                 </p>

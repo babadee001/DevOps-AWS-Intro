@@ -2,7 +2,7 @@ body, h1, h2, h3, h4, h5, h6, p, div, button{
   font-family: Nunito;
 }
 body{
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 input {
   font-size: 14px !important; 
@@ -312,6 +312,11 @@ input {
   }
   #message {
     color: #266767;
+    font-size: 14px !important;
+  }
+  #googler {
+    color: #266767;
+    margin-bottom: 30px;
   }
   .nav-wrapper .brand-logo {
     color: white !important;
