@@ -1,7 +1,8 @@
 module.exports = {
   apps: [{
     name: 'HelloBooks',
-    script: 'npm run start'
+    script: 'npm run start',
+    exec_interpreter : "babel-node"
   }],
   deploy: {
     production: {
