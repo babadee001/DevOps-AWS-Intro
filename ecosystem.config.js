@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'HelloBooks',
-    script: './app.js'
+    script: 'nodemon ./app.js'
   }],
   deploy: {
     production: {
@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:babadee001/DevOps-AWS-Intro.git',
       path: '/home/ubuntu/HelloBooks',
-      'post-deploy': 'npm install; npm start && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
 };
