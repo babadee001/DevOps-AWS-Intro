@@ -14,9 +14,6 @@ import webpackProd from './webpack.config.prod';
 
 dotenv.load();
 const app = express();
-if (process.env.NODE_ENV === 'production') {
-  console.log = function() {};
-}
 const swaggerDefinition = {
   info: {
     title: 'Hello-Books Swagger API',
@@ -74,7 +71,7 @@ app.get('/bundle.js', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/index.html'));
+  res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 
 const port = process.env.PORT || 8000;
