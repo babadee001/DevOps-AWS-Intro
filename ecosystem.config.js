@@ -2,7 +2,7 @@ module.exports = {
   apps: [{
     name: 'HelloBooks',
     script: 'app.js',
-    exec_interpreter : "babel-node"
+    interpreter  : 'babel-node'
   }],
   deploy: {
     production: {
