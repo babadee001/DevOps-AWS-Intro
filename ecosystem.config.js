@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'HelloBooks',
-    script: 'npm start'
+    script: 'npm run start'
   }],
   deploy: {
     production: {
