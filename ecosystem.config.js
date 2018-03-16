@@ -1,8 +1,12 @@
 module.exports = {
   apps: [{
     name: 'HelloBooks',
-    script: 'client/dist/bundle.js',
-  }],
+    script: 'app.js',
+    env_production : {
+      NODE_ENV: 'production'
+    }
+  },
+],
   deploy: {
     production: {
       user: 'ubuntu',
