@@ -2,7 +2,7 @@ module.exports = {
   apps: [{
     name: 'HelloBooks',
     script: 'app.js',
-    env : {
+    "environment_variables" : {
       NODE_ENV: 'production',
       DATABASE_URL: 'postgres://boddocvovmdlvc:1edf249c9462951822a551043e77809aa6b5342a37ae6598e7b52c826fab10cd@ec2-54-235-240-126.compute-1.amazonaws.com:5432/dch1ud2dv6hni1'
     }
