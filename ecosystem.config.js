@@ -6,7 +6,7 @@ module.exports = {
     env: {
       NODE_ENV: 'production',
       dialect: 'postgres',
-      DATABASE_URL: 'postgres://lsfovzcr:u7rLpV5I0h3WTQLPXBDrfBICTapoe1o5@babar.elephantsql.com:5432/lsfovzcr'
+      DATABASE_URL: 'postgres://boddocvovmdlvc:1edf249c9462951822a551043e77809aa6b5342a37ae6598e7b52c826fab10cd@ec2-54-235-240-126.compute-1.amazonaws.com:5432/dch1ud2dv6hni1'
     }
   },
   ],
