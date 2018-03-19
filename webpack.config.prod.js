@@ -18,9 +18,9 @@ module.exports = {
   },
   plugins: [
     new htmlWebpackPlugin({
-        title: 'Hellobooks',
-        template: './client/index.html'
-      }),
+      title: 'Hellobooks',
+      template: './client/index.html'
+    }),
     new CleanWebpackPlugin(['client/dist']),
     new webpack.EnvironmentPlugin([
       'SECRET',
