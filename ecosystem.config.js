@@ -5,7 +5,8 @@ module.exports = {
     exec_interpreter: 'babel-node',
     env: {
       NODE_ENV: 'production',
-      dialect: 'postgres'
+      dialect: 'postgres',
+      tester: 'value'
     }
   },
   ],
