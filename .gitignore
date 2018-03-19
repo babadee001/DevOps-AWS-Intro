@@ -67,5 +67,4 @@ test/api
 node-swagger-api
 
 #dist
-client/dist
 # End of https://www.gitignore.io/api/node
