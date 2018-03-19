@@ -2,11 +2,11 @@ module.exports = {
   apps: [{
     name: 'HelloBooks',
     script: 'app.js',
-    "environment_variables" : {
+    environment_variables: {
       NODE_ENV: 'production'
     }
   },
-],
+  ],
   deploy: {
     production: {
       user: 'ubuntu',
