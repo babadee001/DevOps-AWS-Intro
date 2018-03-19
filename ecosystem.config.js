@@ -4,7 +4,8 @@ module.exports = {
     script: 'app.js',
     exec_interpreter: 'babel-node',
     env: {
-      NODE_ENV: 'production'
+      NODE_ENV: 'production',
+      dialect: 'postgres'
     }
   },
   ],
