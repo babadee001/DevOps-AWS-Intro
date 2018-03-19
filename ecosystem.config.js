@@ -16,7 +16,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:babadee001/DevOps-AWS-Intro.git',
       path: '/home/ubuntu/HelloBooks',
-      'post-deploy': 'npm install; npm run build && pm2 start npm -- start'
+      'post-deploy': 'npm install; npm run build && pm2 start npm -- start --env production'
     }
   }
 };
