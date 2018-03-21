@@ -16,7 +16,7 @@
     "cover": "babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha  -- -R spec --timeout 40000"
   },
   "engines": {
-    "node": "8.9.4"
+    "node": "8.10.0"
   },
   "keywords": [
     "library"
