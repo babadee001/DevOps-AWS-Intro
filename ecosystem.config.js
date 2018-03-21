@@ -14,7 +14,6 @@ module.exports = {
     production: {
       user: 'ubuntu',
       host: 'ec2-18-188-113-37.us-east-2.compute.amazonaws.com',
-      key: '~/.ssh/HelloBooksKey.pem',
       ref: 'origin/master',
       repo: 'https://github.com/babadee001/DevOps-AWS-Intro',
       path: '/home/ubuntu/HelloBooks',
